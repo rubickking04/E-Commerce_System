@@ -39,7 +39,7 @@
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#"><i class="fa-solid fa-right-from-bracket px-2 fs-5"></i>{{ __('Logout') }}</a></li>
                             @endauth
-                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-right-to-bracket  fs-5 px-2"></i>{{ __('Sign up') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ route('login') }}"><i class="fa-solid fa-right-to-bracket  fs-5 px-2"></i>{{ __('Sign up') }}</a></li>
                         </ul>
                     </li>
                 </ul>
