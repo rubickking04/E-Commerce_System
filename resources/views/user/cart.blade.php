@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-header">{{ __('My Shopping Cart') }}</div>
         <div class="card-body">
-            <div class="table-responsive text-center">
+            <div class="table-responsive text-center d-none d-sm-block">
                 <table class="table">
                     <thead>
                         <tr>
