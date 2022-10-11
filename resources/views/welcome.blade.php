@@ -30,8 +30,8 @@
                             <a class="nav-link active" href="{{ route('cart') }}"><i class="fa-solid fa-cart-shopping fs-4"></i></a>
                         </li>
                         <li class="nav-item dropdown px-2">
-                            <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user fs-4"></i></a>
-                            <ul class="dropdown-menu">
+                            <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user fs-4"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
                                 @auth
                                     <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user fs-5 px-2"></i>{{ __('Profile') }}</a></li>
                                     <li><a class="dropdown-item" href="#"><i class="fa-solid fa-cart-plus fs-5 px-2"></i>{{ __('Create Store') }}</a></li>
@@ -78,9 +78,9 @@
 
         <main class="py-3">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-6 mb-3" style="max-width: 250px;">
-                        <a href="#" class="card shadow text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#productModal">
+                <div class="row g-1">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-6 mb-3 " style="max-width: 250px;">
+                        <a href="#" class="card shadow text-decoration-none text-dark h-100" data-bs-toggle="modal" data-bs-target="#productModal">
                             <img src="{{ asset('/storage/images/note11.jpg') }}" class="card-img-top" alt="..." height="220">
                             <div class="card-body">
                                 <h5 class="card-title fw-bold">Redmi Note 11</h5>
@@ -125,7 +125,7 @@
                         </div>
                     </div>
                     <div class="col-xxl-3 col-lg-3 col-md-6 col-sm-6 col-6  mb-3" style="max-width: 250px;">
-                        <div class="card shadow">
+                        <div class="card shadow h-100">
                             <img src="{{ asset('/storage/images/iphone14.jpg') }}" class="card-img-top" alt="..." height="220">
                             <div class="card-body">
                                 <h5 class="card-title fw-bold">iPhone 14 Pro Max</h5>
