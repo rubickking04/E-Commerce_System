@@ -21,11 +21,31 @@
     <div id="app">
         <nav class="navbar navbar-expand bg-light shadow-lg">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}"><img class="align-top" src="{{ asset('/storage/images/E-mart-logo.png') }}" height="50" width="80"></a>
-                <p class="navbar-brand mb-0 navbar-text fw-bold text-dark">{{ __('Login') }}</p>
+                {{-- <a class="navbar-brand" href="{{ url('/') }}"><img class="align-top" src="{{ asset('/storage/images/E-mart-logo.png') }}" height="50" width="80"></a> --}}
+                <p class="navbar-brand mb-0 navbar-text fw-bold text-dark">{{ __('Product Name') }}</p>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item px-2 mx-auto">
-                        <a class="nav-link " href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">{{ __('Need Help?') }}</a>
+                        <a class="nav-link active" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-magnifying-glass fs-4 "></i></a>
+                    </li>
+                    <li class="nav-item px-2">
+                        <a class="nav-link active" href="{{ route('cart') }}"><i class="fa-solid fa-cart-shopping fs-4"></i></a>
+                    </li>
+                    <li class="nav-item dropdown px-2">
+                        <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user fs-4"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                @auth
+                                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user fs-5 px-2"></i>{{ __('Profile') }}</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-cart-plus fs-5 px-2"></i>{{ __('Create Store') }}</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa-solid fa-right-from-bracket px-2 fs-5"></i>{{ __('Logout') }}</a></li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                @endauth
+                                @guest
+                                <li><a class="dropdown-item" href="{{ route('login') }}"><i class="fa-solid fa-right-to-bracket  fs-5 px-2"></i>{{ __('Sign up') }}</a></li>
+                                @endguest
+                            </ul>
                     </li>
                 </ul>
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -67,37 +87,33 @@
     </main>
 </body>
 <script>
-    function password_show_hide() {
-        var x = document.getElementById("password");
-        var show_eye = document.getElementById("show_eye");
-        var hide_eye = document.getElementById("hide_eye");
-        hide_eye.classList.remove("d-none");
-        if (x.type === "password") {
-            x.type = "text";
-            show_eye.style.display = "none";
-            hide_eye.style.display = "block";
-        } else {
-            x.type = "password";
-            show_eye.style.display = "block";
-            hide_eye.style.display = "none";
-        }
+    $(document).ready(function () {
+
+$('.increment-btn').click(function (e) {
+    e.preventDefault();
+    var incre_value = $(this).parents('.quantity').find('.qty-input').val();
+    var value = parseInt(incre_value, 10);
+    value = isNaN(value) ? 0 : value;
+    if(value<10){
+        value++;
+        $(this).parents('.quantity').find('.qty-input').val(value);
     }
 
-    function password_show_hides() {
-        var x = document.getElementById("password-confirm");
-        var show_eye = document.getElementById("show_eyes");
-        var hide_eye = document.getElementById("hide_eyes");
-        hide_eye.classList.remove("d-none");
-        if (x.type === "password") {
-            x.type = "text";
-            show_eye.style.display = "none";
-            hide_eye.style.display = "block";
-        } else {
-            x.type = "password";
-            show_eye.style.display = "block";
-            hide_eye.style.display = "none";
-        }
+});
+
+$('.decrement-btn').click(function (e) {
+    e.preventDefault();
+    var decre_value = $(this).parents('.quantity').find('.qty-input').val();
+    var value = parseInt(decre_value, 10);
+    value = isNaN(value) ? 0 : value;
+    if(value>1){
+        value--;
+        $(this).parents('.quantity').find('.qty-input').val(value);
     }
+});
+
+});
+
 </script>
 
 </html>

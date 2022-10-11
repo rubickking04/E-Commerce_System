@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RegisterController extends Controller
 {
@@ -25,7 +29,21 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:50',
+            'email' => 'required|unique:users|email',
+            'username' => 'required|string|max:50',
+            'password' => 'required|confirmed|min:8',
+        ]);
+        $user = User::create([
+            'name' => $request->input('name'),
+            'username' => $request->input('username'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+        ]);
+        Auth::login($user);
+        Alert::success('Welcome', 'Success Message');
+        return redirect('/');
     }
 
     /**

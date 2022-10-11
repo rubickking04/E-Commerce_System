@@ -14,7 +14,7 @@
                                     <img src="{{ asset('/storage/images/logo.png') }}" alt="avatar" class="rounded-circle img-thumbnail  mb-3" height="150px" width="150px">
                                     <h2 >{{ __('Welcome to E-Mart') }}</h2>
                                 </div>
-                                <form method="POST" action="{{ route('register') }}">
+                                <form method="POST" action="{{ route('login') }}">
                                     @csrf
                                     <div class="row mb-3">
 
@@ -48,12 +48,24 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="text-center">
-                                        <button type="submit"
-                                            class=" text-center btn btn-warning mb-2 text-white">{{ __('Login') }}</button>
+                                    <div class="form-outline text-start">
+                                        <div class="row mb-2">
+                                            <div class="col-lg-12">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="remember" id="remember"
+                                                        {{ old('remember') ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="remember">
+                                                        {{ __('Remember me') }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-center">
+                                            <button type="submit" class="text-center text-white btn btn-warning mb-3">Sign in</button>
+                                        </div>
                                     </div>
                                     <div class="text-center">
-                                        <p>Not a member? <a href="{{ route('register') }}">{{ __('Sign Up') }}</a></p>
+                                        <p>Not a member? <a href="{{ route('sign-up') }}">{{ __('Sign Up') }}</a></p>
                                     </div>
                             </div>
                         </div>

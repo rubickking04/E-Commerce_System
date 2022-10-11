@@ -22,10 +22,30 @@
         <nav class="navbar navbar-expand bg-light shadow-lg">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}"><img class="align-top" src="{{ asset('/storage/images/E-mart-logo.png') }}" height="50" width="80"></a>
-                <p class="navbar-brand mb-0 navbar-text fw-bold text-dark">{{ __('Login') }}</p>
+                {{-- <p class="navbar-brand mb-0 navbar-text fw-bold text-dark">{{ __('My Cart') }}</p> --}}
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item px-2 mx-auto">
-                        <a class="nav-link " href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">{{ __('Need Help?') }}</a>
+                        <a class="nav-link active" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-magnifying-glass fs-4 "></i></a>
+                    </li>
+                    <li class="nav-item px-2">
+                        <a class="nav-link active" href="{{ route('cart') }}"><i class="fa-solid fa-cart-shopping fs-4"></i></a>
+                    </li>
+                    <li class="nav-item dropdown px-2">
+                        <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user fs-4"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                @auth
+                                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user fs-5 px-2"></i>{{ __('Profile') }}</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-cart-plus fs-5 px-2"></i>{{ __('Create Store') }}</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa-solid fa-right-from-bracket px-2 fs-5"></i>{{ __('Logout') }}</a></li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                @endauth
+                                @guest
+                                <li><a class="dropdown-item" href="{{ route('login') }}"><i class="fa-solid fa-right-to-bracket  fs-5 px-2"></i>{{ __('Sign up') }}</a></li>
+                                @endguest
+                            </ul>
                     </li>
                 </ul>
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

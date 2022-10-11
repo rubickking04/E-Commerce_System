@@ -1,4 +1,4 @@
-@extends('user.layouts.navbar')
+@extends('user.layouts.cart')
 @section('content')
 <div class="container">
     <div class="card">
