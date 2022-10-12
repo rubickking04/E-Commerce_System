@@ -18,6 +18,7 @@
 </head>
 
 <body class="antialiased" style="background-color: #eceff1">
+    @include('sweetalert::alert')
     <div id="app">
         <nav class="navbar navbar-expand bg-light shadow-lg">
             <div class="container">

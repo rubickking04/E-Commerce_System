@@ -18,6 +18,7 @@
 </head>
 
 <body class="antialiased" style="background-color: #eceff1">
+    @include('sweetalert::alert')
     <div id="app">
         <nav class="navbar navbar-expand bg-light shadow-lg">
             <div class="container">
@@ -35,7 +36,7 @@
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 @auth
                                     <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user fs-5 px-2"></i>{{ __('Profile') }}</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-cart-plus fs-5 px-2"></i>{{ __('Create Store') }}</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('store') }}"><i class="fa-solid fa-cart-plus fs-5 px-2"></i>{{ __('Create Store') }}</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa-solid fa-right-from-bracket px-2 fs-5"></i>{{ __('Logout') }}</a></li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

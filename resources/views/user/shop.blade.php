@@ -10,6 +10,7 @@
                     {{-- <hr> --}}
                     <p class="card-text h5 text-danger">₱8,899</p>
                     <p class="card-text h5 text-muted "> -10% <span class="text-decoration-line-through">₱9,999</span></p>
+                    {{-- <p>Xiaomi Store Global</p> --}}
                     <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i lass="fa-solid fa-star"></i>(50)
                 </div>
             </a>
