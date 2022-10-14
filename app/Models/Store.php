@@ -21,7 +21,7 @@ class Store extends Authenticatable
     protected $fillable = [
         'user_id',
         'store_name',
-        'store_email',
+        'email',
         'password',
     ];
 
@@ -37,5 +37,9 @@ class Store extends Authenticatable
     public function hasUser()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+    public function hasProduct()
+    {
+        return $this->hasMany(Product::class, 'store_id');
     }
 }

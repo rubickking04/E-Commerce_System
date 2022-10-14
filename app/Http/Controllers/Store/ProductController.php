@@ -1,15 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Store;
 
-use App\Models\Store;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Http\Request;
 
-class StoreController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +14,7 @@ class StoreController extends Controller
      */
     public function index()
     {
-        return view('user.store');
+        return view('store.add_products');
     }
 
     /**
@@ -29,22 +25,7 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'store_name' => 'required|string',
-            'email' => 'required|email|string|max:255',
-            'password' => 'required|min:6',
-            'password' => 'required|confirmed|min:6',
-        ]);
-        $store = Store::create([
-            'user_id' => Auth::user()->id,
-            'store_name' => $request->input('store_name'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
-        ]);
-        // dd($teacher);
-        // Mail::to($teacher['email'])->send(new WelcomeTeacherMail($teacher));
-        Alert::toast('Store Created Successfully!', 'success');
-        return redirect()->route('shop');
+        //
     }
 
     /**

@@ -26,39 +26,9 @@
                 <p class="navbar-brand mb-0 navbar-text fw-bold text-dark">{{ __('Login') }}</p>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item px-2 mx-auto">
-                        <a class="nav-link " href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">{{ __('Need Help?') }}</a>
+                        <a class="nav-link " href="#">{{ __('Need Help?') }}</a>
                     </li>
                 </ul>
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <div class="col-md-12">
-                                    <form action="#" method="GET" role="search" role="search">
-                                        <div class="input-group py-2">
-                                            <span class="input-group-text">
-                                                <i class="fa-solid fa-magnifying-glass fs-4 "></i>
-                                            </span>
-                                        <input id="search" type="search" aria-label="Search" placeholder="Search a product or a store" class="form-control form-control-lg @error('search') is-invalid @enderror" name="search">
-                                        @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                        </div>
-                                    <div class="text-center py-3">
-                                        <p>{{ __('No Recent Searches') }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('Close') }}</button>
-                                <button type="submit" class="btn btn-primary">{{ __('Search') }}</button>
-                            </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </nav>
     </div>

@@ -11,6 +11,9 @@ use App\Http\Controllers\User\ProductViewerController;
 use App\Http\Controllers\Admin\LoginController as AdminLogin;
 use App\Http\Controllers\Admin\HomeController as AdminHome;
 use App\Http\Controllers\Admin\LogoutController as AdminLogout;
+use App\Http\Controllers\Store\LoginController as StoreLogin;
+use App\Http\Controllers\Store\HomeController as StoreHome;
+use App\Http\Controllers\Store\ProductController as StoreProduct;
 use App\Http\Controllers\User\StoreController;
 
 /*
@@ -76,6 +79,18 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         });
         Route::controller(AdminLogout::class)->group(function () {
             Route::post('/admin/logout', 'logout')->name('admin.logout');
+        });
+    });
+    Route::controller(StoreLogin::class)->group(function () {
+        Route::get('/my-store/login', 'index')->name('store.login')->middleware('guest:store');
+        Route::post('/my-store/signin', 'store')->name('my-store.login');
+    });
+    Route::middleware('auth:store')->group(function () {
+        Route::controller(StoreHome::class)->group(function () {
+            Route::get('/my-store/home', 'index')->name('store.home');
+        });
+        Route::controller(StoreProduct::class)->group(function () {
+            Route::get('/my-store/product', 'index')->name('store.products');
         });
     });
 });

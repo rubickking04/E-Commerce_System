@@ -38,8 +38,8 @@
                                             <div class="input-group">
                                                 <div class="input-group-text"><i class="bi bi-envelope-fill"></i></div>
                                                 <input type="email" id="store_email" placeholder="Example: rubickking04@gmail.com"
-                                                    name="store_email" class="form-control @error('store_email') is-invalid @enderror" />
-                                                @error('store_email')
+                                                    name="email" class="form-control @error('email') is-invalid @enderror" />
+                                                @error('email')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
