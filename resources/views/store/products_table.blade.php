@@ -65,7 +65,7 @@
                                             @foreach ( $products as  $product)
                                                 <tr>
                                                     <td class="text-center fw-bold h6 py-3 text-truncate" scope="row">
-                                                        <img src="{{ asset('/storage/products/' . $product->product_image) }}" class="img-fluid" alt="">
+                                                        <img src="{{ asset('/storage/products/' . $product->product_image) }}" class="img-fluid" alt="" height="100" width="100">
                                                     </td>
                                                     <td class="text-center h6 py-3 text-truncate" scope="row">{{ __('') }}</td>
                                                     <td class="text-center h6 py-3 text-truncate" scope="row">{{ $product->product_name }}</td>
