@@ -95,7 +95,7 @@
                         <i class="fs-5 fa-solid fa-table text-white"></i><span class="ms-2  text-white">{{ __('Data Tables') }}</span></a>
                         <div class="collapse container" id="table-collapse">
                             <ul class="btn-toggle-nav nav nav-pills flex-column mb-sm-auto mb-auto mb-0 align-items-start list-unstyled fw-normal pb-2">
-                                <li class="nav-item"><a href="#" class="ms-2 nav-link  text-white text-decoration-none rounded"><i class="fs-5 fa-solid fa-angles-right"></i><span class="ms-2  text-white">{{ __('Products Table ') }}<span class="badge text-bg-primary">{{__('(34)')}}</span> </span></a></li>
+                                <li class="nav-item"><a href="{{ route('store.products.table') }}" class="ms-2 nav-link  text-white text-decoration-none rounded"><i class="fs-5 fa-solid fa-angles-right"></i><span class="ms-2  text-white">{{ __('Products Table ') }}<span class="badge text-bg-primary">{{__('(34)')}}</span> </span></a></li>
                                 <li class="nav-item"><a href="#" class="ms-2 nav-link  text-white text-decoration-none rounded"><i class="fs-5 fa-solid fa-angles-right"></i><span class="ms-2  text-white">{{ __('Carts Table ') }} <span class="badge text-bg-primary">{{__('(32)')}}</span> </span></a></li>
                                 <li class="nav-item"><a href="#" class="ms-2 nav-link  text-white text-decoration-none rounded"><i class="fs-5 fa-solid fa-angles-right"></i><span class="ms-2  text-white">{{ __('Orders Table ') }} <span class="badge text-bg-primary">{{__('(32)')}}</span> </span></a></li>
                             </ul>
@@ -117,10 +117,11 @@
         </div>
 
         <div class="container">
-            @yield('content')
+            <main class="py-5">
+                @yield('content')
+            </main>
         </div>
     </div>
 </body>
 <script src="https://cdn.lordicon.com/lusqsztk.js"></script>
-
 </html>

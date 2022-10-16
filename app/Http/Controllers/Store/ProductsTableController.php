@@ -6,9 +6,8 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use RealRashid\SweetAlert\Facades\Alert;
 
-class ProductController extends Controller
+class ProductsTableController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('store.add_products');
+        $products = Product::where('store_id', '=', Auth::user()->id)->latest()->get();
+        // dd($products);
+        return view('store.products_table', compact('products'));
     }
 
     /**
@@ -28,27 +29,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // dd('hello');
-        $request->validate([
-            'product_name' => 'required',
-            'product_price' => 'required',
-            // 'product_category' => 'required'
-            'product_image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            'product_definition' => 'required',
-        ]);
-        $products = Product::create([
-            'store_id' => Auth::user()->id,
-            'product_name' => $request->input('product_name'),
-            'product_price' => $request->input('product_price'),
-            'product_definition' => $request->input('product_definition'),
-        ]);
-        if (request()->hasFile('product_image')) {
-            $filename = request()->product_image->getClientOriginalName();
-            request()->product_image->storeAs('products', $filename, 'public');
-            $products->update(['product_image' => $filename]);
-        }
-        Alert::toast('Added Successfully!', 'success');
-        return back();
+        //
     }
 
     /**
