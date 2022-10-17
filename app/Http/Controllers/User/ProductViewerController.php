@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ProductViewerController extends Controller
 {
@@ -14,6 +15,7 @@ class ProductViewerController extends Controller
      */
     public function index()
     {
+        $product = Product::get();
         return view('user.product');
     }
 }
