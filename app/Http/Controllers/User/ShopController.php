@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\User;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,6 +16,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        return view('user.shop');
+        $products = Product::get();
+        return view('user.shop', compact('products'));
     }
 }

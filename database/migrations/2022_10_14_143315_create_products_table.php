@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('store_id')->references('id')->on('stores')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('product_name')->nullable();
             $table->string('product_price')->nullable();
+            $table->string('product_category')->nullable();
             $table->string('product_image', 150)->default('product.jpg');
             $table->string('product_definition')->nullable();
             $table->timestamps();

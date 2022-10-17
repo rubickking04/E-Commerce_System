@@ -32,7 +32,7 @@ class ProductController extends Controller
         $request->validate([
             'product_name' => 'required',
             'product_price' => 'required',
-            // 'product_category' => 'required'
+            'product_category' => 'required',
             'product_image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'product_definition' => 'required',
         ]);
