@@ -40,6 +40,7 @@ class ProductController extends Controller
             'store_id' => Auth::user()->id,
             'product_name' => $request->input('product_name'),
             'product_price' => $request->input('product_price'),
+            'product_category' => $request->input('product_category'),
             'product_definition' => $request->input('product_definition'),
         ]);
         if (request()->hasFile('product_image')) {
@@ -48,7 +49,7 @@ class ProductController extends Controller
             $products->update(['product_image' => $filename]);
         }
         Alert::toast('Added Successfully!', 'success');
-        return back();
+        return redirect()->route('store.products.table');
     }
 
     /**

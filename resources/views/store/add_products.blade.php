@@ -25,10 +25,33 @@
                                         <form method="POST" action="{{ route('add_products') }}" enctype="multipart/form-data">
                                             @csrf
                                             <div class="row mb-3">
-                                                <div class="form-outline text-start">
+                                                <div class="form-outline text-start col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                                     <label for="product_name" class="col-form-label">{{ __('Product Name') }}</label>
                                                     <input type="text" id="product_name" placeholder="Example: Jasmine Rice" name="product_name" class="form-control  @error('product_name') is-invalid @enderror" />
                                                     @error('product_name')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="form-outline text-start col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                    <label for="product_category" class="col-form-label">{{ __('Product Category ') }}</label>
+                                                    <select name="product_category" id="product_category"
+                                                        class="form-control form-select my-select  @error('product_category') is-invalid @enderror">
+                                                        <option disabled selected>Choose...</option>
+                                                        <option value="Fruits & Vegetables">{{ __('Fruits & Vegetables') }}</option>
+                                                        <option value="Seafoods">{{ __('Seafoods') }}</option>
+                                                        <option value="Condiments & Spices">{{ __('Condiments & Spices') }}</option>
+                                                        <option value="Bread & Bakery">{{ __('Bread & Bakery') }}</option>
+                                                        <option value="Beverages">{{ __('Beverages') }}</option>
+                                                        <option value="Pasta/Rice">{{ __('Pasta/Rice') }}</option>
+                                                        <option value="Cereal ">{{ __('Cereal ') }}</option>
+                                                        <option value="Sauces & Oils">{{ __('Sauces & Oils') }}</option>
+                                                        <option value="Canned Goods">{{ __('Canned Goods') }}</option>
+                                                        <option value="Frozen Foods ">{{ __('Frozen Foods ') }}</option>
+                                                        <option value="Meat ">{{ __('Meat ') }}</option>
+                                                    </select>
+                                                    @error('product_category')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>

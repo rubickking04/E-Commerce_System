@@ -82,17 +82,6 @@
                                         </div>
                                     </div>
                                     <div class="form-outline text-start">
-                                        <div class="row mb-2">
-                                            <div class="col-lg-12">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                                                        {{ old('remember') ? 'checked' : '' }}>
-                                                    <label class="form-check-label" for="remember">
-                                                        {{ __('Remember me') }}
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="text-center">
                                             <button type="submit" class="text-center text-white btn btn-warning mb-3">Sign in</button>
                                         </div>

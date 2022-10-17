@@ -12,7 +12,7 @@ class Product extends Model
         'store_id',
         'product_name',
         'product_price',
-        'prodcut_category',
+        'product_category',
         'product_image',
         'product_definition',
     ];

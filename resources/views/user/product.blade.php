@@ -15,7 +15,7 @@
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                             <div class="row g-1 quantity align-items-center">
                                 <div class="col-auto">
-                                  <label for="myquantity" class="col-form-label">Quantity</label>
+                                    <label for="myquantity" class="col-form-label">Quantity</label>
                                 </div>
                                 <div class="col-auto">
                                     <button class="btn btn-secondary decrement-btn" type="button"><i class="fa-solid fa-minus"></i></button>
