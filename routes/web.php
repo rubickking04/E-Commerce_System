@@ -15,6 +15,7 @@ use App\Http\Controllers\Store\LoginController as StoreLogin;
 use App\Http\Controllers\Store\HomeController as StoreHome;
 use App\Http\Controllers\Store\ProductController as StoreProduct;
 use App\Http\Controllers\Store\ProductsTableController as ProductsTable;
+use App\Http\Controllers\Store\LogoutController as StoreLogout;
 use App\Http\Controllers\User\StoreController;
 
 /*
@@ -97,6 +98,9 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         Route::controller(ProductsTable::class)->group(function () {
             Route::get('/my-store/products_table', 'index')->name('store.products.table');
             // Route::post('/my-store/add_products', 'store')->name('add_products');
+        });
+        Route::controller(StoreLogout::class)->group(function () {
+            Route::post('/store/logout', 'logout')->name('store.logout');
         });
     });
 });

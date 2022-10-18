@@ -12,7 +12,7 @@ class LogoutController extends Controller
     public function logout()
     {
         Session::flush();
-        Auth::guard('admin')->logout();
+        Auth::guard('store')->logout();
         return redirect()->route('store.login');
     }
 }

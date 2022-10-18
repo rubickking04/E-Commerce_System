@@ -12,11 +12,17 @@ class ShopController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $products = Product::get();
-        return view('user.shop', compact('products'));
+        // dd($products);
+        return view('user.shop', compact('products'), ['product' => $products]);
+    }
+    public function show(Product $product)
+    {
+        return view('product.show', compact('product'));
     }
 }

@@ -90,7 +90,7 @@
                                         <i class="fa-solid fa-users-slash display-1"></i>
                                     </div>
                                     <div class="card-body">
-                                        <h5 class="card-title fs-3 text-center">{{ __('No Students Enrolled yet.') }}</h5>
+                                        <h5 class="card-title fs-3 text-center">{{ __('No Products added yet.') }}</h5>
                                         <div class="text-center">
                                             <a href="#" class="fs-5 text-decoration-none btn btn-primary"><i class="fa-solid fa-user-plus px-2"></i>{{ __('Add Students') }}</a>
                                         </div>

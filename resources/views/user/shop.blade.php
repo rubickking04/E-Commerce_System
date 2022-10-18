@@ -1,7 +1,7 @@
 @extends('user.layouts.navigation_bar')
 @section('content')
 <div class="container">
-    <div class="row g-1">
+    <div class="row g-2">
         @foreach ( $products as $product)
             <div class="col-lg-3 col-md-6 col-sm-6 col-6 mb-3 " style="max-width: 250px;">
                 <a href="{{ route('product') }}" class="card shadow text-decoration-none text-dark h-100" data-bs-toggle="modal" data-bs-target="#productModal{{ $product->id }}">
@@ -44,7 +44,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-warning ">{{ __('Add to cart') }}</button>
-                            <a href="{{ route('product') }}" class="btn btn-success">{{ __('View more') }}</a>
+                            <a href="{{ route('product', $product->product_name) }}" class="btn btn-success">{{ __('View more') }}</a>
                         </div>
                     </div>
                 </div>
