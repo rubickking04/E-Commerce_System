@@ -28,4 +28,16 @@ class ProductViewerController extends Controller
         // dd($prodName);
         return view('user.product', compact('products', 'prodName', 'prodPrice', 'prodImg', 'prodDef', 'prodCat'));
     }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $product = Product::find($id);
+        // dd($product->product_name);
+        return view('user.product', compact('product'));
+    }
 }

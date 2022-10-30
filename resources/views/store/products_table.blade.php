@@ -70,7 +70,7 @@
                                                     <td class="text-center h6 py-3 text-truncate" scope="row">{{ $product->product_category }}</td>
                                                     <td class="text-center h6 py-3 text-truncate" scope="row">{{ $product->product_name }}</td>
                                                     <td class="text-center h6 py-3 text-truncate" scope="row">{{ __('₱ '.$product->product_price) }}</td>
-                                                    <td class="text-center h6 py-3 text-truncate" scope="row">{{ $product->created_at }}</td>
+                                                    <td class="text-center h6 py-3 text-truncate" scope="row">{{ \Carbon\Carbon::createFromTimestamp(strtotime($product->created_at))->isoFormat('MMMM D, YYYY') }}</td>
                                                     <td class="text-center" scope="row">
                                                         <button type="button" class=" btn btn-success bi bi-eye-fill fs-5" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"></button>
                                                         <button type="button" class=" btn btn-warning bi bi-pencil-square fs-5" data-bs-toggle="modal" data-bs-target="#exampleModalCenters"></button>
@@ -92,7 +92,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title fs-3 text-center">{{ __('No Products added yet.') }}</h5>
                                         <div class="text-center">
-                                            <a href="#" class="fs-5 text-decoration-none btn btn-primary"><i class="fa-solid fa-user-plus px-2"></i>{{ __('Add Students') }}</a>
+                                            <a href="{{ route('store.products.table') }}" class="fs-5 text-decoration-none btn btn-primary"><i class="fa-solid fa-user-plus px-2"></i>{{ __('Add Products') }}</a>
                                         </div>
                                     </div>
                                 </div>

@@ -21,8 +21,4 @@ class ShopController extends Controller
         // dd($products);
         return view('user.shop', compact('products'), ['product' => $products]);
     }
-    public function show(Product $product)
-    {
-        return view('product.show', compact('product'));
-    }
 }

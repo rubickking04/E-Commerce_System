@@ -23,7 +23,7 @@
         <nav class="navbar navbar-expand bg-light shadow-lg">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}"><img class="align-top" src="{{ asset('/storage/images/E-mart-logo.png') }}" height="50" width="80"></a>
-                <p class="navbar-brand mb-0 navbar-text fw-bold text-dark">{{ $prodName }}</p>
+                <p class="navbar-brand mb-0 navbar-text fw-bold text-dark d-none d-md-block">{{ $product->product_name }}</p>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item px-2 mx-auto">
                         <a class="nav-link active" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-magnifying-glass fs-4 "></i></a>
