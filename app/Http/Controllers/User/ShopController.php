@@ -17,7 +17,7 @@ class ShopController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::get();
+        $products = Product::latest()->get();
         // dd($products);
         return view('user.shop', compact('products'), ['product' => $products]);
     }

@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-xl-4 col-lg-7 col-md-8 col-sm-8 ms-lg-3 col-8 mt-3 ">
                         <p class="h4">{{ $product->hasStore->store_name }}</p>
-                        <p class="fs-6 lh-1">{{ Auth::user()->email }}</p>
+                        <p class="fs-6 lh-1">{{ $product->hasStore->email }}</p>
                         <button class="btn btn-outline-warning"><i class="fa-solid fa-store fs-5 me-2"></i>{{ __('View Shop') }}</button>
                     </div>
                     <div class="vr me-4 d-none d-lg-block"></div>
