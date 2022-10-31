@@ -3,9 +3,9 @@
 <div class="container">
     <div class="row g-2">
         @foreach ( $products as $product)
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6 mb-3 " style="max-width: 250px;">
-                <a href="{{ route('product') }}" class="card shadow text-decoration-none text-dark h-100" data-bs-toggle="modal" data-bs-target="#productModal{{ $product->id }}">
-                    <img src="{{ asset('/storage/products/'. $product->product_image) }}" class="card-img-top mt-3" alt="..." height="220">
+            <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6 col-6 mb-3 " style="max-width: 230px;">
+                <a href="#" class="card shadow text-decoration-none text-dark h-100" data-bs-toggle="modal" data-bs-target="#productModal{{ $product->id }}">
+                    <img src="{{ asset('/storage/products/'. $product->product_image) }}" class="card-img-top mt-3" alt="..." height="170">
                     <div class="card-body">
                         <h5 class="card-title fw-bold">{{ $product->product_name }}</h5>
                         {{-- <hr> --}}

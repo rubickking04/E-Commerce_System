@@ -48,7 +48,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         Route::get('/shop', 'index')->name('shop');
     });
     Route::controller(ProductViewerController::class)->group(function () {
-        Route::get('/product', 'index')->name('product');
+        // Route::get('/product', 'index')->name('product');
         Route::get('/product/{products:id}', 'show')->name('show.product');
     });
 
