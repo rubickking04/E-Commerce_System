@@ -3,33 +3,30 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
-class CartController extends Controller
+class AddProductToCartController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $carts = Cart::where('user_id', '=', Auth::user()->id)->get();
-        // dd($carts);
-        return view('user.cart', compact('carts'));
-    }
-
     /**
      * Store a newly created resource in storage.
      *
+     * @param  int  $id
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id, Request $request)
     {
-        //
+        $product = Product::find($id);
+        $cart = Cart::create([
+            'product_id' => $product->id,
+            'user_id' => Auth::user()->id,
+            'quantity' => $request->input('quantity'),
+        ]);
+        Alert::toast('Added to cart!', 'success');
+        return redirect()->route('cart');
     }
 
     /**

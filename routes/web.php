@@ -5,18 +5,20 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\ShopController;
 use App\Http\Controllers\User\LoginController;
+use App\Http\Controllers\User\StoreController;
 use App\Http\Controllers\User\LogoutController;
 use App\Http\Controllers\User\RegisterController;
+use App\Http\Controllers\User\StoreViewerController;
 use App\Http\Controllers\User\ProductViewerController;
-use App\Http\Controllers\Admin\LoginController as AdminLogin;
+use App\Http\Controllers\User\AddProductToCartController;
 use App\Http\Controllers\Admin\HomeController as AdminHome;
-use App\Http\Controllers\Admin\LogoutController as AdminLogout;
-use App\Http\Controllers\Store\LoginController as StoreLogin;
 use App\Http\Controllers\Store\HomeController as StoreHome;
+use App\Http\Controllers\Admin\LoginController as AdminLogin;
+use App\Http\Controllers\Store\LoginController as StoreLogin;
+use App\Http\Controllers\Admin\LogoutController as AdminLogout;
+use App\Http\Controllers\Store\LogoutController as StoreLogout;
 use App\Http\Controllers\Store\ProductController as StoreProduct;
 use App\Http\Controllers\Store\ProductsTableController as ProductsTable;
-use App\Http\Controllers\Store\LogoutController as StoreLogout;
-use App\Http\Controllers\User\StoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,13 +50,19 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         Route::get('/shop', 'index')->name('shop');
     });
     Route::controller(ProductViewerController::class)->group(function () {
-        // Route::get('/product', 'index')->name('product');
         Route::get('/product/{products:id}', 'show')->name('show.product');
+    });
+    Route::controller(StoreViewerController::class)->group(function () {
+        Route::get('/store/view/{stores:id}', 'index')->name('storeviewer');
     });
 
     Route::middleware('auth')->group(function () {
         Route::controller(CartController::class)->group(function () {
             Route::get('/cart', 'index')->name('cart');
+            // Route::post('/auth/register', 'store')->name('register');
+        });
+        Route::controller(AddProductToCartController::class)->group(function () {
+            Route::post('/add-to-cart/{products:id}', 'store')->name('add.cart');
             // Route::post('/auth/register', 'store')->name('register');
         });
         Route::controller(StoreController::class)->group(function () {

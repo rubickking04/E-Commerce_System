@@ -42,9 +42,10 @@ class StoreController extends Controller
             'password' => Hash::make($request->input('password')),
         ]);
         // dd($teacher);
+        Auth::guard('store')->login($store);
         // Mail::to($teacher['email'])->send(new WelcomeTeacherMail($teacher));
         Alert::toast('Store Created Successfully!', 'success');
-        return redirect()->route('shop');
+        return redirect()->route('store.home');
     }
 
     /**

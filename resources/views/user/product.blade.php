@@ -14,18 +14,21 @@
                                 <p class="card-text px-2 lh-lg h3 text-danger ">{{ __('₱ '. number_format($product->product_price)) }}</p>
                             </div>
                             <p class="card-text mt-2">{{ __('Category: '.$product->product_category) }}</p>
-                            <p class="card-text">{{ $product->product_definition }}</p>
+                            <p class="card-text">{{ __('Product Definition: '.$product->product_definition) }}</p>
+                            <form action="{{ route('add.cart', $product->id) }}" method="POST">
+                                @csrf
                             <div class="row g-1 mb-5 quantity align-items-center">
                                 <div class="col-auto">
-                                    <label for="myquantity" class="col-form-label me-2">Quantity</label>
+                                    <label for="quantity" class="col-form-label me-2">{{ __('Quantity: ') }}</label>
                                 </div>
                                 <div class="col-2">
-                                    <input class="form-control qty-input text-center form-control-lg" type="number"  value="1">
+                                    <input class="form-control qty-input text-center" name="quantity" type="number"  value="1">
                                 </div>
                             </div>
                             <div class="row g-1">
                                 <a href="{{ url('/') }}" class="col-xl-2 col-5 ms-1 btn btn-secondary">{{ __('Back') }}</a>
-                                <button class="col-xl-2 col-5 ms-1 btn btn-warning">{{ __('Add to Cart') }}</button>
+                                <button type="submit" class="col-xl-2 col-5 ms-1 btn btn-warning">{{ __('Add to Cart') }}</button>
+                            </form>
                             </div>
                         </div>
                     </div>
@@ -41,7 +44,7 @@
                     <div class="col-xl-4 col-lg-7 col-md-8 col-sm-8 ms-lg-3 col-8 mt-3 ">
                         <p class="h4">{{ $product->hasStore->store_name }}</p>
                         <p class="fs-6 lh-1">{{ $product->hasStore->email }}</p>
-                        <button class="btn btn-outline-warning"><i class="fa-solid fa-store fs-5 me-2"></i>{{ __('View Shop') }}</button>
+                        <a href="{{ route('storeviewer', $product->hasStore->id) }}" class="btn btn-outline-warning"><i class="fa-solid fa-store fs-5 me-2"></i>{{ __('View Shop') }}</a>
                     </div>
                     <div class="vr me-4 d-none d-lg-block"></div>
                     <div class="col-xl-4 col-lg-3 col-md-12 col-sm-12 col-12 d-none d-lg-block">
@@ -85,7 +88,6 @@
                                         <div class="card-body">
                                         <h5 class="card-title lh-base">{{ $product->product_name }}</h5>
                                         <p class="card-text lh-base h5 text-danger">{{ __('₱'. number_format($product->product_price)) }}</p>
-                                        <p class="card-text">-10% <span class="text-decoration-line-through">₱9,999</span></p>
                                         <p class="card-text">{{ $product->product_definition }}</p>
                                         </div>
                                     </div>

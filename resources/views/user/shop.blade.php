@@ -1,6 +1,7 @@
 @extends('user.layouts.navigation_bar')
 @section('content')
 <div class="container">
+    @if ($products->count())
     <div class="row g-2">
         @foreach ( $products as $product)
             <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6 col-6 mb-3 " style="max-width: 230px;">
@@ -34,7 +35,6 @@
                                         <div class="card-body">
                                         <h5 class="card-title lh-base">{{ $product->product_name }}</h5>
                                         <p class="card-text lh-base h5 text-danger">{{ __('₱'. number_format($product->product_price)) }}</p>
-                                        <p class="card-text">-10% <span class="text-decoration-line-through">₱9,999</span></p>
                                         <p class="card-text">{{ $product->product_definition }}</p>
                                         </div>
                                     </div>
@@ -51,5 +51,8 @@
             </div>
         @endforeach
     </div>
+    @else
+    <h4 class="text-center mt-5 text-muted">{{ __('No products') }}</h4>
+    @endif
 </div>
 @endsection

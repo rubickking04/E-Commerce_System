@@ -42,8 +42,8 @@ class RegisterController extends Controller
             'password' => Hash::make($request->input('password')),
         ]);
         Auth::login($user);
-        Alert::success('Welcome', 'Success Message');
-        return redirect('/');
+        Alert::toast('Welcome, ' . Auth::user()->name, 'success');
+        return redirect()->route('shop');
     }
 
     /**
