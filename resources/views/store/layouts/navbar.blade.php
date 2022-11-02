@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -95,9 +95,7 @@
                         <i class="fs-5 fa-solid fa-table text-white"></i><span class="ms-2  text-white">{{ __('Data Tables') }}</span></a>
                         <div class="collapse container" id="table-collapse">
                             <ul class="btn-toggle-nav nav nav-pills flex-column mb-sm-auto mb-auto mb-0 align-items-start list-unstyled fw-normal pb-2">
-                                <li class="nav-item"><a href="{{ route('store.products.table') }}" class="ms-2 nav-link  text-white text-decoration-none rounded"><i class="fs-5 fa-solid fa-angles-right"></i><span class="ms-2  text-white">{{ __('Products Table ') }}<span class="badge text-bg-primary">{{__('(34)')}}</span> </span></a></li>
-                                <li class="nav-item"><a href="#" class="ms-2 nav-link  text-white text-decoration-none rounded"><i class="fs-5 fa-solid fa-angles-right"></i><span class="ms-2  text-white">{{ __('Carts Table ') }} <span class="badge text-bg-primary">{{__('(32)')}}</span> </span></a></li>
-                                <li class="nav-item"><a href="#" class="ms-2 nav-link  text-white text-decoration-none rounded"><i class="fs-5 fa-solid fa-angles-right"></i><span class="ms-2  text-white">{{ __('Orders Table ') }} <span class="badge text-bg-primary">{{__('(32)')}}</span> </span></a></li>
+                                <li class="nav-item"><a href="{{ route('store.products.table') }}" class="ms-2 nav-link  text-white text-decoration-none rounded"><i class="fs-5 fa-solid fa-angles-right"></i><span class="ms-2  text-white">{{ __('Products Table ') }}<span class="badge text-bg-primary">{{ App\Models\Product::where('store_id', '=', Auth::user()->id)->count() }}</span> </span></a></li>
                             </ul>
                         </div>
                     </li>
@@ -121,7 +119,7 @@
                 <div class="py-2">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-6">
                                 <div class="card text-white bg-primary mb-3 shadow" >
                                     <div class="card-body h-100">
                                         <div class="row">
@@ -137,8 +135,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-6">
-                                <div class="card text-white bg-success mb-3 shadow">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                <div class="card text-white bg-danger mb-3 shadow">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-lg-7 col-sm-6 col-6 col-md-auto">
@@ -147,37 +145,6 @@
                                             </div>
                                             <div class="col-lg-5 col-sm-6 col-md-auto text-end col-6 mt-3 ">
                                                 <i class="fa-solid fa-store fs-1"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-6">
-                                <div class="card bg-warning mb-3 text-white shadow ">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-lg-7 col-sm-6 col-6 col-md-auto">
-                                                <h2>{{ App\Models\Cart::all()->count() }}</h2>
-                                                <h5>{{ __('Carts') }}</h5>
-                                            </div>
-                                            <div class="col-lg-5 col-sm-6 col-md-auto col-6 text-end col-6 mt-3 ">
-                                                <i class="fa-solid fa-bag-shopping fs-1"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-6">
-                                <div class="card text-white bg-danger mb-3 shadow">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-lg-7 col-sm-6 col-6 col-md-auto">
-                                                <h2>2</h2>
-                                                <h5>{{ __('Order') }}</h5>
-                                            </div>
-                                            <div class="col-lg-5 col-sm-6 col-md-auto col-6 text-end col-6 mt-3 ">
-                                                <i class="fa-solid fa-cart-shopping fs-1"></i>
                                             </div>
                                         </div>
                                     </div>

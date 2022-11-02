@@ -5,7 +5,7 @@
     <div class="row g-2">
         @foreach ( $products as $product)
             <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6 col-6 mb-3 " style="max-width: 230px;">
-                <a href="#" class="card shadow text-decoration-none text-dark h-100" data-bs-toggle="modal" data-bs-target="#productModal{{ $product->id }}">
+                <a href="{{ route('show.product', $product->id) }}" class="card shadow text-decoration-none text-dark h-100">
                     <img src="{{ asset('/storage/products/'. $product->product_image) }}" class="card-img-top mt-3" alt="..." height="170">
                     <div class="card-body">
                         <h5 class="card-title fw-bold">{{ $product->product_name }}</h5>
@@ -18,7 +18,7 @@
                 </a>
             </div>
             {{-- Product Modal --}}
-            <div class="modal fade" id="productModal{{ $product->id }}" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+            {{-- <div class="modal fade" id="productModal{{ $product->id }}" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         @endforeach
     </div>
     @else

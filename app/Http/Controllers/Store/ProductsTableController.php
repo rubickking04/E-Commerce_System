@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductsTableController extends Controller
 {
@@ -16,20 +17,27 @@ class ProductsTableController extends Controller
      */
     public function index()
     {
-        $products = Product::where('store_id', '=', Auth::user()->id)->latest()->get();
+        $products = Product::where('store_id', '=', Auth::user()->id)->latest()->paginate(10);
         // dd($products);
         return view('store.products_table', compact('products'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Search a product in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function search(Request $request)
     {
-        //
+        $search = $request->input('search');
+        // where('store_id', '=', Auth::guard('store')->user()->id)->
+        $products = Product::where('product_name', 'LIKE', '%' . $search . '%')->orWhere('id', 'LIKE', '%' . $search . '%')->orWhere('product_category', 'LIKE', '%' . $search . '%')->paginate(10);
+        if (count($products) > 0) {
+            return view('store.products_table', compact('products'));
+        } else {
+            return back()->with('msg', 'We couldn\'t find "' . $search . '" on this page.');
+        }
     }
 
     /**
@@ -63,6 +71,8 @@ class ProductsTableController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id)->delete();
+        Alert::toast('Removed Successfully!', 'success');
+        return back();
     }
 }

@@ -35,8 +35,13 @@
                         <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user fs-4"></i></a>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 @auth
-                                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user fs-5 px-2"></i>{{ __('Profile') }}</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-cart-plus fs-5 px-2"></i>{{ __('Create Store') }}</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user fs-5 px-2"></i>{{ Auth::user()->name }}</a></li>
+                                    @if ( App\Models\Store::where('user_id', '=', Auth::user()->id)->doesntExist())
+                                        <li><a class="dropdown-item" href="{{ route('store') }}"><i class="fa-solid fa-cart-plus fs-5 px-2"></i>{{ __('Sell Products') }}</a></li>
+                                    @endif
+                                    @if ( App\Models\Store::where('user_id', '=', Auth::user()->id)->exists())
+                                        <li><a class="dropdown-item" href="{{ route('store.home') }}" target="_blank"><i class="fa-solid fa-cart-plus fs-5 px-2"></i>{{ __('My Store') }}</a></li>
+                                    @endif
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa-solid fa-right-from-bracket px-2 fs-5"></i>{{ __('Logout') }}</a></li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

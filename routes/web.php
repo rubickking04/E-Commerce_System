@@ -59,6 +59,8 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::middleware('auth')->group(function () {
         Route::controller(CartController::class)->group(function () {
             Route::get('/cart', 'index')->name('cart');
+            Route::get('/cart/check-out/{id}', 'destroy')->name('cart.checkout');
+            Route::get('/cart/check-out-all', 'destroyAll')->name('cart.checkout-all');
             // Route::post('/auth/register', 'store')->name('register');
         });
         Route::controller(AddProductToCartController::class)->group(function () {
@@ -106,7 +108,8 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         });
         Route::controller(ProductsTable::class)->group(function () {
             Route::get('/my-store/products_table', 'index')->name('store.products.table');
-            // Route::post('/my-store/add_products', 'store')->name('add_products');
+            Route::get('/search/products', 'search')->name('search.product');
+            Route::get('/destroy/products/{id}', 'destroy')->name('delete.product');
         });
         Route::controller(StoreLogout::class)->group(function () {
             Route::post('/store/logout', 'logout')->name('store.logout');

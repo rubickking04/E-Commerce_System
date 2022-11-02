@@ -12,7 +12,7 @@
                                     <div class="text-start py-3 fs-4 fw-bold card-title">{{ __('Products Table') }}</div>
                                 </div>
                                 <div class="col-lg-4 col-md-5 col-sm-6 col-12 py-3">
-                                    <form action="#" method="GET" role="search" class="d-flex">
+                                    <form action="{{ route('search.product') }}" method="GET" role="search" class="d-flex">
                                         @csrf
                                         <input class="form-control me-2 border border-primary" type="search" name="search" placeholder="Search Products" aria-label="Search">
                                         <button class="btn btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -35,7 +35,7 @@
                                                 <div class="row justify-content-center">
                                                     <div class="col-lg-5 col-md-5 col-sm-10 col-12">
                                                         <div class="row">
-                                                            <form action="#" method="GET" role="search" class="d-flex">
+                                                            <form action="{{ route('search.product') }}" method="GET" role="search" class="d-flex">
                                                                 @csrf
                                                                 <div class="input-group">
                                                                     <input class="form-control me-2 border border-primary" type="search" name="search" placeholder="Please try again to search by Name or Email" aria-label="Search">
@@ -65,34 +65,33 @@
                                             @foreach ( $products as  $product)
                                                 <tr>
                                                     <td class="text-center fw-bold h6 py-3 text-truncate" scope="row">
-                                                        <img src="{{ asset('/storage/products/' . $product->product_image) }}" class="img-fluid" alt="" height="100" width="100">
+                                                        <img src="{{ asset('/storage/products/' . $product->product_image) }}" class="img-fluid" alt="" height="50" width="50">
                                                     </td>
                                                     <td class="text-center h6 py-3 text-truncate" scope="row">{{ $product->product_category }}</td>
                                                     <td class="text-center h6 py-3 text-truncate" scope="row">{{ $product->product_name }}</td>
-                                                    <td class="text-center h6 py-3 text-truncate" scope="row">{{ __('₱ '.$product->product_price) }}</td>
+                                                    <td class="text-center h6 py-3 text-truncate" scope="row">{{ __('₱ '.number_format($product->product_price)) }}</td>
                                                     <td class="text-center h6 py-3 text-truncate" scope="row">{{ \Carbon\Carbon::createFromTimestamp(strtotime($product->created_at))->isoFormat('MMMM D, YYYY') }}</td>
                                                     <td class="text-center" scope="row">
-                                                        <button type="button" class=" btn btn-success bi bi-eye-fill fs-5" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"></button>
-                                                        <button type="button" class=" btn btn-warning bi bi-pencil-square fs-5" data-bs-toggle="modal" data-bs-target="#exampleModalCenters"></button>
-                                                        <a href="#" class="btn btn-danger " onclick="return confirm('Are you sure to remove this user?')"><i class="bi bi-trash fs-5"></i></a>
+                                                        {{-- <button type="button" class=" btn btn-warning bi bi-pencil-square fs-5" data-bs-toggle="modal" data-bs-target="#exampleModalCenters"></button> --}}
+                                                        <a href="{{ route('delete.product', $product->id) }}" class="btn btn-danger " onclick="return confirm('Are you sure to remove this product?')"><i class="bi bi-trash fs-5"></i></a>
                                                     </td>
                                                 </tr>
                                             @endforeach
                                             </tbody>
                                         </table>
                                     @endif
-                                    {{-- {{ $products->links() }} --}}
+                                    {{ $products->links() }}
                             </div>
                             @else
                             <div class="col-lg-12 mb-3 ">
                                 <div class="mb-3 py-4">
                                     <div class="text-center display-1">
-                                        <i class="fa-solid fa-users-slash display-1"></i>
+                                        <i class="fa-solid fa-cart-plus display-1"></i>
                                     </div>
                                     <div class="card-body">
                                         <h5 class="card-title fs-3 text-center">{{ __('No Products added yet.') }}</h5>
                                         <div class="text-center">
-                                            <a href="{{ route('store.products.table') }}" class="fs-5 text-decoration-none btn btn-primary"><i class="fa-solid fa-user-plus px-2"></i>{{ __('Add Products') }}</a>
+                                            <a href="{{ route('store.products') }}" class="fs-5 text-decoration-none btn btn-primary"><i class="fa-solid fa-user-plus px-2"></i>{{ __('Add Products') }}</a>
                                         </div>
                                     </div>
                                 </div>
