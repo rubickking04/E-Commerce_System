@@ -1,0 +1,17 @@
+{
+    "name": "E-Mart",
+    "short_name": "E-Mart",
+    "start_url": "/index.php",
+    "background_color": "#6777ef",
+    "description": "E-Mart for Agriculture",
+    "display": "fullscreen",
+    "theme_color": "#6777ef",
+    "icons": [
+        {
+            "src": "logo.PNG",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}
