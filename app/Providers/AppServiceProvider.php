@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,8 +26,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Request $request)
     {
-        if (!empty(env('NGROK_URL')) && $request->server->has('HTTP_X_ORIGINAL_HOST')) {
-            $this->app['url']->forceRootUrl(env('NGROK_URL'));
+        if (env('APP_ENV') == "production") {
+            URL::forceScheme('https');
         }
     }
 }
