@@ -31,9 +31,8 @@ class ProductsTableController extends Controller
     public function search(Request $request)
     {
         $search = $request->input('search');
-        $products = Product::with(['hasStore' => function ($query) {
-            $query->where('id', '=', Auth::id());
-        }])->where('product_name', 'LIKE', '%' . $search . '%')->orWhere('id', 'LIKE', '%' . $search . '%')->orWhere('product_category', 'LIKE', '%' . $search . '%')->paginate(10);
+        $store_id = Auth::user()->id;
+        $products = Product::where('product_name', 'LIKE', '%' . $search . '%')->where('store_id', $store_id)->orWhere('id', 'LIKE', '%' . $search . '%')->orWhere('product_category', 'LIKE', '%' . $search . '%')->paginate(10);
         if (count($products) > 0) {
             return view('store.products_table', compact('products'));
         } else {
