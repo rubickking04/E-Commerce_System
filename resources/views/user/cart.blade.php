@@ -13,7 +13,7 @@
                             <th scope="col">{{ __('Unit Price') }}</th>
                             <th scope="col">{{ __('Quantity') }}</th>
                             <th scope="col">{{ __('Total Price') }}</th>
-                            <th scope="col">{{ __('Actions') }}</th>
+                            <th scope="col">{{ __('Actions ') }}</th>
                         </tr>
                         </thead>
                         <tbody>
