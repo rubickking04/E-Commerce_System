@@ -39,22 +39,17 @@
                         @auth
                             <h6 class="offcanvas-title" id="offcanvas">
                                 <div class="justify-content-center">
-                                    <a href="{{ url('/') }}"
-                                        class="d-flex  mb-auto mb-md-0 me-md-auto text-white text-decoration-none">
-                                        <img class="d-inline-block align-top rounded-circle "
-                                            src="{{ asset('/storage/images/usman.jpg') }}" height="60" width="60">
+                                    <a href="{{ url('/') }}" class="d-flex  mb-auto mb-md-0 me-md-auto text-white text-decoration-none">
+                                        <img class="d-inline-block align-top rounded-circle " src="{{ asset('/storage/images/avatar.png') }}" height="90" width="90">
                                     </a>
                                 </div>
-                                <span class="fs-5 fw-bold nav-item dropdown-toggle">{{ Auth::user()->name }}</span>
+                                <span class="fs-5 fw-bold ">{{ Auth::user()->name }}</span>
                                 <a class="nav-link"><span
                                         class="text-muted small">{{ __('@' . Auth::user()->username) }}</span></a>
                                 <br>
                                 <div class="hstack gap-3">
-                                    <a href="https://www.facebook.com/alfhaigar.usman.1/"
-                                        class="text-decoration-none text-muted"><span
-                                            class="text-dark fw-bold">{{ __('8') }}</span>{{ __(' Following') }}</a>
-                                    <a href="https://github.com/rubickking04" class="text-decoration-none text-muted"><span
-                                            class="text-dark fw-bold">{{ __('0') }}</span>{{ __(' Followers') }}</a>
+                                    <a href="https://www.facebook.com/alfhaigar.usman.1/" class="text-decoration-none text-muted"><span class="text-dark fw-bold">{{ App\Models\Cart::where('user_id', Auth::id())->count() }}</span>{{ __(' Cart') }}</a>
+                                    <a href="https://github.com/rubickking04" class="text-decoration-none text-muted"><span class="text-dark fw-bold">{{ App\Models\Cart::where('user_id', Auth::id())->onlyTrashed()->count() }}</span>{{ __(' Order') }}</a>
                                 </div>
                             </h6>
                         @endauth
@@ -64,63 +59,86 @@
                             <hr>
                         @endauth
                         <ul class="navbar-nav ms-auto">
-                            <li class="nav-item px-2 mx-auto">
-                                <a class="nav-link active" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-magnifying-glass fs-4 "></i></a>
+                            <li class="nav-item px-2 ">
+                                <a class="nav-link active" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="fa-solid fa-magnifying-glass fs-4 "></i>
+                                    <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Search') }}</span>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <div class="col-md-12">
+                                                        <form action="#" method="GET" role="search" role="search">
+                                                            <div class="input-group py-2">
+                                                                <span class="input-group-text">
+                                                                    <i class="fa-solid fa-magnifying-glass fs-4 "></i>
+                                                                </span>
+                                                            <input id="search" type="search" aria-label="Search" placeholder="Search a product or a store" class="form-control form-control-lg @error('search') is-invalid @enderror" name="search">
+                                                            </div>
+                                                        <div class="text-center py-3">
+                                                            <p>{{ __('No Recent Searches') }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('Close') }}</button>
+                                                    <button type="submit" class="btn btn-primary">{{ __('Search') }}</button>
+                                                </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
                             </li>
                             <li class="nav-item px-2">
-                                <a class="nav-link active" href="{{ route('cart') }}"><i class="fa-solid fa-cart-shopping fs-4"></i></a>
+                                <a class="nav-link active" href="{{ route('cart') }}">
+                                    <i class="fa-solid fa-cart-shopping fs-4"></i>
+                                    <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Cart') }}</span>
+                                </a>
                             </li>
-                            <li class="nav-item dropdown px-2">
-                                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user fs-4"></i></a>
-                                    <ul class="dropdown-menu dropdown-menu-dark">
-                                        @auth
-                                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user fs-5 px-2"></i>{{ __('Profile') }}</a></li>
-                                            @if ( App\Models\Store::where('user_id', '=', Auth::user()->id)->doesntExist())
-                                                <li><a class="dropdown-item" href="{{ route('store') }}"><i class="fa-solid fa-cart-plus fs-5 px-2"></i>{{ __('Sell Products') }}</a></li>
-                                            @endif
-                                            @if ( App\Models\Store::where('user_id', '=', Auth::user()->id)->exists())
-                                                <li><a class="dropdown-item" href="{{ route('store.home') }}" target="_blank"><i class="fa-solid fa-cart-plus fs-5 px-2"></i>{{ __('My Store') }}</a></li>
-                                            @endif
-                                            <li><hr class="dropdown-divider"></li>
-                                            <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa-solid fa-right-from-bracket px-2 fs-5"></i>{{ __('Logout') }}</a></li>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                @csrf
-                                            </form>
-                                        @endauth
-                                        @guest
-                                        <li><a class="dropdown-item" href="{{ route('login') }}"><i class="fa-solid fa-right-to-bracket  fs-5 px-2"></i>{{ __('Sign up') }}</a></li>
-                                        @endguest
-                                    </ul>
-                            </li>
-                        </ul>
-
-                        <!-- Right Side Of Navbar -->
-                        {{-- <ul class="navbar-nav ms-auto">
-                            <!-- Authentication Links -->
-                            @auth
-                                <li class="nav-item d-none d-md-block">
-                                    <a class="nav-link fs-5 text-dark" href="#">{{ Auth::user()->name }}</a>
+                            @guest
+                                <li class="nav-item px-2">
+                                    <a class="nav-link active" href="{{ route('login') }}">
+                                        <i class="fa-solid fa-user fs-4"></i>
+                                        <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Login or Sign up') }}</span>
+                                    </a>
                                 </li>
-                                <li class="nav-item d-none d-md-block">
-                                    <a class="nav-link fs-5 text-dark " href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                            @endguest
+                            @auth
+                                <li class="nav-item px-2">
+                                    <a class="nav-link active" href="{{ route('cart') }}">
+                                        <i class="fa-solid fa-truck-fast fs-4"></i>
+                                        <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Order') }}</span>
+                                    </a>
+                                </li>
+                                @if ( App\Models\Store::where('user_id', '=', Auth::user()->id)->doesntExist())
+                                <li class="nav-item px-2">
+                                    <a class="nav-link active" href="{{ route('store') }}">
+                                        <i class="fa-solid fa-store fs-4"></i>
+                                        <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Start Selling') }}</span>
+                                    </a>
+                                </li>
+                                @endif
+                                @if ( App\Models\Store::where('user_id', '=', Auth::user()->id)->exists())
+                                    <li class="nav-item px-2">
+                                        <a class="nav-link active" href="{{ route('store.home') }}" target="_blank">
+                                            <i class="fa-solid fa-store fs-4"></i>
+                                            <span class="ms-3 d-md-none h5" aria-current="page">{{ __('My Store') }}</span>
+                                        </a>
+                                    </li>
+                                @endif
+                                <hr>
+                                <li class="nav-item px-2">
+                                    <a class="nav-link active" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                        <i class="fa-solid fa-right-from-bracket fs-4"></i>
+                                        <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Logout') }}</span>
+                                    </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </li>
                             @endauth
-                            @guest
-                                <li class="nav-item">
-                                    <a class="nav-link fs-5 text-dark "
-                                        href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link fs-5 text-dark "
-                                        href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endguest
-                        </ul> --}}
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -158,36 +176,7 @@
                             </ul>
                     </li>
                 </ul>
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <div class="col-md-12">
-                                    <form action="#" method="GET" role="search" role="search">
-                                        <div class="input-group py-2">
-                                            <span class="input-group-text">
-                                                <i class="fa-solid fa-magnifying-glass fs-4 "></i>
-                                            </span>
-                                        <input id="search" type="search" aria-label="Search" placeholder="Search a product or a store" class="form-control form-control-lg @error('search') is-invalid @enderror" name="search">
-                                        @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                        </div>
-                                    <div class="text-center py-3">
-                                        <p>{{ __('No Recent Searches') }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('Close') }}</button>
-                                <button type="submit" class="btn btn-primary">{{ __('Search') }}</button>
-                            </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </nav> --}}
     </div>
