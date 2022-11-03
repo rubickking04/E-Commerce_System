@@ -56,11 +56,11 @@
                                 </form>
                             </h6>
                         @endauth
-                        <form action="{{ route('search.product') }}" method="GET" role="search" class="d-flex">
+                        {{-- <form action="{{ route('search.product') }}" method="GET" role="search" class="d-flex">
                             @csrf
                             <input class="form-control me-2 border " type="search" name="search" placeholder="Search products or store" aria-label="Search">
                             <button class="btn btn-warning" type="submit"><i class="fa-solid text-white fa-magnifying-glass"></i></button>
-                        </form>
+                        </form> --}}
                     </div>
                     <div class="offcanvas-body">
                         @auth
