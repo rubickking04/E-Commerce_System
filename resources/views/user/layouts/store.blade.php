@@ -20,11 +20,10 @@
 <body class="antialiased" style="background-color: #eceff1">
     @include('sweetalert::alert')
     <div id="app">
-        <nav class="navbar navbar-expand bg-light shadow-lg">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}"><img class="align-top" src="{{ asset('/storage/images/E-mart-logo.png') }}" height="50" width="80"></a>
-                <p class="navbar-brand mb-0 navbar-text fw-bold text-dark">{{ __('Create Store') }}</p>
-
+                <p class="navbar-brand mb-0 navbar-text fw-bold text-dark">{{ __('Start Selling') }}</p>
             </div>
         </nav>
     </div>

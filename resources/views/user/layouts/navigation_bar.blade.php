@@ -27,72 +27,85 @@
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}"><img class="align-top" src="{{ asset('/storage/images/E-mart-logo.png') }}" height="50" width="80"></a>
                 {{-- <p class="navbar-brand mb-0 navbar-text text-dark"> <span class="text-danger fw-bold">Laravel</span></p> --}}
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <!-- Left Side Of Navbar -->
+                <div class="offcanvas offcanvas-start w-75 container" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
 
-                <div class="offcanvas offcanvas-start w-75 container" tabindex="-1" id="offcanvasExample"
-                    aria-labelledby="offcanvasExampleLabel">
-                    <!-- Left Side Of Navbar -->
-                    <div class="offcanvas-header">
+                    <div class="offcanvas-header text-center">
                         @auth
                             <h6 class="offcanvas-title" id="offcanvas">
-                                <div class="justify-content-center">
-                                    <a href="{{ url('/') }}" class="d-flex  mb-auto mb-md-0 me-md-auto text-white text-decoration-none">
-                                        <img class="d-inline-block align-top rounded-circle " src="{{ asset('/storage/images/avatar.png') }}" height="90" width="90">
+                                <div class="text-center">
+                                    <a href="{{ url('/') }}" class="text-white text-decoration-none">
+                                        <img class="d-inline-block align-top rounded-circle" src="{{ asset('/storage/images/avatar.png') }}" height="90" width="90">
                                     </a>
                                 </div>
                                 <span class="fs-5 fw-bold ">{{ Auth::user()->name }}</span>
-                                <a class="nav-link"><span
-                                        class="text-muted small">{{ __('@' . Auth::user()->username) }}</span></a>
+                                <a class="nav-link"><span class="text-muted small">{{ __('@' . Auth::user()->username) }}</span></a>
                                 <br>
-                                <div class="hstack gap-3">
-                                    <a href="https://www.facebook.com/alfhaigar.usman.1/" class="text-decoration-none text-muted"><span class="text-dark fw-bold">{{ App\Models\Cart::where('user_id', Auth::id())->count() }}</span>{{ __(' Cart') }}</a>
-                                    <a href="https://github.com/rubickking04" class="text-decoration-none text-muted"><span class="text-dark fw-bold">{{ App\Models\Cart::where('user_id', Auth::id())->onlyTrashed()->count() }}</span>{{ __(' Order') }}</a>
+                                <div class="hstack gap-3 mb-3 text-center ms-5">
+                                    <p class="text-decoration-none text-muted ms-3 mt-2"><span class="text-warning fw-bold">{{ App\Models\Cart::where('user_id', Auth::id())->count() }}</span>{{ __(' Cart') }}</p>
+                                    <div class="vr"></div>
+                                    <p class="text-decoration-none text-muted mt-2"><span class="text-warning fw-bold">{{ App\Models\Cart::where('user_id', Auth::id())->onlyTrashed()->count() }}</span>{{ __(' Order') }}</p>
                                 </div>
+                                <form action="{{ route('search.product') }}" method="GET" role="search" class="d-flex">
+                                    @csrf
+                                    <input class="form-control me-2 border " type="search" name="search" placeholder="Search products or store" aria-label="Search">
+                                    <button class="btn btn-warning" type="submit"><i class="fa-solid text-white fa-magnifying-glass"></i></button>
+                                </form>
                             </h6>
                         @endauth
+                        <form action="{{ route('search.product') }}" method="GET" role="search" class="d-flex">
+                            @csrf
+                            <input class="form-control me-2 border " type="search" name="search" placeholder="Search products or store" aria-label="Search">
+                            <button class="btn btn-warning" type="submit"><i class="fa-solid text-white fa-magnifying-glass"></i></button>
+                        </form>
                     </div>
                     <div class="offcanvas-body">
                         @auth
                             <hr>
                         @endauth
                         <ul class="navbar-nav ms-auto">
-                            <li class="nav-item px-2 ">
+                            <li class="nav-item px-2 d-none d-md-block">
                                 <a class="nav-link active" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     <i class="fa-solid fa-magnifying-glass fs-4 "></i>
                                     <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Search') }}</span>
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-body">
-                                                    <div class="col-md-12">
-                                                        <form action="#" method="GET" role="search" role="search">
-                                                            <div class="input-group py-2">
-                                                                <span class="input-group-text">
-                                                                    <i class="fa-solid fa-magnifying-glass fs-4 "></i>
-                                                                </span>
-                                                            <input id="search" type="search" aria-label="Search" placeholder="Search a product or a store" class="form-control form-control-lg @error('search') is-invalid @enderror" name="search">
-                                                            </div>
-                                                        <div class="text-center py-3">
-                                                            <p>{{ __('No Recent Searches') }}</p>
+                                </a>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <div class="col-md-12">
+                                                    <form action="#" method="GET" role="search" role="search">
+                                                        <div class="input-group py-2">
+                                                            <span class="input-group-text">
+                                                                <i class="fa-solid fa-magnifying-glass fs-4 "></i>
+                                                            </span>
+                                                        <input id="search" type="search" aria-label="Search" placeholder="Search a product or a store" class="form-control form-control-lg @error('search') is-invalid @enderror" name="search">
+                                                        @error('password')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                         </div>
+                                                    <div class="text-center py-3">
+                                                        <p>{{ __('No Recent Searches') }}</p>
                                                     </div>
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('Close') }}</button>
-                                                    <button type="submit" class="btn btn-primary">{{ __('Search') }}</button>
-                                                </form>
-                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('Close') }}</button>
+                                                <button type="submit" class="btn btn-primary">{{ __('Search') }}</button>
+                                            </form>
                                             </div>
                                         </div>
                                     </div>
-                                </a>
+                                </div>
                             </li>
                             <li class="nav-item px-2">
                                 <a class="nav-link active" href="{{ route('cart') }}">
-                                    <i class="fa-solid fa-cart-shopping fs-4"></i>
+                                    <i class="fa-solid  fa-cart-shopping fs-4"></i>
                                     <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Cart') }}</span>
                                 </a>
                             </li>
@@ -143,42 +156,6 @@
                 </div>
             </div>
         </nav>
-        {{-- <nav class="navbar navbar-expand bg-light shadow-lg">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}"><img class="align-top" src="{{ asset('/storage/images/E-mart-logo.png') }}" height="50" width="80"></a>
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item px-2 mx-auto">
-                        <a class="nav-link active" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-magnifying-glass fs-4 "></i></a>
-                    </li>
-                    <li class="nav-item px-2">
-                        <a class="nav-link active" href="{{ route('cart') }}"><i class="fa-solid fa-cart-shopping fs-4"></i></a>
-                    </li>
-                    <li class="nav-item dropdown px-2">
-                        <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user fs-4"></i></a>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                @auth
-                                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user fs-5 px-2"></i>{{ __('Profile') }}</a></li>
-                                    @if ( App\Models\Store::where('user_id', '=', Auth::user()->id)->doesntExist())
-                                        <li><a class="dropdown-item" href="{{ route('store') }}"><i class="fa-solid fa-cart-plus fs-5 px-2"></i>{{ __('Sell Products') }}</a></li>
-                                    @endif
-                                    @if ( App\Models\Store::where('user_id', '=', Auth::user()->id)->exists())
-                                        <li><a class="dropdown-item" href="{{ route('store.home') }}" target="_blank"><i class="fa-solid fa-cart-plus fs-5 px-2"></i>{{ __('My Store') }}</a></li>
-                                    @endif
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa-solid fa-right-from-bracket px-2 fs-5"></i>{{ __('Logout') }}</a></li>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                @endauth
-                                @guest
-                                <li><a class="dropdown-item" href="{{ route('login') }}"><i class="fa-solid fa-right-to-bracket  fs-5 px-2"></i>{{ __('Sign up') }}</a></li>
-                                @endguest
-                            </ul>
-                    </li>
-                </ul>
-
-            </div>
-        </nav> --}}
     </div>
 
     <main class="py-4">

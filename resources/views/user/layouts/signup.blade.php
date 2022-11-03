@@ -20,12 +20,12 @@
 <body class="antialiased" style="background-color: #eceff1">
     @include('sweetalert::alert')
     <div id="app">
-        <nav class="navbar navbar-expand bg-light shadow-lg">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}"><img class="align-top" src="{{ asset('/storage/images/E-mart-logo.png') }}" height="50" width="80"></a>
                 <p class="navbar-brand mb-0 navbar-text fw-bold text-dark">{{ __('Sign Up') }}</p>
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item px-2 mx-auto">
+                <ul class="navbar-nav ms-auto ">
+                    <li class="nav-item px-2">
                         <a class="nav-link " href="#">{{ __('Need Help?') }}</a>
                     </li>
                 </ul>
