@@ -23,10 +23,111 @@
 <body class="antialiased" style="background-color: #eceff1">
     @include('sweetalert::alert')
     <div id="app">
-        <nav class="navbar navbar-expand bg-light shadow-lg">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}"><img class="align-top" src="{{ asset('/storage/images/E-mart-logo.png') }}" height="50" width="80"></a>
-                {{-- <p class="navbar-brand mb-0 navbar-text fw-bold text-dark">{{ __('My Cart') }}</p> --}}
+                {{-- <p class="navbar-brand mb-0 navbar-text text-dark"> <span class="text-danger fw-bold">Laravel</span></p> --}}
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="offcanvas offcanvas-start w-75 container" tabindex="-1" id="offcanvasExample"
+                    aria-labelledby="offcanvasExampleLabel">
+                    <!-- Left Side Of Navbar -->
+                    <div class="offcanvas-header">
+                        @auth
+                            <h6 class="offcanvas-title" id="offcanvas">
+                                <div class="justify-content-center">
+                                    <a href="{{ url('/') }}"
+                                        class="d-flex  mb-auto mb-md-0 me-md-auto text-white text-decoration-none">
+                                        <img class="d-inline-block align-top rounded-circle "
+                                            src="{{ asset('/storage/images/usman.jpg') }}" height="60" width="60">
+                                    </a>
+                                </div>
+                                <span class="fs-5 fw-bold nav-item dropdown-toggle">{{ Auth::user()->name }}</span>
+                                <a class="nav-link"><span
+                                        class="text-muted small">{{ __('@' . Auth::user()->username) }}</span></a>
+                                <br>
+                                <div class="hstack gap-3">
+                                    <a href="https://www.facebook.com/alfhaigar.usman.1/"
+                                        class="text-decoration-none text-muted"><span
+                                            class="text-dark fw-bold">{{ __('8') }}</span>{{ __(' Following') }}</a>
+                                    <a href="https://github.com/rubickking04" class="text-decoration-none text-muted"><span
+                                            class="text-dark fw-bold">{{ __('0') }}</span>{{ __(' Followers') }}</a>
+                                </div>
+                            </h6>
+                        @endauth
+                    </div>
+                    <div class="offcanvas-body">
+                        @auth
+                            <hr>
+                        @endauth
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item px-2 mx-auto">
+                                <a class="nav-link active" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-magnifying-glass fs-4 "></i></a>
+                            </li>
+                            <li class="nav-item px-2">
+                                <a class="nav-link active" href="{{ route('cart') }}"><i class="fa-solid fa-cart-shopping fs-4"></i></a>
+                            </li>
+                            <li class="nav-item dropdown px-2">
+                                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user fs-4"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
+                                        @auth
+                                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user fs-5 px-2"></i>{{ __('Profile') }}</a></li>
+                                            @if ( App\Models\Store::where('user_id', '=', Auth::user()->id)->doesntExist())
+                                                <li><a class="dropdown-item" href="{{ route('store') }}"><i class="fa-solid fa-cart-plus fs-5 px-2"></i>{{ __('Sell Products') }}</a></li>
+                                            @endif
+                                            @if ( App\Models\Store::where('user_id', '=', Auth::user()->id)->exists())
+                                                <li><a class="dropdown-item" href="{{ route('store.home') }}" target="_blank"><i class="fa-solid fa-cart-plus fs-5 px-2"></i>{{ __('My Store') }}</a></li>
+                                            @endif
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa-solid fa-right-from-bracket px-2 fs-5"></i>{{ __('Logout') }}</a></li>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                @csrf
+                                            </form>
+                                        @endauth
+                                        @guest
+                                        <li><a class="dropdown-item" href="{{ route('login') }}"><i class="fa-solid fa-right-to-bracket  fs-5 px-2"></i>{{ __('Sign up') }}</a></li>
+                                        @endguest
+                                    </ul>
+                            </li>
+                        </ul>
+
+                        <!-- Right Side Of Navbar -->
+                        {{-- <ul class="navbar-nav ms-auto">
+                            <!-- Authentication Links -->
+                            @auth
+                                <li class="nav-item d-none d-md-block">
+                                    <a class="nav-link fs-5 text-dark" href="#">{{ Auth::user()->name }}</a>
+                                </li>
+                                <li class="nav-item d-none d-md-block">
+                                    <a class="nav-link fs-5 text-dark " href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </li>
+                            @endauth
+                            @guest
+                                <li class="nav-item">
+                                    <a class="nav-link fs-5 text-dark "
+                                        href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link fs-5 text-dark "
+                                        href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endguest
+                        </ul> --}}
+                    </div>
+                </div>
+            </div>
+        </nav>
+        {{-- <nav class="navbar navbar-expand bg-light shadow-lg">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('/') }}"><img class="align-top" src="{{ asset('/storage/images/E-mart-logo.png') }}" height="50" width="80"></a>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item px-2 mx-auto">
                         <a class="nav-link active" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-magnifying-glass fs-4 "></i></a>
@@ -88,7 +189,7 @@
                     </div>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
     </div>
 
     <main class="py-4">
