@@ -34,6 +34,9 @@ use App\Http\Controllers\Store\ProductsTableController as ProductsTable;
 Route::get('/', function () {
     return redirect()->route('shop');
 });
+Route::get('/home', function () {
+    return redirect()->route('shop');
+});
 Route::group(['middleware' => 'prevent-back-history'], function () {
     /**
      * Routes for the Farmers.
