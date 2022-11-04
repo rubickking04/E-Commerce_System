@@ -52,11 +52,26 @@
                                     <button class="btn btn-warning" type="submit"><i class="fa-solid text-white fa-magnifying-glass"></i></button>
                                 </form>
                             </h6>
-
                         @endauth
-
+                        @guest
+                        <h6 class="offcanvas-title" id="offcanvas">
+                            <div class="mx-auto">
+                                <a href="{{ url('/') }}" class="text-white text-decoration-none">
+                                    <img class="d-inline-block align-top ms-5" src="{{ asset('/storage/images/E-Mart-logo.png') }}" height="90" width="130">
+                                </a>
+                            </div>
+                        </h6>
+                        @endguest
                     </div>
                     <div class="offcanvas-body">
+                        @guest
+                        <form action="{{ route('search.product') }}" method="GET" role="search" class="d-flex d-md-none">
+                            @csrf
+                            <input class="form-control me-2 border " type="search" name="search" placeholder="Search products or store" aria-label="Search">
+                            <button class="btn btn-warning" type="submit"><i class="fa-solid text-white fa-magnifying-glass"></i></button>
+                        </form>
+                        <hr>
+                        @endguest
                         @auth
                             <hr>
                         @endauth

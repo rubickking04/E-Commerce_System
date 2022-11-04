@@ -49,20 +49,32 @@
                                     <div class="vr"></div>
                                     <p class="text-decoration-none text-muted mt-2"><span class="text-warning fw-bold">{{ App\Models\Cart::where('user_id', Auth::id())->onlyTrashed()->count() }}</span>{{ __(' Order') }}</p>
                                 </div>
-                                <form action="{{ route('search.product') }}" method="GET" role="search" class="d-flex">
+                                <form action="{{ route('search_product_or_store_controller') }}" method="GET" role="search" class="d-flex">
                                     @csrf
                                     <input class="form-control me-2 border " type="search" name="search" placeholder="Search products or store" aria-label="Search">
                                     <button class="btn btn-warning" type="submit"><i class="fa-solid text-white fa-magnifying-glass"></i></button>
                                 </form>
                             </h6>
                         @endauth
-                        {{-- <form action="{{ route('search.product') }}" method="GET" role="search" class="d-flex">
+                        @guest
+                        <h6 class="offcanvas-title" id="offcanvas">
+                            <div class="mx-auto">
+                                <a href="{{ url('/') }}" class="text-white text-decoration-none">
+                                    <img class="d-inline-block align-top ms-5" src="{{ asset('/storage/images/E-Mart-logo.png') }}" height="90" width="130">
+                                </a>
+                            </div>
+                        </h6>
+                        @endguest
+                    </div>
+                    <div class="offcanvas-body">
+                        @guest
+                        <form action="{{ route('search_product_or_store_controller') }}" method="GET" role="search" class="d-flex d-md-none">
                             @csrf
                             <input class="form-control me-2 border " type="search" name="search" placeholder="Search products or store" aria-label="Search">
                             <button class="btn btn-warning" type="submit"><i class="fa-solid text-white fa-magnifying-glass"></i></button>
-                        </form> --}}
-                    </div>
-                    <div class="offcanvas-body">
+                        </form>
+                        <hr>
+                        @endguest
                         @auth
                             <hr>
                         @endauth
@@ -77,17 +89,13 @@
                                         <div class="modal-content">
                                             <div class="modal-body">
                                                 <div class="col-md-12">
-                                                    <form action="#" method="GET" role="search" role="search">
+                                                    <form action="{{ route('search_product_or_store_controller') }}" method="GET" role="search" role="search">
+                                                        @csrf
                                                         <div class="input-group py-2">
                                                             <span class="input-group-text">
                                                                 <i class="fa-solid fa-magnifying-glass fs-4 "></i>
                                                             </span>
                                                         <input id="search" type="search" aria-label="Search" placeholder="Search a product or a store" class="form-control form-control-lg @error('search') is-invalid @enderror" name="search">
-                                                        @error('password')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
-                                                        @enderror
                                                         </div>
                                                     <div class="text-center py-3">
                                                         <p>{{ __('No Recent Searches') }}</p>

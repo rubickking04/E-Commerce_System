@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\HomeController as AdminHome;
 use App\Http\Controllers\Store\HomeController as StoreHome;
 use App\Http\Controllers\Admin\LoginController as AdminLogin;
 use App\Http\Controllers\Store\LoginController as StoreLogin;
+use App\Http\Controllers\User\SearchProductOrStoreController;
 use App\Http\Controllers\Admin\LogoutController as AdminLogout;
 use App\Http\Controllers\Store\LogoutController as StoreLogout;
 use App\Http\Controllers\Store\ProductController as StoreProduct;
@@ -57,6 +58,9 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     });
     Route::controller(StoreViewerController::class)->group(function () {
         Route::get('/store/view/{stores:id}', 'index')->name('storeviewer');
+    });
+    Route::controller(SearchProductOrStoreController::class)->group(function () {
+        Route::get('/search', 'search')->name('search_product_or_store_controller');
     });
 
     Route::middleware('auth')->group(function () {
