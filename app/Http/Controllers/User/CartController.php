@@ -81,6 +81,6 @@ class CartController extends Controller
     {
         $cart = Cart::where('user_id', '=', Auth::user()->id)->delete();
         Alert::toast('Checked out Successfully!', 'success');
-        return back();
+        return redirect()->route('order');
     }
 }

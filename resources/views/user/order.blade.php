@@ -36,7 +36,7 @@
             </div>
         </div>
         @else
-            <h4 class="text-center">{{ __('There\'s nothing in your cart yet.') }}</h4>
+            <h4 class="text-center">{{ __('There\'s nothing in your orders yet.') }}</h4>
         @endif
     </div>
 </div>
