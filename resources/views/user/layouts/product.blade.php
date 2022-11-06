@@ -130,7 +130,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item px-2">
-                                    <a class="nav-link active" href="{{ route('cart') }}">
+                                    <a class="nav-link active" href="{{ route('order') }}">
                                         <i class="fa-solid fa-truck-fast fs-4"></i>
                                         <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Order') }}
                                             <span class="badge bg-warning ms-2">{{ App\Models\Cart::where('user_id', Auth::id())->onlyTrashed()->count() }}</span>

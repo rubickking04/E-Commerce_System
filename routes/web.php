@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\ShopController;
 use App\Http\Controllers\User\LoginController;
+use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\StoreController;
 use App\Http\Controllers\User\LogoutController;
 use App\Http\Controllers\User\RegisterController;
@@ -69,6 +70,9 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
             Route::get('/cart/check-out/{id}', 'destroy')->name('cart.checkout');
             Route::get('/cart/check-out-all', 'destroyAll')->name('cart.checkout-all');
             // Route::post('/auth/register', 'store')->name('register');
+        });
+        Route::controller(OrderController::class)->group(function () {
+            Route::get('/my-orders', 'index')->name('order');
         });
         Route::controller(AddProductToCartController::class)->group(function () {
             Route::post('/add-to-cart/{products:id}', 'store')->name('add.cart');
