@@ -26,7 +26,7 @@
                 <p class="navbar-brand mb-0 navbar-text fw-bold text-dark">{{ __('Sign Up') }}</p>
                 <ul class="navbar-nav ms-auto ">
                     <li class="nav-item px-2">
-                        <a class="nav-link " href="#">{{ __('Need Help?') }}</a>
+                        <a class="nav-link " href="#"><i class="fa-solid fs-5 fa-circle-question"></i></a>
                     </li>
                 </ul>
             </div>

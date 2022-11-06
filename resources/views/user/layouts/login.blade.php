@@ -23,10 +23,11 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}"><img class="align-top" src="{{ asset('/storage/images/E-mart-logo.png') }}" height="50" width="80"></a>
+                {{-- <p class="navbar-brand mb-0 navbar-text text-dark"> <span class="text-danger fw-bold">Laravel</span></p> --}}
                 <p class="navbar-brand mb-0 navbar-text fw-bold text-dark">{{ __('Login') }}</p>
                 <ul class="navbar-nav ms-auto ">
                     <li class="nav-item px-2">
-                        <a class="nav-link " href="#">{{ __('Need Help?') }}</a>
+                        <a class="nav-link " href="#"><i class="fa-solid fs-5 fa-circle-question"></i></a>
                     </li>
                 </ul>
             </div>
