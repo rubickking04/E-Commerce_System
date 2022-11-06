@@ -41,10 +41,10 @@
                                 <span class="fs-5 fw-bold ">{{ Auth::user()->name }}</span>
                                 <a class="nav-link"><span class="text-muted small">{{ __('@' . Auth::user()->username) }}</span></a>
                                 <br>
-                                <div class="hstack gap-3 mb-3 text-center ms-5">
-                                    <p class="text-decoration-none text-muted ms-3 mt-2"><span class="text-warning fw-bold">{{ App\Models\Cart::where('user_id', Auth::id())->count() }}</span>{{ __(' Cart') }}</p>
+                                <div class="hstack gap-3 mb-3 text-center ms-4">
+                                    <p class="text-decoration-none text-muted ms-3 mt-2"><span class="text-warning fw-bold">{{ App\Models\Cart::where('user_id', Auth::id())->count() }}</span>{{ __(' My Cart') }}</p>
                                     <div class="vr"></div>
-                                    <p class="text-decoration-none text-muted mt-2"><span class="text-warning fw-bold">{{ App\Models\Cart::where('user_id', Auth::id())->onlyTrashed()->count() }}</span>{{ __(' Order') }}</p>
+                                    <p class="text-decoration-none text-muted mt-2"><span class="text-warning fw-bold">{{ App\Models\Cart::where('user_id', Auth::id())->onlyTrashed()->count() }}</span>{{ __(' My Order') }}</p>
                                 </div>
                                 <form action="{{ route('search.product') }}" method="GET" role="search" class="d-flex">
                                     @csrf
@@ -112,12 +112,6 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="nav-item px-2">
-                                <a class="nav-link active" href="{{ route('cart') }}">
-                                    <i class="fa-solid  fa-cart-shopping fs-4"></i>
-                                    <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Cart') }}</span>
-                                </a>
-                            </li>
                             @guest
                                 <li class="nav-item px-2">
                                     <a class="nav-link active" href="{{ route('login') }}">
@@ -129,8 +123,18 @@
                             @auth
                                 <li class="nav-item px-2">
                                     <a class="nav-link active" href="{{ route('cart') }}">
+                                        <i class="fa-solid  fa-cart-shopping fs-4"></i>
+                                        <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Cart') }}
+                                            <span class="badge bg-warning ms-2">{{ App\Models\Cart::where('user_id', Auth::id())->count() }}</span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item px-2">
+                                    <a class="nav-link active" href="{{ route('cart') }}">
                                         <i class="fa-solid fa-truck-fast fs-4"></i>
-                                        <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Order') }}</span>
+                                        <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Order') }}
+                                            <span class="badge bg-warning ms-2">{{ App\Models\Cart::where('user_id', Auth::id())->onlyTrashed()->count() }}</span>
+                                        </span>
                                     </a>
                                 </li>
                                 @if ( App\Models\Store::where('user_id', '=', Auth::user()->id)->doesntExist())
