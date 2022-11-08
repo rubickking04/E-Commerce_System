@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#6777ef"/>
+    <meta name="theme-color" content="#fff"/>
     <link rel="apple-touch-icon" href="{{ asset('storage/images/logo.png') }}">
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
     <!-- CSRF Token -->
