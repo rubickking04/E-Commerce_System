@@ -17,11 +17,10 @@
                                 <form method="POST" action="{{ route('register') }}">
                                     @csrf
                                     <div class="row mb-2">
-                                        <div class="form-outline text-start">
-                                            <label for="name" class="col-form-label">Name</label>
+                                        <div class="form-outline col-lg-6 text-start">
+                                            <label for="name" class="col-form-label">{{ __('Name') }}</label>
                                             <div class="input-group">
-                                                <input type="text" id="name" placeholder="Example: Juan Dela Cruz"
-                                                    name="name" class="form-control @error('name') is-invalid @enderror" />
+                                                <input type="text" id="name" placeholder="Juan Dela Cruz" name="name" class="form-control @error('name') is-invalid @enderror" />
                                                 @error('name')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -29,37 +28,20 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="form-outline text-start">
-                                            <label for="username" class="col-form-label">{{ __('Username') }}</label>
-                                            <div class="input-group">
-                                                {{-- <div class="input-group-text"><i class="fa-solid fa-user"></i></div> --}}
-                                                <input type="text" id="address" placeholder="Example: invoker69" name="username" class="form-control @error('username') is-invalid @enderror" />
-                                                @error('username')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
+                                        <div class="form-outline col-lg-6 text-start">
+                                            <label for="phone" class="col-form-label">{{ __('Phone Number') }}</label>
+                                            <input id="phone" type="text" placeholder="0987654321" class="form-control @error('phone') is-invalid @enderror" name="phone" >
+                                            @error('phone')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
-                                        {{-- <div class="form-outline text-start">
-                                            <label for="phone_number" class="col-form-label">{{ __('Phone Number') }}</label>
-                                            <div class="input-group">
-                                                <input type="number" id="phone_number" placeholder="Example: 09557815639"
-                                                    name="phone_number"
-                                                    class="form-control @error('phone_number') is-invalid @enderror" />
-                                                @error('phone_number')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                        </div> --}}
-                                        <div class="form-outline text-start">
+
+                                        <div class="form-outline col-lg-6 text-start">
                                             <label for="email" class="col-form-label">Email</label>
                                             <div class="input-group">
-                                                {{-- <div class="input-group-text"><i class="bi bi-envelope-fill"></i></div> --}}
-                                                <input type="email" id="email" placeholder="Example: rubickking04@gmail.com"
-                                                    name="email" class="form-control @error('email') is-invalid @enderror" />
+                                                <input type="email" id="email" placeholder="helloworld@gmail.com" name="email" class="form-control @error('email') is-invalid @enderror" />
                                                 @error('email')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -67,6 +49,33 @@
                                                 @enderror
                                             </div>
                                         </div>
+
+                                        <div class="form-outline col-lg-6 text-start">
+                                            <label for="username" class="col-form-label">{{ __('Username') }}</label>
+                                            <div class="input-group">
+                                                <input type="text" id="address" placeholder="invoker69" name="username" class="form-control @error('username') is-invalid @enderror" />
+                                                @error('username')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-outline text-start">
+                                            <label for="address" class="col-form-label">{{ __('Address') }}</label>
+                                            <div class="input-group">
+                                                <div class="input-group-text"><i class="fa fa-location-arrow"></i></div>
+                                            <input id="address" type="text" placeholder="R.T. Lim Boulevard, Baliwasan, Zamboanga City" class="form-control @error('address') is-invalid @enderror" name="address">
+                                            @error('address')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                            </div>
+                                        </div>
+
                                         <div class="form-outline text-start ">
                                             <label for="password" class="col-form-label">{{ __('Password') }}</label>
                                             <div class="input-group">

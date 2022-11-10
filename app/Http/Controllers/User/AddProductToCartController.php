@@ -22,6 +22,7 @@ class AddProductToCartController extends Controller
         $product = Product::find($id);
         $cart = Cart::create([
             'product_id' => $product->id,
+            'store_id' => $request->input('store_id'),
             'user_id' => Auth::user()->id,
             'quantity' => $request->input('quantity'),
         ]);

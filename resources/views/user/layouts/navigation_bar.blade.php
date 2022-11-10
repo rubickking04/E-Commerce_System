@@ -145,7 +145,7 @@
                                 @endif
                                 @if ( App\Models\Store::where('user_id', '=', Auth::user()->id)->exists())
                                     <li class="nav-item px-2">
-                                        <a class="nav-link active" href="{{ route('store.home') }}" target="_blank">
+                                        <a class="nav-link active" href="{{ route('store.home') }}">
                                             <i class="fa-solid fa-store fs-4"></i>
                                             <span class="ms-3 d-md-none h5" aria-current="page">{{ __('My Store') }}</span>
                                         </a>

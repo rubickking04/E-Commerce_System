@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <div class="card">
-        <div class="card-header ">{{ __('My Orders - '.App\Models\Cart::where('user_id', Auth::id())->count() .' items' ) }}</div>
+        <div class="card-header ">{{ __('My Orders - '.App\Models\Cart::where('user_id', Auth::id())->onlyTrashed()->count() .' items' ) }}</div>
         <div class="card-body">
         @if ( $carts->count())
             <div class="row container mb-4 mt-4">

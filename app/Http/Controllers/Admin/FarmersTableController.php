@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class FarmersTableController extends Controller
 {
@@ -14,7 +16,8 @@ class FarmersTableController extends Controller
      */
     public function index()
     {
-        //
+        $user = User::paginate(10);
+        return view('admin.farmers_table', compact('user'));
     }
 
     /**
@@ -29,14 +32,20 @@ class FarmersTableController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Search the specified user.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function search(Request $request)
     {
-        //
+        $search = $request->input('search');
+        $user = User::where('name', 'LIKE', '%' . $search . '%')->orWhere('email', 'LIKE', '%' . $search . '%')->paginate(10);
+        if (count($user) > 0) {
+            return view('admin.farmers_table', compact('user', 'search'));
+        } else {
+            return back()->with('msg', 'We couldn\'t find "' . $search . '" on this page.');
+        }
     }
 
     /**
@@ -48,7 +57,20 @@ class FarmersTableController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|string|max:255',
+            'phone' => 'required|string',
+            'address' => 'required|string',
+        ]);
+        $user = User::find($id);
+        $user->name = $request['name'];
+        $user->email = $request['email'];
+        $user->phone = $request['phone'];
+        $user->address = $request['address'];
+        $user->save();
+        Alert::toast('Updated Successfully!', 'success');
+        return back();
     }
 
     /**
@@ -59,6 +81,8 @@ class FarmersTableController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id)->delete();
+        Alert::toast('User Removed Successfully!', 'success');
+        return back();
     }
 }

@@ -65,7 +65,7 @@
                     </div>
                     <div class="offcanvas-body">
                         @guest
-                        <form action="{{ route('search.product') }}" method="GET" role="search" class="d-flex d-md-none">
+                        <form action="{{ route('search_product_or_store_controller') }}" method="GET" role="search" class="d-flex d-md-none">
                             @csrf
                             <input class="form-control me-2 border " type="search" name="search" placeholder="Search products or store" aria-label="Search">
                             <button class="btn btn-warning" type="submit"><i class="fa-solid text-white fa-magnifying-glass"></i></button>
@@ -86,7 +86,7 @@
                                         <div class="modal-content">
                                             <div class="modal-body">
                                                 <div class="col-md-12">
-                                                    <form action="#" method="GET" role="search" role="search">
+                                                    <form action="{{ route('search_product_or_store_controller') }}" method="GET" role="search" role="search">
                                                         <div class="input-group py-2">
                                                             <span class="input-group-text">
                                                                 <i class="fa-solid fa-magnifying-glass fs-4 "></i>
@@ -147,7 +147,7 @@
                                 @endif
                                 @if ( App\Models\Store::where('user_id', '=', Auth::user()->id)->exists())
                                     <li class="nav-item px-2">
-                                        <a class="nav-link active" href="{{ route('store.home') }}" target="_blank">
+                                        <a class="nav-link active" href="{{ route('store.home') }}">
                                             <i class="fa-solid fa-store fs-4"></i>
                                             <span class="ms-3 d-md-none h5" aria-current="page">{{ __('My Store') }}</span>
                                         </a>

@@ -81,10 +81,10 @@
                         <i class="fs-5 fa-solid fa-table text-white"></i><span class="ms-2  text-white">{{ __('Data Tables') }}</span></a>
                         <div class="collapse container" id="table-collapse">
                             <ul class="btn-toggle-nav nav nav-pills flex-column mb-sm-auto mb-auto mb-0 align-items-start list-unstyled fw-normal pb-2">
-                                <li class="nav-item"><a href="#" class="ms-2 nav-link  text-white text-decoration-none rounded"><i class="fs-5 fa-solid fa-angles-right"></i><span class="ms-2  text-white">{{ __('Farmers Table ') }}<span class="badge text-bg-primary">{{__('(1)')}}</span> </span></a></li>
-                                <li class="nav-item"><a href="#" class="ms-2 nav-link  text-white text-decoration-none rounded"><i class="fs-5 fa-solid fa-angles-right"></i><span class="ms-2  text-white">{{ __('Stores Table ') }} <span class="badge text-bg-primary">{{__('(1)')}}</span> </span></a></li>
-                                <li class="nav-item"><a href="#" class="ms-2 nav-link  text-white text-decoration-none rounded"><i class="fs-5 fa-solid fa-angles-right"></i><span class="ms-2  text-white">{{ __('Products Table ') }}<span class="badge text-bg-primary">{{__('(34)')}}</span> </span></a></li>
-                                <li class="nav-item"><a href="#" class="ms-2 nav-link  text-white text-decoration-none rounded"><i class="fs-5 fa-solid fa-angles-right"></i><span class="ms-2  text-white">{{ __('Carts Table ') }} <span class="badge text-bg-primary">{{__('(32)')}}</span> </span></a></li>
+                                <li class="nav-item"><a href="{{ route('admin.farmers') }}" class="ms-2 nav-link  text-white text-decoration-none rounded"><i class="fs-5 fa-solid fa-angles-right"></i><span class="ms-2  text-white">{{ __('Farmers Table ') }}<span class="badge text-bg-primary">{{ __('('.App\Models\User::all()->count().')') }}</span> </span></a></li>
+                                <li class="nav-item"><a href="{{ route('admin.stores') }}" class="ms-2 nav-link  text-white text-decoration-none rounded"><i class="fs-5 fa-solid fa-angles-right"></i><span class="ms-2  text-white">{{ __('Stores Table ') }} <span class="badge text-bg-primary">{{ __('('.App\Models\Store::all()->count().')') }}</span> </span></a></li>
+                                <li class="nav-item"><a href="{{ route('admin.products') }}" class="ms-2 nav-link  text-white text-decoration-none rounded"><i class="fs-5 fa-solid fa-angles-right"></i><span class="ms-2  text-white">{{ __('Products Table ') }}<span class="badge text-bg-primary">{{ __('('.App\Models\Product::all()->count().')') }}</span> </span></a></li>
+                                <li class="nav-item"><a href="#" class="ms-2 nav-link  text-white text-decoration-none rounded"><i class="fs-5 fa-solid fa-angles-right"></i><span class="ms-2  text-white">{{ __('Carts Table ') }} <span class="badge text-bg-primary">{{ __('('.App\Models\Cart::all()->count().')') }}</span> </span></a></li>
                             </ul>
                         </div>
                     </li>
@@ -92,8 +92,7 @@
                 <hr>
                 <div class="dropdown">
                     <a href="{{ route('admin.logout') }}" class="d-flex px-3 align-items-center nav-link text-truncate"
-                        onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="fas fa-sign-out-alt fs-5 text-white"></i><span
                             class="ms-2 text-white">{{ __('Sign out') }}</span> </a>
                 </div>
@@ -113,8 +112,7 @@
                                     <div class="card-body h-100">
                                         <div class="row">
                                             <div class="col-lg-8 col-sm-6 col-6 col-md-auto">
-                                                <h2 class="users-count" id="users-count">
-                                                    {{ App\Models\User::all()->count() }}</h2>
+                                                <h2 class="users-count" id="users-count">{{ App\Models\User::all()->count() }}</h2>
                                                 <h5>{{ __('Farmers') }}</h5>
                                             </div>
                                             <div class="col-lg-4 col-sm-6 col-md-auto col-6 mt-3 text-end">
@@ -129,7 +127,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-lg-7 col-sm-6 col-6 col-md-auto">
-                                                <h2>2</h2>
+                                                <h2>{{ App\Models\Store::all()->count() }}</h2>
                                                 <h5>{{ __('Stores') }}</h5>
                                             </div>
                                             <div class="col-lg-5 col-sm-6 col-md-auto text-end col-6 mt-3 ">
@@ -145,7 +143,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-lg-7 col-sm-6 col-6 col-md-auto">
-                                                <h2>3</h2>
+                                                <h2>{{ App\Models\Product::all()->count() }}</h2>
                                                 <h5>{{ __('Items') }}</h5>
                                             </div>
                                             <div class="col-lg-5 col-sm-6 col-md-auto col-6 text-end col-6 mt-3 ">
@@ -160,7 +158,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-lg-7 col-sm-6 col-6 col-md-auto">
-                                                <h2>2</h2>
+                                                <h2>{{ App\Models\Cart::all()->count() }}</h2>
                                                 <h5>{{ __('Carts') }}</h5>
                                             </div>
                                             <div class="col-lg-5 col-sm-6 col-md-auto col-6 text-end col-6 mt-3 ">

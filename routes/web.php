@@ -13,6 +13,9 @@ use App\Http\Controllers\User\StoreViewerController;
 use App\Http\Controllers\User\ProductViewerController;
 use App\Http\Controllers\User\AddProductToCartController;
 use App\Http\Controllers\Admin\HomeController as AdminHome;
+use App\Http\Controllers\Admin\FarmersTableController as FarmersTableController;
+use App\Http\Controllers\Admin\StoresTableController as StoresTableController;
+use App\Http\Controllers\Admin\ProductsTableController as ProductsTableController;
 use App\Http\Controllers\Store\HomeController as StoreHome;
 use App\Http\Controllers\Admin\LoginController as AdminLogin;
 use App\Http\Controllers\Store\LoginController as StoreLogin;
@@ -101,10 +104,31 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         Route::controller(AdminHome::class)->group(function () {
             Route::get('/admin/home', 'index')->name('admin.home');
         });
+        Route::controller(FarmersTableController::class)->group(function () {
+            Route::get('/admin/farmers_table', 'index')->name('admin.farmers');
+            Route::get('/admin/farmers/search', 'search')->name('admin.farmers.search');
+            Route::post('/admin/farmers/update/{id}', 'update')->name('admin.farmers.update');
+            Route::get('/admin/farmers/destroy/{id}', 'destroy')->name('admin.farmers.delete');
+        });
+        Route::controller(StoresTableController::class)->group(function () {
+            Route::get('/admin/stores_table', 'index')->name('admin.stores');
+            Route::get('/admin/stores/search', 'search')->name('admin.farmers.search');
+            Route::post('/admin/stores/update/{id}', 'update')->name('admin.stores.update');
+            Route::get('/admin/stores/destroy/{id}', 'destroy')->name('admin.farmers.delete');
+        });
+        Route::controller(ProductsTableController::class)->group(function () {
+            Route::get('/admin/products_table', 'index')->name('admin.products');
+            // Route::get('/admin/stores/search', 'search')->name('admin.farmers.search');
+            // Route::post('/admin/stores/update/{id}', 'update')->name('admin.stores.update');
+            // Route::get('/admin/stores/destroy/{id}', 'destroy')->name('admin.farmers.delete');
+        });
         Route::controller(AdminLogout::class)->group(function () {
             Route::post('/admin/logout', 'logout')->name('admin.logout');
         });
     });
+
+
+
     Route::controller(StoreLogin::class)->group(function () {
         Route::get('/my-store/login', 'index')->name('store.login')->middleware('guest:store');
         Route::post('/my-store/signin', 'store')->name('my-store.login');

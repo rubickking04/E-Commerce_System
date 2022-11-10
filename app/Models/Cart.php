@@ -12,6 +12,7 @@ class Cart extends Model
     protected $fillable = [
         'product_id',
         'user_id',
+        'store_id',
         'quantity',
     ];
     protected $dates = [
@@ -20,5 +21,9 @@ class Cart extends Model
     public function hasProducts()
     {
         return $this->belongsTo(Product::class, 'product_id');
+    }
+    public function hasProductsStore()
+    {
+        return $this->belongsTo(Store::class, 'store_id');
     }
 }

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductsTableController extends Controller
 {
@@ -14,7 +16,8 @@ class ProductsTableController extends Controller
      */
     public function index()
     {
-        //
+        $product = Product::paginate(10);
+        return view('admin.products_table', compact('product'));
     }
 
     /**
@@ -29,14 +32,20 @@ class ProductsTableController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Search the specified user.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function search(Request $request)
     {
-        //
+        $search = $request->input('search');
+        $product = Product::where('product_name', 'LIKE', '%' . $search . '%')->orWhere('product_category', 'LIKE', '%' . $search . '%')->paginate(10);
+        if (count($product) > 0) {
+            return view('admin.products_table', compact('product', 'search'));
+        } else {
+            return back()->with('msg', 'We couldn\'t find "' . $search . '" on this page.');
+        }
     }
 
     /**
@@ -59,6 +68,8 @@ class ProductsTableController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id)->delete();
+        Alert::toast('User Removed Successfully!', 'success');
+        return back();
     }
 }
