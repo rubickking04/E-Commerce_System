@@ -120,7 +120,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
             Route::get('/admin/products_table', 'index')->name('admin.products');
             // Route::get('/admin/stores/search', 'search')->name('admin.farmers.search');
             // Route::post('/admin/stores/update/{id}', 'update')->name('admin.stores.update');
-            // Route::get('/admin/stores/destroy/{id}', 'destroy')->name('admin.farmers.delete');
+            Route::get('/admin/products/destroy/{id}', 'destroy')->name('admin.products.delete');
         });
         Route::controller(AdminLogout::class)->group(function () {
             Route::post('/admin/logout', 'logout')->name('admin.logout');

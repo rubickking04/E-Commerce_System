@@ -85,14 +85,14 @@
                                                                         @endif
                                                                     </td>
                                                                     <td class="text-center fw-bold h6 py-3 text-truncate" scope="row">{{ $products->hasStore->store_name }}</td>
-                                                                    <td class="text-center" scope="row"> {{ $products->product_name }}</td>
-                                                                    <td class="text-center" scope="row"> {{ $products->product_category }}</td>
-                                                                    <td class="text-center" scope="row"> {{ $products->product_price }}</td>
+                                                                    <td class="text-center" scope="row">{{ $products->product_name }}</td>
+                                                                    <td class="text-center" scope="row">{{ $products->product_category }}</td>
+                                                                    <td class="text-center" scope="row">{{ __('₱ '.number_format($products->product_price)) }}</td>
                                                                     <td class="text-center" scope="row">{{ \Carbon\Carbon::createFromTimestamp(strtotime($products->created_at))->Format('d/m/Y') }}</td>
                                                                     <td class="text-center" scope="row">
                                                                         <button type="button" class=" btn btn-success bi bi-eye-fill" data-bs-toggle="modal"data-bs-target="#exampleModalCenter{{ $products->id }}"></button>
                                                                         <button type="button" class=" btn btn-warning bi bi-pencil-square"data-bs-toggle="modal"data-bs-target="#exampleModalCenters{{ $products->id }}"></button>
-                                                                        <a href="{{ route('admin.farmers.delete', $products->id) }}" class="btn btn-danger" onclick="return confirm('Are you sure to remove this user?')">
+                                                                        <a href="{{ route('admin.products.delete', $products->id) }}" class="btn btn-danger" onclick="return confirm('Are you sure to remove this product?')">
                                                                             <i class="bi bi-trash"></i>
                                                                         </a>
                                                                         {{-- View Profile Modal --}}
@@ -198,7 +198,7 @@
                                             </div>
                                             <div class="card-body">
                                                 <h5 class="card-title fs-3 text-center">
-                                                    {{ __('No Farmers Joined yet.') }}</h5>
+                                                    {{ __('No Products yet.') }}</h5>
                                             </div>
                                         </div>
                                     </div>

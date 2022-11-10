@@ -69,7 +69,7 @@ class ProductsTableController extends Controller
     public function destroy($id)
     {
         $product = Product::find($id)->delete();
-        Alert::toast('User Removed Successfully!', 'success');
+        Alert::toast('Product Removed Successfully!', 'success');
         return back();
     }
 }

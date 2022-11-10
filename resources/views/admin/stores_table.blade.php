@@ -175,7 +175,7 @@
                                             </div>
                                             <div class="card-body">
                                                 <h5 class="card-title fs-3 text-center">
-                                                    {{ __('No Farmers Joined yet.') }}</h5>
+                                                    {{ __('No Stores Joined yet.') }}</h5>
                                             </div>
                                         </div>
                                     </div>
