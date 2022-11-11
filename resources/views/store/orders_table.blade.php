@@ -105,6 +105,7 @@
                                                                                         </div>
                                                                                         <h2 class="fw-bold mb-0">{{ $carts->hasUser->name }}</h2>
                                                                                         <form action="#" method="POST" >
+                                                                                            <fieldset disabled="disabled">
                                                                                             @csrf
                                                                                             <div class="row mb-3">
                                                                                                 <div class="col-md-6 text-start">
@@ -153,8 +154,10 @@
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
+                                                                                        </fieldset>
                                                                                             <button type="button" class="btn btn-danger col-lg-2 col-5" data-bs-dismiss="modal" style="border-radius:20px;">{{ __('Close') }}</button>
-                                                                                        </form>
+
+                                                                                    </form>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>

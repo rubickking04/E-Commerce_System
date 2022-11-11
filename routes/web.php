@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\StoresTableController as StoresTableController;
 use App\Http\Controllers\Admin\ProductsTableController as ProductsTableController;
 use App\Http\Controllers\Admin\OrdersTableController as OrdersTableController;
 use App\Http\Controllers\Store\HomeController as StoreHome;
+use App\Http\Controllers\Store\OrdersTableController as OrdersTable;
 use App\Http\Controllers\Admin\LoginController as AdminLogin;
 use App\Http\Controllers\Store\LoginController as StoreLogin;
 use App\Http\Controllers\User\SearchProductOrStoreController;
@@ -150,6 +151,9 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
             Route::get('/my-store/products_table', 'index')->name('store.products.table');
             Route::get('/search/products', 'search')->name('search.product');
             Route::get('/destroy/products/{id}', 'destroy')->name('delete.product');
+        });
+        Route::controller(OrdersTable::class)->group(function () {
+            Route::get('/my-store/orders', 'index')->name('store.orders');
         });
         Route::controller(StoreLogout::class)->group(function () {
             Route::post('/store/logout', 'logout')->name('store.logout');
