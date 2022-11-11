@@ -17,7 +17,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-5 col-md-5 col-sm-10 col-12">
                             <div class="row">
-                                <form action="{{ route('search.product') }}" method="GET" role="search" class="d-flex">
+                                <form action="{{ route('search_product_or_store_controller') }}" method="GET" role="search" class="d-flex">
                                     @csrf
                                     <div class="input-group">
                                         <input class="form-control me-2 border border-primary" type="search" name="search" placeholder="Please try again to search by Product or Category" aria-label="Search">

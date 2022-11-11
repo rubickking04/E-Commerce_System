@@ -15,7 +15,7 @@
                                     <div class="col-lg-4 col-md-5 col-sm-6 col-12 py-3">
                                         <form action="{{ route('admin.farmers.search') }}" method="GET" role="search" class="d-flex">
                                             @csrf
-                                            <input class="form-control me-2 " type="search" name="search" placeholder="Search Name or Email" aria-label="Search">
+                                            <input class="form-control me-2 " type="search" name="search" placeholder="Search by Store Name" aria-label="Search">
                                             <button class="btn btn-success" type="submit">
                                                 <i class="fa-solid fa-magnifying-glass"></i>
                                             </button>
@@ -41,9 +41,9 @@
                                                                         <form action="{{ route('admin.farmers.search') }}" method="GET" role="search" class="d-flex">
                                                                             @csrf
                                                                             <div class="input-group">
-                                                                                <input class="form-control me-2" type="search" name="search" placeholder="Please try again to search by Name or Email" aria-label="Search">
+                                                                                <input class="form-control me-2" type="search" name="search" placeholder="Please try again to search by Store Name" aria-label="Search">
                                                                                 <div class="input-group-text bg-success">
-                                                                                    <button class="btn " type="submit">
+                                                                                    <button class="btn btn-success" type="submit">
                                                                                         <i class="fa-solid fa-magnifying-glass text-white"></i>
                                                                                     </button>
                                                                                 </div>

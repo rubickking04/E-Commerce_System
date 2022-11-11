@@ -14,10 +14,9 @@ class SearchProductOrStoreController extends Controller
         $search = $request->input('search');
         $products = Product::where('product_name', 'LIKE', '%' . $search . '%')->orWhere('product_category', 'LIKE', '%' . $search . '%')->paginate(10);
         if (count($products) > 0) {
-            // dd($products);
             return view('user.shop', compact('products'))->with('success', 'Search result for "' . $search . '"');
         } else {
-            return back()->with('msg', 'We couldn\'t find "' . $search . '" on this page.');
+            return redirect()->route('shop')->with('msg', 'We couldn\'t find "' . $search . '" on this page.');
         }
     }
 }

@@ -30,7 +30,7 @@
                         data-bs-toggle="offcanvas" data-bs-target="#offcanvas">
                     </lord-icon>
                 </a>
-                <p class="navbar-brand mb-0 navbar-text text-truncate text-white">{{ __('E-Mart Store Owner\'s Portal') }}
+                <p class="navbar-brand mb-0 navbar-text text-truncate text-white">{{ __('E-Mart Sellers Portal') }}
                 </p>
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-none d-sm-block">

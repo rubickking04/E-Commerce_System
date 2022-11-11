@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\HomeController as AdminHome;
 use App\Http\Controllers\Admin\FarmersTableController as FarmersTableController;
 use App\Http\Controllers\Admin\StoresTableController as StoresTableController;
 use App\Http\Controllers\Admin\ProductsTableController as ProductsTableController;
+use App\Http\Controllers\Admin\OrdersTableController as OrdersTableController;
 use App\Http\Controllers\Store\HomeController as StoreHome;
 use App\Http\Controllers\Admin\LoginController as AdminLogin;
 use App\Http\Controllers\Store\LoginController as StoreLogin;
@@ -118,9 +119,13 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         });
         Route::controller(ProductsTableController::class)->group(function () {
             Route::get('/admin/products_table', 'index')->name('admin.products');
-            // Route::get('/admin/stores/search', 'search')->name('admin.farmers.search');
+            Route::get('/admin/products/search', 'search')->name('admin.products.search');
             // Route::post('/admin/stores/update/{id}', 'update')->name('admin.stores.update');
             Route::get('/admin/products/destroy/{id}', 'destroy')->name('admin.products.delete');
+        });
+        Route::controller(OrdersTableController::class)->group(function () {
+            Route::get('/admin/orders_table', 'index')->name('admin.orders');
+            Route::get('/admin/orders/search', 'search')->name('admin.orders.search');
         });
         Route::controller(AdminLogout::class)->group(function () {
             Route::post('/admin/logout', 'logout')->name('admin.logout');

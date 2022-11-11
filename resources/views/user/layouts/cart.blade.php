@@ -46,7 +46,7 @@
                                     <div class="vr"></div>
                                     <p class="text-decoration-none text-muted mt-2"><span class="text-warning fw-bold">{{ App\Models\Cart::where('user_id', Auth::id())->onlyTrashed()->count() }}</span>{{ __('  My Order') }}</p>
                                 </div>
-                                <form action="{{ route('search.product') }}" method="GET" role="search" class="d-flex">
+                                <form action="{{ route('search_product_or_store_controller') }}" method="GET" role="search" class="d-flex">
                                     @csrf
                                     <input class="form-control me-2 border " type="search" name="search" placeholder="Search products or store" aria-label="Search">
                                     <button class="btn btn-warning" type="submit"><i class="fa-solid text-white fa-magnifying-glass"></i></button>
@@ -87,16 +87,12 @@
                                             <div class="modal-body">
                                                 <div class="col-md-12">
                                                     <form action="{{ route('search_product_or_store_controller') }}" method="GET" role="search" role="search">
+                                                        @csrf
                                                         <div class="input-group py-2">
                                                             <span class="input-group-text">
                                                                 <i class="fa-solid fa-magnifying-glass fs-4 "></i>
                                                             </span>
-                                                        <input id="search" type="search" aria-label="Search" placeholder="Search a product or a store" class="form-control form-control-lg @error('search') is-invalid @enderror" name="search">
-                                                        @error('password')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
-                                                        @enderror
+                                                            <input id="search" type="search" aria-label="Search" placeholder="Search a product or a store" class="form-control form-control-lg @error('search') is-invalid @enderror" name="search">
                                                         </div>
                                                     <div class="text-center py-3">
                                                         <p>{{ __('No Recent Searches') }}</p>

@@ -46,7 +46,7 @@
                                     <div class="vr"></div>
                                     <p class="text-decoration-none text-muted mt-2"><span class="text-warning fw-bold">{{ App\Models\Cart::where('user_id', Auth::id())->onlyTrashed()->count() }}</span>{{ __('  My Order') }}</p>
                                 </div>
-                                <form action="{{ route('search.product') }}" method="GET" role="search" class="d-flex">
+                                <form action="{{ route('search_product_or_store_controller') }}" method="GET" role="search" class="d-flex">
                                     @csrf
                                     <input class="form-control me-2 border " type="search" name="search" placeholder="Search products or store" aria-label="Search">
                                     <button class="btn btn-warning" type="submit"><i class="fa-solid text-white fa-magnifying-glass"></i></button>
