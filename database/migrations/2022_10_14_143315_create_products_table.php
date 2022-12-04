@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('store_id');
             $table->foreign('store_id')->references('id')->on('stores')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('product_name')->nullable();
+            $table->string('product_stocks')->nullable();
             $table->string('product_price')->nullable();
             $table->string('product_category')->nullable();
             $table->string('product_image', 150)->default('product.jpg');

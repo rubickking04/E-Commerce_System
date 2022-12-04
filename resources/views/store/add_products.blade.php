@@ -13,7 +13,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-xl-6 col-lg-6">
+                                <div class="col-xl-8 col-lg-8">
                                     <div class="card-body mt-2 container">
                                         <div class="text-center">
                                             <h2 >{{ __('Welcome to E-Mart Sellers') }}</h2>
@@ -57,10 +57,19 @@
                                                         </span>
                                                     @enderror
                                                 </div>
-                                                <div class="form-outline text-start col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <div class="form-outline text-start col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
                                                     <label for="product_price" class="col-form-label">{{ __('Product Price') }}</label>
                                                     <input type="number" id="product_price" placeholder="Example: 2500" name="product_price" class="form-control @error('product_price') is-invalid @enderror" />
                                                     @error('product_price')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="form-outline text-start col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                                                    <label for="product_stocks" class="col-form-label">{{ __('Product Stocks') }}</label>
+                                                    <input type="number" id="product_stocks" placeholder="Example: 500" name="product_stocks" class="form-control @error('product_stocks') is-invalid @enderror" />
+                                                    @error('product_stocks')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
@@ -93,7 +102,7 @@
                                         </form>
                                     </div>
                                 </div>
-                                <div class="col-xl-6 col-lg-6 py-3 d-none d-lg-block" >
+                                <div class="col-xl-4 col-lg-4 py-3 d-none d-lg-block" >
                                     <img src="{{ asset('/storage/images/sells.png') }}" class="img-fluid mt-5" alt="product_image">
                                 </div>
                             </div>

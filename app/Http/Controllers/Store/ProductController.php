@@ -31,7 +31,8 @@ class ProductController extends Controller
         // dd('hello');
         $request->validate([
             'product_name' => 'required',
-            'product_price' => 'required',
+            'product_stocks' => 'required',
+            'product_price' => 'required|integer|min:0',
             'product_category' => 'required',
             'product_image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'product_definition' => 'required',
@@ -39,6 +40,7 @@ class ProductController extends Controller
         $products = Product::create([
             'store_id' => Auth::user()->id,
             'product_name' => $request->input('product_name'),
+            'product_stocks' => $request->input('product_stocks'),
             'product_price' => $request->input('product_price'),
             'product_category' => $request->input('product_category'),
             'product_definition' => $request->input('product_definition'),

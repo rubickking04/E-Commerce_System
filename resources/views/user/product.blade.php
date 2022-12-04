@@ -28,7 +28,11 @@
                             </div>
                             <div class="row g-1">
                                 <a href="{{ url('/') }}" class="col-xl-2 col-5 ms-1 btn btn-secondary">{{ __('Back') }}</a>
-                                <button type="submit" class="col-xl-2 col-5 ms-1 btn btn-warning">{{ __('Add to Cart') }}</button>
+                                @if($product->product_stocks['0'] <= $product->product_stocks['0'])
+                                    <button type="submit" class="col-xl-2 col-5 ms-1 btn btn-warning" disabled>{{ __('Add to Cart') }}</button>
+                                @else
+                                    <button type="submit" class="col-xl-2 col-5 ms-1 btn btn-warning" >{{ __('Add to Cart') }}</button>
+                                @endif
                             </form>
                             </div>
                         </div>

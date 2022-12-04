@@ -12,7 +12,7 @@ class OrderController extends Controller
     public function index()
     {
         $total = 0;
-        $carts = Cart::where('user_id', '=', Auth::user()->id)->onlyTrashed()->get();
+        $carts = Cart::where('user_id', '=', Auth::user()->id)->onlyTrashed()->latest()->get();
         foreach ($carts as $cart) {
             $total += $cart->hasProducts->product_price * $cart->quantity;
         }
