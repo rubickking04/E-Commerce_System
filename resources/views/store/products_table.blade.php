@@ -72,7 +72,7 @@
                                                     <td class="text-center h6 py-3 text-truncate" scope="row">{{ __('₱ '.number_format($product->product_price)) }}</td>
                                                     <td class="text-center h6 py-3 text-truncate" scope="row">{{ \Carbon\Carbon::createFromTimestamp(strtotime($product->created_at))->isoFormat('MMMM D, YYYY') }}</td>
                                                     <td class="text-center" scope="row">
-                                                        {{-- <button type="button" class=" btn btn-warning bi bi-pencil-square fs-5" data-bs-toggle="modal" data-bs-target="#exampleModalCenters"></button> --}}
+                                                        <button type="button" class=" btn btn-warning bi bi-pencil-square fs-5" data-bs-toggle="modal" data-bs-target="#exampleModalCenters"></button>
                                                         <a href="{{ route('delete.product', $product->id) }}" class="btn btn-danger " onclick="return confirm('Are you sure to remove this product?')"><i class="bi bi-trash fs-5"></i></a>
                                                     </td>
                                                 </tr>

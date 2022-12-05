@@ -21,17 +21,17 @@
                                 <div class="col-auto">
                                     <label for="quantity" class="col-form-label me-2">{{ __('Quantity: ') }}</label>
                                 </div>
-                                <div class="col-2">
-                                    <input class="form-control qty-input text-center" name="quantity" type="number"  value="1">
+                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4">
+                                    <input class="form-control qty-input text-center" name="quantity" type="number"  value="1" max="{{ $product->product_stocks }}" min="1">
                                     <input type="hidden" name="store_id" value="{{ $product->hasStore->id }}">
                                 </div>
                             </div>
                             <div class="row g-1">
                                 <a href="{{ url('/') }}" class="col-xl-2 col-5 ms-1 btn btn-secondary">{{ __('Back') }}</a>
-                                @if($product->product_stocks['0'] <= $product->product_stocks['0'])
-                                    <button type="submit" class="col-xl-2 col-5 ms-1 btn btn-warning" disabled>{{ __('Add to Cart') }}</button>
-                                @else
+                                @if($product->product_stocks['0'])
                                     <button type="submit" class="col-xl-2 col-5 ms-1 btn btn-warning" >{{ __('Add to Cart') }}</button>
+                                @else
+                                    <button type="submit" class="col-xl-2 col-5 ms-1 btn btn-warning" disabled>{{ __('Add to Cart') }}</button>
                                 @endif
                             </form>
                             </div>
