@@ -8,24 +8,25 @@ use App\Http\Controllers\User\LoginController;
 use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\StoreController;
 use App\Http\Controllers\User\LogoutController;
+use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\RegisterController;
 use App\Http\Controllers\User\StoreViewerController;
 use App\Http\Controllers\User\ProductViewerController;
 use App\Http\Controllers\User\AddProductToCartController;
 use App\Http\Controllers\Admin\HomeController as AdminHome;
-use App\Http\Controllers\Admin\FarmersTableController as FarmersTableController;
-use App\Http\Controllers\Admin\StoresTableController as StoresTableController;
-use App\Http\Controllers\Admin\ProductsTableController as ProductsTableController;
-use App\Http\Controllers\Admin\OrdersTableController as OrdersTableController;
 use App\Http\Controllers\Store\HomeController as StoreHome;
-use App\Http\Controllers\Store\OrdersTableController as OrdersTable;
 use App\Http\Controllers\Admin\LoginController as AdminLogin;
 use App\Http\Controllers\Store\LoginController as StoreLogin;
 use App\Http\Controllers\User\SearchProductOrStoreController;
 use App\Http\Controllers\Admin\LogoutController as AdminLogout;
 use App\Http\Controllers\Store\LogoutController as StoreLogout;
 use App\Http\Controllers\Store\ProductController as StoreProduct;
+use App\Http\Controllers\Store\OrdersTableController as OrdersTable;
 use App\Http\Controllers\Store\ProductsTableController as ProductsTable;
+use App\Http\Controllers\Admin\OrdersTableController as OrdersTableController;
+use App\Http\Controllers\Admin\StoresTableController as StoresTableController;
+use App\Http\Controllers\Admin\FarmersTableController as FarmersTableController;
+use App\Http\Controllers\Admin\ProductsTableController as ProductsTableController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +59,9 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     });
     Route::controller(ShopController::class)->group(function () {
         Route::get('/shop', 'index')->name('shop');
+    });
+    Route::controller(ProfileController::class)->group(function () {
+        Route::get('/profile/{users:username}', 'index')->name('profile');
     });
     Route::controller(ProductViewerController::class)->group(function () {
         Route::get('/product/{products:id}', 'show')->name('show.product');

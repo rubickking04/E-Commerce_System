@@ -10,6 +10,8 @@
                     <div class="col-md-7 col-12">
                         <div class="card-body">
                             <h5 class="card-title h4 lh-base">{{ $product->product_name }}</h5>
+                            <p class="card-text text-muted mt-2">{{ __('Stocks: '.$product->product_stocks) }}</p>
+
                             <div class="text-bg-light">
                                 <p class="card-text px-2 lh-lg h3 text-danger ">{{ __('₱ '. number_format($product->product_price)) }}</p>
                             </div>
@@ -27,11 +29,11 @@
                                 </div>
                             </div>
                             <div class="row g-1">
-                                <a href="{{ url('/') }}" class="col-xl-2 col-5 ms-1 btn btn-secondary">{{ __('Back') }}</a>
                                 @if($product->product_stocks['0'])
+                                    <a href="{{ url('/') }}" class="col-xl-2 col-5 ms-1 btn btn-secondary">{{ __('Back') }}</a>
                                     <button type="submit" class="col-xl-2 col-5 ms-1 btn btn-warning" >{{ __('Add to Cart') }}</button>
                                 @else
-                                    <button type="submit" class="col-xl-2 col-5 ms-1 btn btn-warning" disabled>{{ __('Add to Cart') }}</button>
+                                    <button type="submit" class="col-xl-2 col-5 ms-1 btn btn-warning" disabled>{{ __('Not available') }}</button>
                                 @endif
                             </form>
                             </div>

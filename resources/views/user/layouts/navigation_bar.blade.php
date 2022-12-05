@@ -120,6 +120,12 @@
                             @endguest
                             @auth
                                 <li class="nav-item px-2">
+                                    <a class="nav-link active" href="{{ route('profile', Auth::user()->username) }}">
+                                        <i class="fa-solid fa-user fs-4"></i>
+                                        <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Profile') }}</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item px-2">
                                     <a class="nav-link active" href="{{ route('cart') }}">
                                         <i class="fa-solid  fa-cart-shopping fs-4"></i>
                                         <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Cart') }}
