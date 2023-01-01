@@ -22,7 +22,7 @@ class CartController extends Controller
         $carts = Cart::where('user_id', '=', Auth::user()->id)->latest()->get();
         foreach ($carts as $cart) {
             $total += $cart->hasProducts->product_price * $cart->quantity;
-            Product::where('id', '=', $cart->product_id)->where('product_stocks', '>', 0)->decrement('product_stocks', $cart->quantity);
+            // Product::where('id', '=', $cart->product_id)->where('product_stocks', '>', 0)->decrement('product_stocks', $cart->quantity);
         }
         return view('user.cart', compact('carts', 'total'));
     }
@@ -81,7 +81,11 @@ class CartController extends Controller
      */
     public function destroyAll()
     {
-        $cart = Cart::where('user_id', '=', Auth::user()->id)->delete();
+        $carts = Cart::where('user_id', '=', Auth::user()->id)->delete();
+        foreach ((array) $carts as  $cart){
+            Product::where('id', '=', $cart->product_id)->where('product_stocks', '>', 0)->decrement('product_stocks', $cart->quantity);
+        }
+        // $carts;
         Alert::toast('Checked out Successfully!', 'success');
         return redirect()->route('order');
     }
