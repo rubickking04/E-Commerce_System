@@ -56,6 +56,7 @@
                                                     <th scope="col">{{ __('Product Image') }}</th>
                                                     <th scope="col">{{ __('Product Category') }}</th>
                                                     <th scope="col">{{ __('Product Name') }}</th>
+                                                    <th scope="col">{{ __('Number of Stocks') }}</th>
                                                     <th scope="col">{{ __('Product Price') }}</th>
                                                     <th scope="col">{{ __('Product Created') }}</th>
                                                     <th scope="col">{{ __('Actions') }}</th>
@@ -69,10 +70,99 @@
                                                     </td>
                                                     <td class="text-center h6 py-3 text-truncate" scope="row">{{ $product->product_category }}</td>
                                                     <td class="text-center h6 py-3 text-truncate" scope="row">{{ $product->product_name }}</td>
+                                                    <td class="text-center h6 py-3 text-truncate" scope="row">{{ $product->product_stocks }}</td>
                                                     <td class="text-center h6 py-3 text-truncate" scope="row">{{ __('₱ '.number_format($product->product_price)) }}</td>
                                                     <td class="text-center h6 py-3 text-truncate" scope="row">{{ \Carbon\Carbon::createFromTimestamp(strtotime($product->created_at))->isoFormat('MMMM D, YYYY') }}</td>
                                                     <td class="text-center" scope="row">
-                                                        <button type="button" class=" btn btn-warning bi bi-pencil-square fs-5" data-bs-toggle="modal" data-bs-target="#exampleModalCenters"></button>
+                                                        <button type="button" class=" btn btn-success bi bi-eye-fill" data-bs-toggle="modal"data-bs-target="#exampleModalCenter{{ $product->id }}"></button>
+                                                        <button type="button" class=" btn btn-warning bi bi-pencil-square"data-bs-toggle="modal"data-bs-target="#exampleModalCenters{{ $product->id }}"></button>
+                                                        {{-- View Profile Modal --}}
+                                                        <div class="modal fade modal-alert" id="exampleModalCenter{{ $product->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog ">
+                                                                <div class="modal-content shadow" style="border-radius:20px; ">
+                                                                    <div class="modal-header flex-nowrap border-bottom-0">
+                                                                        <button type="button" class="btn-close"data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body p-4 text-center">
+                                                                        <div class="thumb-lg member-thumb ms-auto mb-3">
+                                                                            <img src="{{ asset('/storage/products/' . $product->product_image) }}" class=" img-thumbnail" alt="" height="150px"  width="150px">
+                                                                        </div>
+                                                                        <h2 class="fw-bold mb-0">{{ $product->product_name }}</h2>
+                                                                        {{-- <p class="">{{ __('@Email ') }}<span>|</span><span><a href="#" class=" text-decoration-none">{{ $users->email }}</a></span> --}}
+                                                                        </p>
+                                                                        <button type="button"class="btn btn-danger col-3" data-bs-dismiss="modal" style="border-radius:20px;">{{ __('Close') }}</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        {{-- Update Profile Modal --}}
+                                                        <div class="modal fade modal-alert" id="exampleModalCenters{{ $product->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-lg">
+                                                                <div class="modal-content shadow" style="border-radius:20px; ">
+                                                                    <div class="modal-header flex-nowrap border-bottom-0">
+                                                                        <button type="button" class="btn-close"data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body text-center">
+                                                                        <div class="thumb-lg member-thumb ms-auto mb-3">
+                                                                            <img src="{{ asset('/storage/products/' . $product->product_image) }}" class=" img-thumbnail" alt="" height="150px" width="150px">
+                                                                        </div>
+                                                                        <h2 class="fw-bold mb-0">{{ $product->product_name }}</h2>
+                                                                        <form action="{{ url('/admin/farmers/update/'.$product->id) }}" method="POST">
+                                                                            @csrf
+                                                                            <div class="row mb-3">
+                                                                                <div class="col-md-6 text-start">
+                                                                                    <label for="name" class="col-form-label">{{ __('Product Name') }}</label>
+                                                                                    <input id="name" type="text" placeholder="Your name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $product->product_name }}" >
+                                                                                    @error('name')
+                                                                                        <span class="invalid-feedback" role="alert">
+                                                                                            <strong>{{ $message }}</strong>
+                                                                                        </span>
+                                                                                    @enderror
+                                                                                </div>
+
+                                                                                <div class="col-md-6 text-start">
+                                                                                    <label for="email" class="col-form-label">{{ __('Product Category') }}</label>
+                                                                                    <div class="input-group">
+                                                                                        <div class="input-group-text"><i class="bi bi-envelope-fill"></i></div>
+                                                                                        <input id="email" type="email" placeholder="yourname@gmail.com" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $product->product_category }}">
+                                                                                        @error('email')
+                                                                                            <span class="invalid-feedback" role="alert">
+                                                                                                <strong>{{ $message }}</strong>
+                                                                                            </span>
+                                                                                        @enderror
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-6 text-start">
+                                                                                    <label for="phone" class="col-form-label">{{ __('Product Price') }}</label>
+                                                                                    <input id="phone" type="text" placeholder="09557815639" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ $product->product_price }}">
+                                                                                    @error('phone')
+                                                                                        <span class="invalid-feedback" role="alert">
+                                                                                            <strong>{{ $message }}</strong>
+                                                                                        </span>
+                                                                                    @enderror
+                                                                                </div>
+
+                                                                                <div class="col-md-6 text-start">
+                                                                                    <label for="address" class="col-form-label">{{ __('Product Stocks') }}</label>
+                                                                                    <div class="input-group">
+                                                                                        <div class="input-group-text"><i class="fa fa-location-arrow"></i></div>
+                                                                                    <input id="address" type="text" placeholder="R.T. Lim Boulevard, Baliwasan, Zamboanga City" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ $product->product_definition }}">
+                                                                                    @error('address')
+                                                                                        <span class="invalid-feedback" role="alert">
+                                                                                            <strong>{{ $message }}</strong>
+                                                                                        </span>
+                                                                                    @enderror
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <button type="submit" class="btn btn-primary col-lg-2 col-5 fw-bolder" style="border-radius:20px;">{{ __('Update') }}</button>
+                                                                            <button type="button" class="btn btn-danger col-lg-2 col-5" data-bs-dismiss="modal" style="border-radius:20px;">{{ __('Close') }}</button>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <a href="{{ route('delete.product', $product->id) }}" class="btn btn-danger " onclick="return confirm('Are you sure to remove this product?')"><i class="bi bi-trash fs-5"></i></a>
                                                     </td>
                                                 </tr>
