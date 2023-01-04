@@ -6,6 +6,7 @@ use App\Models\Cart;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class OrderController extends Controller
 {
@@ -17,5 +18,13 @@ class OrderController extends Controller
             $total += $cart->hasProducts->product_price * $cart->quantity;
         }
         return view('user.order', compact('carts', 'total'));
+    }
+
+    public function store(Request $request){
+
+        $id = IdGenerator::generate(['table' => 'todos', 'length' => 6, 'prefix' => date('y')]);
+
+        dd($id);
+
     }
 }

@@ -82,6 +82,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         });
         Route::controller(OrderController::class)->group(function () {
             Route::get('/my-orders', 'index')->name('order');
+            Route::post('/orders', 'store')->name('orders');
         });
         Route::controller(AddProductToCartController::class)->group(function () {
             Route::post('/add-to-cart/{products:id}', 'store')->name('add.cart');
@@ -154,6 +155,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         Route::controller(ProductsTable::class)->group(function () {
             Route::get('/my-store/products_table', 'index')->name('store.products.table');
             Route::get('/search/products', 'search')->name('search.product');
+            Route::post('/update/products/{id}', 'update')->name('update.product');
             Route::get('/destroy/products/{id}', 'destroy')->name('delete.product');
         });
         Route::controller(OrdersTable::class)->group(function () {

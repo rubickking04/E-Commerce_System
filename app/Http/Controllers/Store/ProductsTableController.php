@@ -60,7 +60,14 @@ class ProductsTableController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+        $product->product_name = $request->input('product_name');
+        $product->product_category = $request->input('product_category');
+        $product->product_price = $request->input('product_price');
+        $product->product_stocks = $request->input('product_stocks');
+        $product->save();
+        Alert::toast('Updated Successfully!', 'success');
+        return back();
     }
 
     /**

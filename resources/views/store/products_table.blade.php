@@ -70,7 +70,11 @@
                                                     </td>
                                                     <td class="text-center h6 py-3 text-truncate" scope="row">{{ $product->product_category }}</td>
                                                     <td class="text-center h6 py-3 text-truncate" scope="row">{{ $product->product_name }}</td>
-                                                    <td class="text-center h6 py-3 text-truncate" scope="row">{{ $product->product_stocks }}</td>
+                                                    @if($product->product_stocks['0'])
+                                                        <td class="text-center  h6 py-3 text-truncate" scope="row">{{ $product->product_stocks }}</td>
+                                                    @else
+                                                        <td class="text-center text-danger h6 py-3 text-truncate" scope="row">{{ $product->product_stocks }}</td>
+                                                    @endif
                                                     <td class="text-center h6 py-3 text-truncate" scope="row">{{ __('₱ '.number_format($product->product_price)) }}</td>
                                                     <td class="text-center h6 py-3 text-truncate" scope="row">{{ \Carbon\Carbon::createFromTimestamp(strtotime($product->created_at))->isoFormat('MMMM D, YYYY') }}</td>
                                                     <td class="text-center" scope="row">
@@ -107,13 +111,13 @@
                                                                             <img src="{{ asset('/storage/products/' . $product->product_image) }}" class=" img-thumbnail" alt="" height="150px" width="150px">
                                                                         </div>
                                                                         <h2 class="fw-bold mb-0">{{ $product->product_name }}</h2>
-                                                                        <form action="{{ url('/admin/farmers/update/'.$product->id) }}" method="POST">
+                                                                        <form action="{{ route('update.product',$product->id) }}" method="POST">
                                                                             @csrf
                                                                             <div class="row mb-3">
                                                                                 <div class="col-md-6 text-start">
                                                                                     <label for="name" class="col-form-label">{{ __('Product Name') }}</label>
-                                                                                    <input id="name" type="text" placeholder="Your name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $product->product_name }}" >
-                                                                                    @error('name')
+                                                                                    <input id="product_name" type="text" placeholder="Your name" class="form-control @error('product_name') is-invalid @enderror" name="product_name" value="{{ $product->product_name }}" >
+                                                                                    @error('product_name')
                                                                                         <span class="invalid-feedback" role="alert">
                                                                                             <strong>{{ $message }}</strong>
                                                                                         </span>
@@ -123,9 +127,21 @@
                                                                                 <div class="col-md-6 text-start">
                                                                                     <label for="email" class="col-form-label">{{ __('Product Category') }}</label>
                                                                                     <div class="input-group">
-                                                                                        <div class="input-group-text"><i class="bi bi-envelope-fill"></i></div>
-                                                                                        <input id="email" type="email" placeholder="yourname@gmail.com" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $product->product_category }}">
-                                                                                        @error('email')
+                                                                                    <select name="product_category" id="product_category" class="form-control form-select my-select  @error('product_category') is-invalid @enderror">
+                                                                                        <option disabled selected>{{ $product->product_category }}</option>
+                                                                                        <option value="Fruits & Vegetables">{{ __('Fruits & Vegetables') }}</option>
+                                                                                        <option value="Seafoods">{{ __('Seafoods') }}</option>
+                                                                                        <option value="Condiments & Spices">{{ __('Condiments & Spices') }}</option>
+                                                                                        <option value="Bread & Bakery">{{ __('Bread & Bakery') }}</option>
+                                                                                        <option value="Beverages">{{ __('Beverages') }}</option>
+                                                                                        <option value="Pasta/Rice">{{ __('Pasta/Rice') }}</option>
+                                                                                        <option value="Cereal ">{{ __('Cereal ') }}</option>
+                                                                                        <option value="Sauces & Oils">{{ __('Sauces & Oils') }}</option>
+                                                                                        <option value="Canned Goods">{{ __('Canned Goods') }}</option>
+                                                                                        <option value="Frozen Foods ">{{ __('Frozen Foods ') }}</option>
+                                                                                        <option value="Meat ">{{ __('Meat ') }}</option>
+                                                                                    </select>
+                                                                                    @error('email')
                                                                                             <span class="invalid-feedback" role="alert">
                                                                                                 <strong>{{ $message }}</strong>
                                                                                             </span>
@@ -135,8 +151,8 @@
 
                                                                                 <div class="col-md-6 text-start">
                                                                                     <label for="phone" class="col-form-label">{{ __('Product Price') }}</label>
-                                                                                    <input id="phone" type="text" placeholder="09557815639" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ $product->product_price }}">
-                                                                                    @error('phone')
+                                                                                    <input id="product_price" type="text" class="form-control @error('product_price') is-invalid @enderror" name="product_price" value="{{ $product->product_price }}">
+                                                                                    @error('product_price')
                                                                                         <span class="invalid-feedback" role="alert">
                                                                                             <strong>{{ $message }}</strong>
                                                                                         </span>
@@ -146,9 +162,8 @@
                                                                                 <div class="col-md-6 text-start">
                                                                                     <label for="address" class="col-form-label">{{ __('Product Stocks') }}</label>
                                                                                     <div class="input-group">
-                                                                                        <div class="input-group-text"><i class="fa fa-location-arrow"></i></div>
-                                                                                    <input id="address" type="text" placeholder="R.T. Lim Boulevard, Baliwasan, Zamboanga City" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ $product->product_definition }}">
-                                                                                    @error('address')
+                                                                                    <input id="address" type="text" placeholder="R.T. Lim Boulevard, Baliwasan, Zamboanga City" class="form-control @error('product_stocks') is-invalid @enderror" name="product_stocks" value="{{ $product->product_stocks }}">
+                                                                                    @error('product_stocks')
                                                                                         <span class="invalid-feedback" role="alert">
                                                                                             <strong>{{ $message }}</strong>
                                                                                         </span>
