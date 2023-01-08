@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <div class="card">
-        <div class="card-header ">{{ __('My Orders - '.App\Models\Cart::where('user_id', Auth::id())->onlyTrashed()->count() .' items' ) }}</div>
+        <div class="card-header ">{{ __('My Orders - '.App\Models\Order::where('user_id', Auth::id())->count() .' items' ) }}</div>
         <div class="card-body">
         @if ( $carts->count())
             <div class="row container mb-4 mt-4">
@@ -16,17 +16,11 @@
                     </div>
                 </div>
                 <div class="col-lg-10 col-md-10 col-8 mb-4 mb-lg-0">
-                    <p class="h4"><strong>{{ $cart->hasProducts->product_name }}</strong></p>
+                    <a href="{{ route('prod.info', $cart->id) }}" class="h4 text-decoration-none text-dark"><strong>{{ $cart->hasProducts->product_name }}</strong></a>
                     <p class="text-danger fs-5 lh-1">{{ __('₱ ' .$cart->hasProducts->product_price) }}</p>
-                    <p class="lh-1">{{ __('Quantity: ' .$cart->quantity) }}</p>
-                    <p class="lh-1">{{ __('Total Price: ') }} <span class="text-danger">{{ __('₱ '.number_format($cart->hasProducts->product_price * $cart->quantity)) }}</span> </p>
+                    <p class="lh-1">{{ __('Quantity: ' .$cart->qty) }}</p>
+                    <p class="lh-1">{{ __('Total Price: ') }} <span class="text-danger">{{ __('₱ '.number_format($cart->total_price)) }}</span> </p>
                 </div>
-                {{-- <div class="col-lg-2 col-md-2 col-2 mb-4 mb-lg-0 text-center">
-                    <a href="{{ route('cart.checkout', $cart->id) }}" class="btn btn-danger btn-lg me-1 mb-2" data-mdb-toggle="tooltip"
-                        title="Remove item">
-                        <i class="fas fa-trash"></i>
-                    </a>
-                </div> --}}
                 @endforeach
             </div>
             <hr class="my-4">

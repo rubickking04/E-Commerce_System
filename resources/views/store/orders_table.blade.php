@@ -13,7 +13,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-5 col-sm-6 col-12 py-3">
-                                        <form action="{{ route('admin.farmers.search') }}" method="GET" role="search" class="d-flex">
+                                        <form action="{{ route('search.order') }}" method="GET" role="search" class="d-flex">
                                             @csrf
                                             <input class="form-control me-2 " type="search" name="search" placeholder="Search Name or Email" aria-label="Search">
                                             <button class="btn btn-primary" type="submit">
@@ -38,7 +38,7 @@
                                                             <div class="row justify-content-center">
                                                                 <div class="col-lg-5 col-md-5 col-sm-10 col-12">
                                                                     <div class="row">
-                                                                        <form action="{{ route('admin.farmers.search') }}" method="GET" role="search" class="d-flex">
+                                                                        <form action="{{ route('search.order') }}" method="GET" role="search" class="d-flex">
                                                                             @csrf
                                                                             <div class="input-group">
                                                                                 <input class="form-control me-2 border border-primary" type="search" name="search" placeholder="Please try again to search by Name or Email" aria-label="Search">
@@ -65,6 +65,7 @@
                                                         <thead class="table-primary">
                                                             <tr class="text-center">
                                                                 <th scope="col">{{ __(' ') }}</th>
+                                                                <th scope="col">{{ __('Order Number') }}</th>
                                                                 <th scope="col">{{ __('Recipient\'s Name') }}</th>
                                                                 <th scope="col">{{ __('Recipient\'s Item') }}</th>
                                                                 <th scope="col">{{ __('Product Quantity') }}</th>
@@ -85,12 +86,13 @@
                                                                             <img src="{{ asset('/storage/images/avatar.png') }}" alt="hugenerd" width="35" height="35" class="rounded-circle">
                                                                         @endif
                                                                     </td>
+                                                                    <td class="text-center h6 py-3 text-truncate" scope="row">{{ $carts->order_number }}</td>
                                                                     <td class="text-center h6 py-3 text-truncate" scope="row">{{ $carts->hasUser->name }}</td>
                                                                     <td class="text-center" scope="row"> {{ $carts->hasProducts->product_name }}</td>
-                                                                    <td class="text-center" scope="row"> {{ $carts->quantity }}</td>
+                                                                    <td class="text-center" scope="row"> {{ $carts->qty }}</td>
                                                                     <td class="text-center text-danger fw-bold" scope="row"> {{ __('₱ '.number_format($carts->hasProducts->product_price)) }}</td>
-                                                                    <td class="text-center text-danger fw-bold" scope="row"> {{ __('₱ '.number_format($carts->hasProducts->product_price * $carts->quantity)) }}</td>
-                                                                    <td class="text-center" scope="row">{{ date('h:ia - m/d/Y', strtotime($carts->deleted_at)) }}</td>
+                                                                    <td class="text-center text-danger fw-bold" scope="row"> {{ __('₱ '.number_format($carts->total_price)) }}</td>
+                                                                    <td class="text-center" scope="row">{{ $carts->created_at->toDayDateTimeString() }}</td>
                                                                     <td class="text-center" scope="row">
                                                                         <button type="button" class=" btn btn-success bi bi-eye-fill" data-bs-toggle="modal"data-bs-target="#exampleModalCenters{{ $carts->id }}"></button>
                                                                         <div class="modal fade modal-alert" id="exampleModalCenters{{ $carts->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

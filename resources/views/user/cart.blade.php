@@ -32,7 +32,10 @@
             <hr class="my-4">
             <div class="text-end">
                 <h5 class="me-5">{{ __('Total price to checkout: ') }} <span class="text-danger">{{ __('₱ '.number_format($total)) }}</span> </h5>
-                <a href="{{ route('cart.checkout-all') }}" class="btn btn-warning text-white me-4">{{ __('Checkout now') }}</a>
+                <form action="{{ route('order.store') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-warning text-white me-4">{{ __('Checkout') }}</button>
+                </form>
             </div>
         </div>
         @else

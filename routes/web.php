@@ -9,7 +9,10 @@ use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\StoreController;
 use App\Http\Controllers\User\LogoutController;
 use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\RegisterController;
+use App\Http\Controllers\User\UserInfoController;
+use App\Http\Controllers\User\ProductInfoController;
 use App\Http\Controllers\User\StoreViewerController;
 use App\Http\Controllers\User\ProductViewerController;
 use App\Http\Controllers\User\AddProductToCartController;
@@ -82,7 +85,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         });
         Route::controller(OrderController::class)->group(function () {
             Route::get('/my-orders', 'index')->name('order');
-            Route::post('/orders', 'store')->name('orders');
+            Route::post('/orders', 'store')->name('order.store');
         });
         Route::controller(AddProductToCartController::class)->group(function () {
             Route::post('/add-to-cart/{products:id}', 'store')->name('add.cart');
@@ -91,6 +94,10 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         Route::controller(StoreController::class)->group(function () {
             Route::get('/store', 'index')->name('store');
             Route::post('/my-store', 'store')->name('my-store');
+        });
+        Route::controller(ProductInfoController::class)->group(function () {
+            Route::get('/my-orders/{orders:id}', 'index')->name('prod.info');
+            // Route::post('/my-store', 'store')->name('my-store');
         });
         Route::controller(LogoutController::class)->group(function () {
             Route::post('/logout', 'logout')->name('logout');
@@ -160,6 +167,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         });
         Route::controller(OrdersTable::class)->group(function () {
             Route::get('/my-store/orders', 'index')->name('store.orders');
+            Route::get('/search/orders', 'search')->name('search.order');
         });
         Route::controller(StoreLogout::class)->group(function () {
             Route::post('/store/logout', 'logout')->name('store.logout');

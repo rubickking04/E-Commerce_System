@@ -96,7 +96,7 @@
                         <div class="collapse container" id="table-collapse">
                             <ul class="btn-toggle-nav nav nav-pills flex-column mb-sm-auto mb-auto mb-0 align-items-start list-unstyled fw-normal pb-2">
                                 <li class="nav-item"><a href="{{ route('store.products.table') }}" class="ms-2 nav-link  text-white text-decoration-none rounded"><i class="fs-5 fa-solid fa-angles-right"></i><span class="ms-2  text-white">{{ __('Products Table ') }}<span class="badge text-bg-primary">{{ App\Models\Product::where('store_id', '=', Auth::user()->id)->count() }}</span> </span></a></li>
-                                <li class="nav-item"><a href="{{ route('store.orders') }}" class="ms-2 nav-link  text-white text-decoration-none rounded"><i class="fs-5 fa-solid fa-angles-right"></i><span class="ms-2  text-white">{{ __('Orders Table ') }}<span class="badge text-bg-primary">{{ App\Models\Cart::where('store_id', '=', Auth::user()->id)->onlyTrashed()->count() }}</span> </span></a></li>
+                                <li class="nav-item"><a href="{{ route('store.orders') }}" class="ms-2 nav-link  text-white text-decoration-none rounded"><i class="fs-5 fa-solid fa-angles-right"></i><span class="ms-2  text-white">{{ __('Orders Table ') }}<span class="badge text-bg-primary">{{ App\Models\Order::where('store_id', '=', Auth::user()->id)->count() }}</span> </span></a></li>
                             </ul>
                         </div>
                     </li>
@@ -141,7 +141,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-lg-7 col-sm-6 col-6 col-md-auto">
-                                                <h2>{{ App\Models\Cart::where('store_id', '=', Auth::user()->id)->onlyTrashed()->count() }}</h2>
+                                                <h2>{{ App\Models\Order::where('store_id', '=', Auth::user()->id)->count() }}</h2>
                                                 <h5>{{ __('Items') }}</h5>
                                             </div>
                                             <div class="col-lg-5 col-sm-6 col-md-auto text-end col-6 mt-3 ">

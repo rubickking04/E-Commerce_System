@@ -46,4 +46,8 @@ class Store extends Authenticatable
     {
         return $this->hasMany(Cart::class, 'store_id');
     }
+    public function hasOrders()
+    {
+        return $this->hasMany(Order::class, 'store_id');
+    }
 }

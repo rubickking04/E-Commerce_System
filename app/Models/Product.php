@@ -25,4 +25,8 @@ class Product extends Model
     {
         return $this->hasMany(Cart::class, 'product_id');
     }
+    public function hasOrder()
+    {
+        return $this->hasMany(Order::class, 'product_id');
+    }
 }

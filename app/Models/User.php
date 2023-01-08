@@ -21,8 +21,6 @@ class User extends Authenticatable
         'name',
         'username',
         'email',
-        'phone',
-        'address',
         'password',
     ];
 
@@ -48,8 +46,16 @@ class User extends Authenticatable
     {
         return $this->hasOne(Store::class, 'user_id');
     }
-    public function hasOrder()
+    public function hasCart()
     {
         return $this->hasMany(Cart::class, 'user_id');
+    }
+    public function hasInfo()
+    {
+        return $this->hasOne(UsersInformation::class, 'user_id');
+    }
+    public function hasOrder()
+    {
+        return $this->hasMany(Order::class, 'user_id');
     }
 }

@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\Cart;
+use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -22,7 +23,6 @@ class CartController extends Controller
         $carts = Cart::where('user_id', '=', Auth::user()->id)->latest()->get();
         foreach ($carts as $cart) {
             $total += $cart->hasProducts->product_price * $cart->quantity;
-            Product::where('id', '=', $cart->product_id)->where('product_stocks', '>', 0)->decrement('product_stocks', $cart->quantity);
         }
         return view('user.cart', compact('carts', 'total'));
     }

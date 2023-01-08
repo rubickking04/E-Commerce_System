@@ -17,7 +17,7 @@
                                 <form method="POST" action="{{ route('register') }}">
                                     @csrf
                                     <div class="row mb-2">
-                                        <div class="form-outline col-lg-6 text-start">
+                                        <div class="form-outline text-start">
                                             <label for="name" class="col-form-label">{{ __('Name') }}</label>
                                             <div class="input-group">
                                                 <input type="text" id="name" placeholder="Juan Dela Cruz" name="name" class="form-control @error('name') is-invalid @enderror" />
@@ -28,17 +28,8 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="form-outline col-lg-6 text-start">
-                                            <label for="phone" class="col-form-label">{{ __('Phone Number') }}</label>
-                                            <input id="phone" type="text" placeholder="0987654321" class="form-control @error('phone') is-invalid @enderror" name="phone" >
-                                            @error('phone')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
 
-                                        <div class="form-outline col-lg-6 text-start">
+                                        <div class="form-outline text-start">
                                             <label for="email" class="col-form-label">Email</label>
                                             <div class="input-group">
                                                 <input type="email" id="email" placeholder="helloworld@gmail.com" name="email" class="form-control @error('email') is-invalid @enderror" />
@@ -50,7 +41,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-outline col-lg-6 text-start">
+                                        <div class="form-outline text-start">
                                             <label for="username" class="col-form-label">{{ __('Username') }}</label>
                                             <div class="input-group">
                                                 <input type="text" id="address" placeholder="invoker69" name="username" class="form-control @error('username') is-invalid @enderror" />
@@ -59,20 +50,6 @@
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
-                                            </div>
-                                        </div>
-
-
-                                        <div class="form-outline text-start">
-                                            <label for="address" class="col-form-label">{{ __('Address') }}</label>
-                                            <div class="input-group">
-                                                <div class="input-group-text"><i class="fa fa-location-arrow"></i></div>
-                                            <input id="address" type="text" placeholder="R.T. Lim Boulevard, Baliwasan, Zamboanga City" class="form-control @error('address') is-invalid @enderror" name="address">
-                                            @error('address')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
                                             </div>
                                         </div>
 

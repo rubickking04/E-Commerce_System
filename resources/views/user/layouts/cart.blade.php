@@ -44,7 +44,7 @@
                                 <div class="hstack gap-3 mb-3 text-center ms-4">
                                     <p class="text-decoration-none text-muted ms-3 mt-2"><span class="text-warning fw-bold">{{ App\Models\Cart::where('user_id', Auth::id())->count() }}</span>{{ __(' My Cart') }}</p>
                                     <div class="vr"></div>
-                                    <p class="text-decoration-none text-muted mt-2"><span class="text-warning fw-bold">{{ App\Models\Cart::where('user_id', Auth::id())->onlyTrashed()->count() }}</span>{{ __('  My Order') }}</p>
+                                    <p class="text-decoration-none text-muted mt-2"><span class="text-warning fw-bold">{{ App\Models\Order::where('user_id', Auth::id())->count() }}</span>{{ __('  My Order') }}</p>
                                 </div>
                                 <form action="{{ route('search_product_or_store_controller') }}" method="GET" role="search" class="d-flex">
                                     @csrf
@@ -129,7 +129,7 @@
                                     <a class="nav-link active" href="{{ route('order') }}">
                                         <i class="fa-solid fa-truck-fast fs-4"></i>
                                         <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Order') }}
-                                            <span class="badge bg-warning ms-2">{{ App\Models\Cart::where('user_id', Auth::id())->onlyTrashed()->count() }}</span>
+                                            <span class="badge bg-warning ms-2">{{ App\Models\Order::where('user_id', Auth::id())->count() }}</span>
                                         </span>
                                     </a>
                                 </li>

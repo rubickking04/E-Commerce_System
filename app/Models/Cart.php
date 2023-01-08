@@ -30,4 +30,8 @@ class Cart extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    public function hasOrders()
+    {
+        return $this->hasMany(Order::class, 'cart_id');
+    }
 }
