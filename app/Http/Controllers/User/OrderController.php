@@ -20,11 +20,25 @@ class OrderController extends Controller
         return view('user.order', compact('carts', 'total'));
     }
 
-    public function store(Request $request){
-
-        $id = IdGenerator::generate(['table' => 'todos', 'length' => 6, 'prefix' => date('y')]);
-
-        dd($id);
-
+    public function store(Request $request, $data){
+        $id = IdGenerator::generate(['table' => 'orders', 'length' => 6, 'prefix' => date('y')]);
+        foreach ( $data as $param) {
+            $orders = Order::create([
+                'user_id' => Auth::user()->id,
+                'cart_id' => $param['cart_id'],
+                'order_number' => $param['order_number'],
+                'subtotal_price' => $param['subtotal_price'],
+                'total_price' => $param['total_price'],
+            ]);
+        }
+        // $data = [];
+        // foreach( $request->query->all() as $row) {
+        //     $data[] = [
+        //         'id' => $id,
+        //         'user_id' => Auth::user()->id,
+        //         'title' => $request->title,
+        //         'description' => $request->description,
+        // }
+        // DB::table('orders')->insert($data);
     }
 }

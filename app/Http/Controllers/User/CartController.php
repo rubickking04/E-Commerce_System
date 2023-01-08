@@ -82,10 +82,6 @@ class CartController extends Controller
     public function destroyAll()
     {
         $carts = Cart::where('user_id', '=', Auth::user()->id)->delete();
-        // foreach ((array) $carts as  $cart){
-        //     Product::where('id', '=', $cart->product_id)->where('product_stocks', '>', 0)->decrement('product_stocks', $cart->quantity);
-        // }
-        // $carts;
         Alert::toast('Checked out Successfully!', 'success');
         return redirect()->route('order');
     }
