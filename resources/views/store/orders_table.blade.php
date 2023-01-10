@@ -72,7 +72,7 @@
                                                                 <th scope="col">{{ __('Product Price') }}</th>
                                                                 <th scope="col">{{ __('Total Price') }}</th>
                                                                 <th scope="col">{{ __('Order Placed') }}</th>
-                                                                <th scope="col">{{ __('View Recipient\'s Details') }}</th>
+                                                                <th scope="col">{{ __('Actions') }}</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -86,13 +86,13 @@
                                                                             <img src="{{ asset('/storage/images/avatar.png') }}" alt="hugenerd" width="35" height="35" class="rounded-circle">
                                                                         @endif
                                                                     </td>
-                                                                    <td class="text-center h6 py-3 text-truncate" scope="row">{{ $carts->order_number }}</td>
-                                                                    <td class="text-center h6 py-3 text-truncate" scope="row">{{ $carts->hasUser->name }}</td>
-                                                                    <td class="text-center" scope="row"> {{ $carts->hasProducts->product_name }}</td>
-                                                                    <td class="text-center" scope="row"> {{ $carts->qty }}</td>
-                                                                    <td class="text-center text-danger fw-bold" scope="row"> {{ __('₱ '.number_format($carts->hasProducts->product_price)) }}</td>
-                                                                    <td class="text-center text-danger fw-bold" scope="row"> {{ __('₱ '.number_format($carts->total_price)) }}</td>
-                                                                    <td class="text-center" scope="row">{{ $carts->created_at->toDayDateTimeString() }}</td>
+                                                                    <td class="text-center py-3 fw-bold text-truncate" scope="row">{{ $carts->order_number }}</td>
+                                                                    <td class="text-center py-3 fw-bold text-truncate" scope="row">{{ $carts->hasUser->name }}</td>
+                                                                    <td class="text-center py-3" scope="row"> {{ $carts->hasProducts->product_name }}</td>
+                                                                    <td class="text-center py-3" scope="row"> {{ $carts->qty }}</td>
+                                                                    <td class="text-center py-3 text-danger fw-bold" scope="row"> {{ __('₱ '.number_format($carts->hasProducts->product_price)) }}</td>
+                                                                    <td class="text-center py-3 text-danger fw-bold" scope="row"> {{ __('₱ '.number_format($carts->total_price)) }}</td>
+                                                                    <td class="text-center py-3" scope="row">{{ $carts->created_at->toDayDateTimeString() }}</td>
                                                                     <td class="text-center" scope="row">
                                                                         <button type="button" class=" btn btn-success bi bi-eye-fill" data-bs-toggle="modal"data-bs-target="#exampleModalCenters{{ $carts->id }}"></button>
                                                                         <div class="modal fade modal-alert" id="exampleModalCenters{{ $carts->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -157,7 +157,7 @@
                                                                                                 </div>
                                                                                             </div>
                                                                                         </fieldset>
-                                                                                            <button type="button" class="btn btn-danger col-lg-2 col-5" data-bs-dismiss="modal" style="border-radius:20px;">{{ __('Close') }}</button>
+                                                                                            
 
                                                                                     </form>
                                                                                     </div>
