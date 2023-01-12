@@ -83,7 +83,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
             Route::get('/cart/check-out-all', 'destroyAll')->name('cart.checkout-all');
             // Route::post('/auth/register', 'store')->name('register');
         });
-        Route::controller(OrderController::class)->group(function () {
+        Routex ::controller(OrderController::class)->group(function () {
             Route::get('/my-orders', 'index')->name('order');
             Route::post('/orders', 'store')->name('order.store');
         });
