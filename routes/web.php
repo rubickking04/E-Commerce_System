@@ -167,6 +167,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         });
         Route::controller(OrdersTable::class)->group(function () {
             Route::get('/my-store/orders', 'index')->name('store.orders');
+            Route::get('/order/confirm/{id}', 'destroy')->name('order.confirm');
             Route::get('/search/orders', 'search')->name('search.order');
         });
         Route::controller(StoreLogout::class)->group(function () {

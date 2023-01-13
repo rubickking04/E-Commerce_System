@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Store;
 
 use App\Models\Cart;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Contracts\Database\Query\Builder;
 
 class OrdersTableController extends Controller
@@ -46,5 +47,18 @@ class OrdersTableController extends Controller
         } else {
             return back()->with('msg', 'We couldn\'t find "' . $search . '" on this page.');
         }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $order= Order::find($id)->delete();
+        Alert::toast('Order has been confirmed', 'success');
+        return back();
     }
 }

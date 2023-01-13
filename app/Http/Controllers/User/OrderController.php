@@ -38,7 +38,6 @@ class OrderController extends Controller
             Product::where('id', '=', $items->product_id)->where('product_stocks', '>', 0)->decrement('product_stocks', $items->quantity);
             Order::create([
                 'user_id' => Auth::user()->id,
-                'cart_id' => $items->id,
                 'store_id' => $items->store_id,
                 'product_id' => $items->hasProducts->id,
                 'order_number' => 'E'.rand(1111111,999999),

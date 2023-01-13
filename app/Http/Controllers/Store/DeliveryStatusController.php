@@ -1,33 +1,46 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Store;
 
-use App\Models\Cart;
+use App\Models\User;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\DeliveryStatus;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use RealRashid\SweetAlert\Facades\Alert;
 
-class AddProductToCartController extends Controller
+class DeliveryStatusController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  int  $id
      * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-    public function store($id, Request $request)
+    public function store(Request $request, $id)
     {
-        $product = Product::find($id);
-        $cart = Cart::create([
-            'product_id' => $product->id,
-            'store_id' => $request->input('store_id'),
-            'user_id' => Auth::user()->id,
-            'quantity' => $request->input('quantity'),
+        $request->validate([
+            'status' => 'required',
         ]);
-        Alert::toast('Added to cart!', 'success');
-        return back();
+        $users = User::find($id);
+        $product = Product::find($id);
+        $status = DeliveryStatus::create([
+            'user_id' => $users->id,
+            'product_id' => $product->id,
+            'store_id' => Auth::user()->id,
+            'status' => $request->status,
+        ]);
     }
 
     /**

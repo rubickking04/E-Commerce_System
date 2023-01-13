@@ -117,22 +117,48 @@
                                 </li>
                             @endguest
                             @auth
-                                <li class="nav-item px-2">
-                                    <a class="nav-link active" href="{{ route('cart') }}">
-                                        <i class="fa-solid  fa-cart-shopping fs-4"></i>
+                            <li class="nav-item px-2 ">
+                                @if (App\Models\Cart::where('user_id', Auth::id())->count() > 0)
+                                    <a class="nav-link active position-relative" href="{{ route('cart') }}">
+                                        <span class="position-absolute d-none d-md-block top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            {{ App\Models\Cart::where('user_id', Auth::id())->count() }}
+                                            <span class="visually-hidden">unread messages</span>
+                                        </span>
+                                        <i class="fa-solid  fa-cart-shopping fs-4 position-relative"></i>
                                         <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Cart') }}
-                                            <span class="badge bg-warning ms-2">{{ App\Models\Cart::where('user_id', Auth::id())->count() }}</span>
+                                            <span class="badge bg-danger ms-2">{{ App\Models\Cart::where('user_id', Auth::id())->count() }}</span>
                                         </span>
                                     </a>
-                                </li>
-                                <li class="nav-item px-2">
-                                    <a class="nav-link active" href="{{ route('order') }}">
-                                        <i class="fa-solid fa-truck-fast fs-4"></i>
+                                @else
+                                <a class="nav-link active " href="{{ route('cart') }}">
+                                    <i class="fa-solid  fa-cart-shopping fs-4 position-relative"></i>
+                                    <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Cart') }}
+                                        <span class="badge bg-danger ms-2">{{ App\Models\Cart::where('user_id', Auth::id())->count() }}</span>
+                                    </span>
+                                </a>
+                                @endif
+                            </li>
+                            <li class="nav-item px-2">
+                                @if (App\Models\Order::where('user_id', Auth::id())->count() > 0)
+                                    <a class="nav-link active position-relative" href="{{ route('order') }}">
+                                        <span class="position-absolute d-none d-md-block top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            {{ App\Models\Order::where('user_id', Auth::id())->count() }}
+                                            <span class="visually-hidden"></span>
+                                        </span>
+                                        <i class="fa-solid  fa-truck-fast fs-4 position-relative"></i>
                                         <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Order') }}
-                                            <span class="badge bg-warning ms-2">{{ App\Models\Order::where('user_id', Auth::id())->count() }}</span>
+                                            <span class="badge bg-danger ms-2">{{ App\Models\Order::where('user_id', Auth::id())->count() }}</span>
                                         </span>
                                     </a>
-                                </li>
+                                @else
+                                <a class="nav-link active" href="{{ route('order') }}">
+                                    <i class="fa-solid fa-truck-fast fs-4"></i>
+                                    <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Order') }}
+                                        <span class="badge bg-danger ms-2">{{ App\Models\Order::where('user_id', Auth::id())->count() }}</span>
+                                    </span>
+                                </a>
+                                @endif
+                            </li>
                                 @if ( App\Models\Store::where('user_id', '=', Auth::user()->id)->doesntExist())
                                 <li class="nav-item px-2">
                                     <a class="nav-link active" href="{{ route('store') }}">
