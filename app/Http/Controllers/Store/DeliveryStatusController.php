@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\DeliveryStatus;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DeliveryStatusController extends Controller
 {
@@ -28,19 +29,20 @@ class DeliveryStatusController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
         $request->validate([
             'status' => 'required',
         ]);
-        $users = User::find($id);
-        $product = Product::find($id);
         $status = DeliveryStatus::create([
-            'user_id' => $users->id,
-            'product_id' => $product->id,
+            'user_id' => $request->user_id,
+            'order_id' => $request->order_id,
+            'product_id' => $request->product_id,
             'store_id' => Auth::user()->id,
             'status' => $request->status,
         ]);
+        Alert::toast('Send status successfully!', 'success');
+        return back();
     }
 
     /**

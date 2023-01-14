@@ -117,6 +117,12 @@
                                 </li>
                             @endguest
                             @auth
+                            <li class="nav-item px-2">
+                                <a class="nav-link active" href="{{ route('profile', Auth::user()->username) }}">
+                                    <i class="fa-solid fa-user fs-4"></i>
+                                    <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Profile') }}</span>
+                                </a>
+                            </li>
                             <li class="nav-item px-2 ">
                                 @if (App\Models\Cart::where('user_id', Auth::id())->count() > 0)
                                     <a class="nav-link active position-relative" href="{{ route('cart') }}">

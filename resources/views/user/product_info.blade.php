@@ -13,6 +13,24 @@
                     </div>
                 </div>
                 <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="card-body">
+                            @foreach ( $status as $items)
+                                <div class="row">
+                                    <div class="col-4 col-xl-4 col-lg-4">
+                                        {{-- <p class="fs-6">{{ $items->created_at }}</p> --}}
+                                        <p class="fs-6">{{ $items->created_at->toDayDateTimeString() }}</p>
+                                    </div>
+                                    <div class="col-8 col-xl-8 col-lg-8">
+                                        <p class="fs-6 text-end">{{ $items->status }}</p>
+                                        {{-- <p class="fw-bold text-end">{{ __('×'. $qty) }}</p> --}}
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-3">
                     <div class="card-header">
                         <h5 class="mt-2">
                             <i class="fa-solid fa-store text-muted fs-4"></i>
@@ -110,7 +128,6 @@
                         </div>
                     </div>
                 </div>
-                <a href="{}" class="btn btn-danger">{{ __('Cancel Order') }}</a>
             </div>
         </div>
     </div>

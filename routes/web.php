@@ -30,6 +30,7 @@ use App\Http\Controllers\Admin\OrdersTableController as OrdersTableController;
 use App\Http\Controllers\Admin\StoresTableController as StoresTableController;
 use App\Http\Controllers\Admin\FarmersTableController as FarmersTableController;
 use App\Http\Controllers\Admin\ProductsTableController as ProductsTableController;
+use App\Http\Controllers\Store\DeliveryStatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -169,6 +170,9 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
             Route::get('/my-store/orders', 'index')->name('store.orders');
             Route::get('/order/confirm/{id}', 'destroy')->name('order.confirm');
             Route::get('/search/orders', 'search')->name('search.order');
+        });
+        Route::controller(DeliveryStatusController::class)->group( function(){
+            Route::post('/my-store/delivery_status', 'store')->name('store.delivery_status');
         });
         Route::controller(StoreLogout::class)->group(function () {
             Route::post('/store/logout', 'logout')->name('store.logout');

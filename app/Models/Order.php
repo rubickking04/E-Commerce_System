@@ -34,4 +34,8 @@ class Order extends Model
     {
         return $this->belongsTo(Store::class, 'store_id');
     }
+    public function hasDeliveryStatus()
+    {
+        return $this->belongsTo(DeliveryStatus::class, 'order_id');
+    }
 }

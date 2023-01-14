@@ -258,22 +258,31 @@
                                                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                                     </div>
                                                                                     <div class="modal-body">
-                                                                                    <form>
+                                                                                    <form action="{{ route('store.delivery_status') }}" method="POST">
+                                                                                        @csrf
                                                                                         <div class="mb-3">
+                                                                                            <input type="hidden" name="order_id" value="{{ $carts->id }}">
+                                                                                            <input type="hidden" name="user_id" value="{{ $carts->hasUser->id }}">
+                                                                                            <input type="hidden" name="product_id" value="{{ $carts->hasProducts->id }}">
                                                                                             <label for="recipient-name" class="col-form-label">{{ __('Status of Delivery') }}</label>
-                                                                                            <select class="form-select" aria-label="Default select example">
+                                                                                            <select class="form-select @error('status') is-invalid @enderror" aria-label="Default select example" name="status">
                                                                                                 <option selected disabled>Open this select menu</option>
                                                                                                 <option value="{{ __('Packed and Ready to deliver') }}">{{ __('Packed and Ready to deliver') }}</option>
                                                                                                 <option value="{{ __('Out of delivery') }}">{{ __('Out of delivery') }}</option>
                                                                                                 <option value="{{ __('Unsuccessful Delivery') }}">{{ __('Unsuccessful Delivery') }}</option>
                                                                                             </select>
+                                                                                            @error('status')
+                                                                                                <span class="invalid-feedback" role="alert">
+                                                                                                    <strong>{{ $message }}</strong>
+                                                                                                </span>
+                                                                                            @enderror
                                                                                         </div>
-                                                                                    </form>
                                                                                     </div>
                                                                                     <div class="modal-footer">
                                                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                                        <button type="button" class="btn btn-primary">Send message</button>
+                                                                                        <button type="submit" class="btn btn-primary">Send message</button>
                                                                                     </div>
+                                                                                    </form>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
