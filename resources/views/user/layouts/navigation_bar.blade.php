@@ -41,7 +41,6 @@
                                     </a>
                                 </div>
                                 <span class="fs-5 fw-bold ">{{ Auth::user()->name }}</span>
-                                <a class="nav-link"><span class="text-muted small">{{ __('@' . Auth::user()->username) }}</span></a>
                                 <br>
                                 <div class="hstack gap-3 mb-3 text-center ms-4">
                                     <p class="text-decoration-none text-muted ms-3 mt-2"><span class="text-warning fw-bold">{{ App\Models\Cart::where('user_id', Auth::id())->count() }}</span>{{ __(' My Cart') }}</p>
@@ -126,11 +125,18 @@
                                     </a>
                                 </li>
                                 <li class="nav-item px-2 dropdown-center">
-                                    <a class="nav-link active" href="{{ route('profile', Auth::user()->username) }}" data-bs-toggle="dropdown" aria-expanded="false">
+                                    @if (App\Models\DeliveryStatus::where('user_id', Auth::id())->count())
+                                    <a class="nav-link active position-relative" href="{{ route('profile', Auth::user()->username) }}" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span class="position-absolute d-none d-md-block top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            {{ App\Models\DeliveryStatus::where('user_id', Auth::id())->count() }}
+                                            <span class="visually-hidden">unread messages</span>
+                                        </span>
                                         <i class="fa-solid fa-bell fs-4"></i>
-                                        <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Notification') }}</span>
-                                        <ul class="dropdown-menu" style="width: 300px;">
-                                            <h4 class="dropdown-header">{{ __('Notifications') }}</h4>
+                                        <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Notification') }}
+                                            <span class="badge bg-danger ms-2">{{ App\Models\DeliveryStatus::where('user_id', Auth::id())->count() }}</span>
+                                        </span>
+                                        <ul class="dropdown-menu container" style="width: 300px;">
+                                            <h4 class="text-muted px-2">{{ __('Notifications') }}</h4>
                                             <li>
                                                 <a class="dropdown-item" href="#">
                                                     <div class="row">
@@ -152,50 +158,23 @@
                                                     </div>
                                                 </a>
                                             </li>
+                                        </ul>
+                                    </a>
+                                    @else
+                                    <a class="nav-link active position-relative" href="{{ route('order') }}" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa-solid fa-bell fs-4"></i>
+                                        <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Notification') }}
+                                            <span class="badge bg-danger ms-2">{{ App\Models\DeliveryStatus::where('user_id', Auth::id())->count() }}</span>
+                                        </span>
+                                        <ul class="dropdown-menu container" style="width: 300px;">
                                             <li>
                                                 <a class="dropdown-item" href="#">
-                                                    <div class="row">
-                                                        <div class="col-lg-2 col-md-2 col-sm-1 col-3 d-none d-sm-block py-3">
-                                                            <img class="rounded-circle border border-info border-3" src="{{asset('/storage/images/avatar.png')}}" height="50" width="50">
-                                                        </div>
-                                                        <div class="col-lg-9 col-md-8 col-sm-8 ms-lg-3 col-12 mt-3">
-                                                            <div class="row">
-                                                                <div class="col-lg-10">
-                                                                    <p class="fw-bold lh-1">{{ __('Out of delivery!') }}</p>
-                                                                </div>
-                                                                {{-- <div class="col-lg-2 text-end">
-                                                                    <i class="fa-solid fs-5 fa-ellipsis-vertical"></i>
-                                                                </div> --}}
-                                                            </div>
-                                                            <p class="small text-muted lh-1">{{ __('Apr 21, 2015') }}</p>
-                                                            <p class="small lh-1">{{ __('2 minutes ago') }}</p>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="#">
-                                                    <div class="row">
-                                                        <div class="col-lg-2 col-md-2 col-sm-1 col-3 d-none d-sm-block py-3">
-                                                            <img class="rounded-circle border border-info border-3" src="{{asset('/storage/images/avatar.png')}}" height="50" width="50">
-                                                        </div>
-                                                        <div class="col-lg-9 col-md-8 col-sm-8 ms-lg-3 col-12 mt-3">
-                                                            <div class="row">
-                                                                <div class="col-lg-10">
-                                                                    <p class="fw-bold lh-1">{{ __('Packed and Ready for delivery!') }}</p>
-                                                                </div>
-                                                                {{-- <div class="col-lg-2 text-end">
-                                                                    <i class="fa-solid fs-5 fa-ellipsis-vertical"></i>
-                                                                </div> --}}
-                                                            </div>
-                                                            <p class="small text-muted lh-1">{{ __('Apr 21, 2015') }}</p>
-                                                            <p class="small lh-1">{{ __('2 minutes ago') }}</p>
-                                                        </div>
-                                                    </div>
+                                                    <p class="text-center">{{ __('No Notifications yet.') }}</p>
                                                 </a>
                                             </li>
                                         </ul>
                                     </a>
+                                    @endif
                                 </li>
                                 <li class="nav-item px-2 ">
                                     @if (App\Models\Cart::where('user_id', Auth::id())->count() > 0)
@@ -204,14 +183,14 @@
                                                 {{ App\Models\Cart::where('user_id', Auth::id())->count() }}
                                                 <span class="visually-hidden">unread messages</span>
                                             </span>
-                                            <i class="fa-solid  fa-cart-shopping fs-4 position-relative"></i>
+                                            <i class="fa-solid  fa-cart-shopping fs-4"></i>
                                             <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Cart') }}
                                                 <span class="badge bg-danger ms-2">{{ App\Models\Cart::where('user_id', Auth::id())->count() }}</span>
                                             </span>
                                         </a>
                                     @else
                                     <a class="nav-link active " href="{{ route('cart') }}">
-                                        <i class="fa-solid  fa-cart-shopping fs-4 position-relative"></i>
+                                        <i class="fa-solid  fa-cart-shopping fs-4"></i>
                                         <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Cart') }}
                                             <span class="badge bg-danger ms-2">{{ App\Models\Cart::where('user_id', Auth::id())->count() }}</span>
                                         </span>
@@ -319,4 +298,4 @@
     }
 </script>
 
-</html>
+</html> --}}
