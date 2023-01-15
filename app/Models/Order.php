@@ -34,8 +34,8 @@ class Order extends Model
     {
         return $this->belongsTo(Store::class, 'store_id');
     }
-    public function hasDeliveryStatus()
+    public function hasStatus()
     {
-        return $this->belongsTo(DeliveryStatus::class, 'order_id');
+        return $this->hasMany(DeliveryStatus::class, 'order_id');
     }
 }

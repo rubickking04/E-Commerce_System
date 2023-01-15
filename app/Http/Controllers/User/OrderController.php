@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\DeliveryStatus;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -16,11 +17,13 @@ class OrderController extends Controller
     public function index()
     {
         $total = 0;
+        $status = DeliveryStatus::where('user_id', Auth::id())->take(3)->get();
+
         $carts = Order::where('user_id', '=', Auth::user()->id)->latest()->get();
         foreach ($carts as $cart) {
             $total += $cart->total_price;
         }
-        return view('user.order', compact('carts', 'total'));
+        return view('user.order', compact('carts', 'total', 'status'));
     }
 
     /**

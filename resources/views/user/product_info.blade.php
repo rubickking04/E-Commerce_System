@@ -12,24 +12,30 @@
                         <p class="px-5 text-muted">{{ __('HB Homes Subdivision Phase II, Block 9 Lot 3, Sinunuc Zamboanga City') }}</p>
                     </div>
                 </div>
+                @if ($status->count() > 0)
                 <div class="card mb-3">
                     <div class="card-body">
-                        <div class="card-body">
-                            @foreach ( $status as $items)
-                                <div class="row">
-                                    <div class="col-4 col-xl-4 col-lg-4">
-                                        {{-- <p class="fs-6">{{ $items->created_at }}</p> --}}
-                                        <p class="fs-6">{{ $items->created_at->toDayDateTimeString() }}</p>
-                                    </div>
-                                    <div class="col-8 col-xl-8 col-lg-8">
-                                        <p class="fs-6 text-end">{{ $items->status }}</p>
-                                        {{-- <p class="fw-bold text-end">{{ __('×'. $qty) }}</p> --}}
-                                    </div>
+                        @foreach ( $status as $items)
+                            <div class="row">
+                                <div class="col-4 col-xl-4 col-lg-4">
+                                    <p class="fs-6">{{ $items->created_at->toDayDateTimeString() }}</p>
                                 </div>
-                            @endforeach
+                                <div class="col-8 col-xl-8 col-lg-8">
+                                    <p class="fs-6 text-end">{{ $items->status }}</p>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+                @else
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <p>{{ __("Wait for updates") }}</p>
                         </div>
                     </div>
                 </div>
+                @endif
                 <div class="card mb-3">
                     <div class="card-header">
                         <h5 class="mt-2">

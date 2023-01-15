@@ -123,6 +123,57 @@
                                     <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Profile') }}</span>
                                 </a>
                             </li>
+                            <li class="nav-item px-2 dropdown-center">
+                                @if (App\Models\DeliveryStatus::where('user_id', Auth::id())->count())
+                                <a class="nav-link active position-relative" href="{{ route('profile', Auth::user()->username) }}" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="position-absolute d-none d-md-block top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        {{ App\Models\DeliveryStatus::where('user_id', Auth::id())->count() }}
+                                        <span class="visually-hidden">unread messages</span>
+                                    </span>
+                                    <i class="fa-solid fa-bell fs-4"></i>
+                                    <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Notification') }}
+                                        <span class="badge bg-danger ms-2">{{ App\Models\DeliveryStatus::where('user_id', Auth::id())->count() }}</span>
+                                    </span>
+                                    <ul class="dropdown-menu container" style="width: 300px;">
+                                        <h4 class="text-muted px-2">{{ __('Notifications') }}</h4>
+                                        @foreach ( $status as $items)
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                <div class="row">
+                                                        <div class="col-lg-2 col-md-2 col-sm-1 col-3 d-none d-sm-block py-3">
+                                                            <img class="rounded-circle border border-info border-3" src="{{asset('/storage/images/avatar.png')}}" height="50" width="50">
+                                                        </div>
+                                                        <div class="col-lg-9 col-md-8 col-sm-8 ms-lg-3 col-12 mt-3">
+                                                            <div class="row">
+                                                                <div class="col-lg-10">
+                                                                    <p class="fw-bold lh-1">{{ __($items->status. '!') }}</p>
+                                                                </div>
+                                                            </div>
+                                                            <p class="small text-muted lh-1">{{ $items->created_at->toFormattedDateString() }}</p>
+                                                            <p class="small lh-1">{{ $items->created_at->diffForHumans() }}</p>
+                                                        </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </a>
+                                @else
+                                <a class="nav-link active position-relative" href="{{ route('order') }}" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-bell fs-4"></i>
+                                    <span class="ms-3 d-md-none h5" aria-current="page">{{ __('Notification') }}
+                                        <span class="badge bg-danger ms-2">{{ App\Models\DeliveryStatus::where('user_id', Auth::id())->count() }}</span>
+                                    </span>
+                                    <ul class="dropdown-menu container" style="width: 300px;">
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                <p class="text-center">{{ __('No Notifications yet.') }}</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </a>
+                                @endif
+                            </li>
                             <li class="nav-item px-2 ">
                                 @if (App\Models\Cart::where('user_id', Auth::id())->count() > 0)
                                     <a class="nav-link active position-relative" href="{{ route('cart') }}">

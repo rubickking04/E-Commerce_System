@@ -137,27 +137,26 @@
                                         </span>
                                         <ul class="dropdown-menu container" style="width: 300px;">
                                             <h4 class="text-muted px-2">{{ __('Notifications') }}</h4>
+                                            @foreach ( $status as $items)
                                             <li>
                                                 <a class="dropdown-item" href="#">
                                                     <div class="row">
-                                                        <div class="col-lg-2 col-md-2 col-sm-1 col-3 d-none d-sm-block py-3">
-                                                            <img class="rounded-circle border border-info border-3" src="{{asset('/storage/images/avatar.png')}}" height="50" width="50">
-                                                        </div>
-                                                        <div class="col-lg-9 col-md-8 col-sm-8 ms-lg-3 col-12 mt-3">
-                                                            <div class="row">
-                                                                <div class="col-lg-10">
-                                                                    <p class="fw-bold lh-1">{{ __('Unsuccessful delivery!') }}</p>
-                                                                </div>
-                                                                {{-- <div class="col-lg-1 text-end">
-                                                                    <i class="fa-solid fs-5 fa-ellipsis-vertical"></i>
-                                                                </div> --}}
+                                                            <div class="col-lg-2 col-md-2 col-sm-1 col-3 d-none d-sm-block py-3">
+                                                                <img class="rounded-circle border border-info border-3" src="{{asset('/storage/images/avatar.png')}}" height="50" width="50">
                                                             </div>
-                                                            <p class="small text-muted lh-1">{{ __('Apr 21, 2015') }}</p>
-                                                            <p class="small lh-1">{{ __('2 minutes ago') }}</p>
-                                                        </div>
+                                                            <div class="col-lg-9 col-md-8 col-sm-8 ms-lg-3 col-12 mt-3">
+                                                                <div class="row">
+                                                                    <div class="col-lg-10">
+                                                                        <p class="fw-bold lh-1">{{ __($items->status. '!') }}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <p class="small text-muted lh-1">{{ $items->created_at->toFormattedDateString() }}</p>
+                                                                <p class="small lh-1">{{ $items->created_at->diffForHumans() }}</p>
+                                                            </div>
                                                     </div>
                                                 </a>
                                             </li>
+                                            @endforeach
                                         </ul>
                                     </a>
                                     @else

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Store;
 
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\DeliveryStatus;

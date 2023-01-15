@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\DeliveryStatus;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Contracts\Database\Query\Builder;
@@ -20,7 +21,15 @@ class OrdersTableController extends Controller
     public function index()
     {
         $cart = Order::where('store_id', '=', Auth::user()->id)->latest()->paginate(10);
-        return view('store.orders_table', compact('cart'));
+        foreach($cart as $order) {
+            $prod_id = $order->hasProducts->id;
+            $order_id = $order->id;
+            $user_id = $order->hasUser->id;
+        }
+        $carts = Order::with( 'hasStore','hasStatus', 'hasCarts','hasUser', 'hasProducts')->get();
+        $status = DeliveryStatus::where('store_id', Auth::user()->id)->where('order_id', $order_id)->where('product_id', $prod_id)->get();
+        // dd($carts);
+        return view('store.orders_table', compact('cart', 'status'));
     }
 
     /**

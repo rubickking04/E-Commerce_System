@@ -102,10 +102,6 @@
                                                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                                     </div>
                                                                                     <div class="modal-body">
-                                                                                        {{-- <div class="thumb-lg member-thumb ms-auto">
-                                                                                            <img src="{{ asset('/storage/images/avatar.png')}}" class="border border-info border-5 rounded-circle img-thumbnail" alt="" height="100px" width="100px">
-                                                                                        </div> --}}
-                                                                                        {{-- <h2 class="fw-bold mb-0">{{ $carts->hasUser->name }}</h2> --}}
                                                                                         <div class="row justify-content-center">
                                                                                             <div class="col-md-10">
                                                                                                 <div class="card mb-3">
@@ -134,7 +130,7 @@
                                                                                                             </div>
                                                                                                         </div>
                                                                                                         <div class="row">
-                                                                                                            <div class="col-8 col-xl-10 col-lg-10">
+                                                                                                            <div cla ss="col-8 col-xl-10 col-lg-10">
                                                                                                                 <p class="fs-6">{{ __('Reciever\'s Number ') }}</p>
                                                                                                             </div>
                                                                                                             <div class="col-4 col-xl-2 col-lg-2">
@@ -142,6 +138,20 @@
                                                                                                                 {{-- <p class="fw-bold text-end">{{ __('×'. $qty) }}</p> --}}
                                                                                                             </div>
                                                                                                         </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="card mb-3">
+                                                                                                    <div class="card-body">
+                                                                                                        @foreach ( $status as $items)
+                                                                                                            <div class="row">
+                                                                                                                <div class="col-4 col-xl-4 col-lg-4">
+                                                                                                                    <p class="fs-6">{{ $items->created_at->toDayDateTimeString()}}</p>
+                                                                                                                </div>
+                                                                                                                <div class="col-8 col-xl-8 col-lg-8">
+                                                                                                                    <p class="fs-6 text-end">{{ $items->status }}</p>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        @endforeach
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="card mb-3">
@@ -169,9 +179,6 @@
                                                                                                                         <p class="fw-bold text-end">{{ __('×'. $carts->qty) }}</p>
                                                                                                                     </div>
                                                                                                                 </div>
-
-                                                                                                                {{-- <p class="lh-1">{{ __('Quantity: ' .$qty) }}</p> --}}
-                                                                                                                {{-- <p class="lh-1">{{ __('Total Price: ') }} <span class="text-danger">{{ __('₱ '.number_format($totalPrice)) }}</span> </p> --}}
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>
@@ -232,10 +239,10 @@
                                                                                                             </div>
                                                                                                         </div>
                                                                                                         <div class="row">
-                                                                                                            <div class="col-5 col-xl-10 col-lg-5 col-md-5">
+                                                                                                            <div class="col-5 col-xl-8 col-lg-5 col-md-5">
                                                                                                                 <p class="fs-6">{{ __('Payment Method ') }}</p>
                                                                                                             </div>
-                                                                                                            <div class="col-7 col-xl-2 col-lg-7 col-md-7">
+                                                                                                            <div class="col-7 col-xl-4 col-lg-7 col-md-7">
                                                                                                                 <p class="fs-6 text-end">{{ __('Cash on delivery') }}</p>
                                                                                                                 {{-- <p class="fw-bold text-end">{{ __('×'. $qty) }}</p> --}}
                                                                                                             </div>

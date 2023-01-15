@@ -16,8 +16,8 @@ class DeliveryStatus extends Model
         'store_id',
         'status',
     ];
-    public function hasStore()
+    public function hasOrder()
     {
-        return $this->hasMany(Order::class, 'order_id');
+        return $this->belongsTo(Order::class, 'order_id');
     }
 }
