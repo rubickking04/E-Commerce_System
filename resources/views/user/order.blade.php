@@ -7,7 +7,7 @@
         @if ( $carts->count())
             <div class="row container mb-4 mt-4">
                 @foreach ( $carts as  $cart)
-                <div class="col-lg-2 col-md-2 mb-4 col-4     mb-4 mb-lg-0">
+                <div class="col-lg-2 col-md-2 mb-4 col-4 mb-4 mb-lg-0">
                     <div class="bg-image hover-overlay hover-zoom mb-4 ripple rounded" data-mdb-ripple-color="light">
                         <img src="{{ asset('/storage/products/'. $cart->hasProducts->product_image) }}" class="w-100" alt="Product Image" />
                         <a href="#!">
