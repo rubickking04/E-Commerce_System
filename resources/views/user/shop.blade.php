@@ -2,9 +2,9 @@
 @section('content')
 <div class="container">
     @if ($products->count())
-    @if (Session::has('success'))
-                <p>{{ Session::get('success') }}</p>
-            @endif
+        @if (Session::has('success'))
+            <p>{{ Session::get('success') }}</p>
+        @endif
         @if (session('msg'))
             <div class="col-lg-12 py-3">
                 <div class="text-center justify-content-center">

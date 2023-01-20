@@ -15,9 +15,10 @@ class DeliveryStatus extends Model
         'product_id',
         'store_id',
         'status',
+        'created_at',
     ];
-    public function hasOrder()
+    public function order()
     {
-        return $this->belongsTo(Order::class, 'order_id');
+        return $this->hasMany(Order::class);
     }
 }
