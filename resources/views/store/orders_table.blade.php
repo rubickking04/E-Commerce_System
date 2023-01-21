@@ -142,16 +142,14 @@
                                                                                                 </div>
                                                                                                 <div class="card mb-3">
                                                                                                     <div class="card-body">
-                                                                                                        {{-- @foreach ( $status as $items) --}}
                                                                                                             <div class="row">
                                                                                                                 <div class="col-4 col-xl-4 col-lg-4">
-                                                                                                                    {{-- <p class="fs-6">{{ $carts->hasStatus->created_at->toDayDateTimeString()}}</p> --}}
+                                                                                                                    <p class="fs-6">{{ $carts->hasStatus?->created_at->toDayDateTimeString()}}</p>
                                                                                                                 </div>
                                                                                                                 <div class="col-8 col-xl-8 col-lg-8">
-                                                                                                                    <p class="fs-6 text-end">{{ $carts->hasStatus->status }}</p>
+                                                                                                                    <p class="fs-6 text-end">{{ $carts->hasStatus?->status }}</p>
                                                                                                                 </div>
                                                                                                             </div>
-                                                                                                        {{-- @endforeach --}}
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="card mb-3">
