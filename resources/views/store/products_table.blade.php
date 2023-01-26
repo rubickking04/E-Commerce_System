@@ -14,7 +14,7 @@
                                 <div class="col-lg-4 col-md-5 col-sm-6 col-12 py-3">
                                     <form action="{{ route('search.product') }}" method="GET" role="search" class="d-flex">
                                         @csrf
-                                        <input class="form-control me-2 border border-primary" type="search" name="search" placeholder="Search Products" aria-label="Search">
+                                        <input class="form-control me-2 border border-primary" type="search" name="search" placeholder="Search products name or category" aria-label="Search">
                                         <button class="btn btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                                     </form>
                                 </div>

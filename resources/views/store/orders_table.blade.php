@@ -8,14 +8,14 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-11 col-12">
                                 <div class="row border-bottom border-2 border-primary">
-                                    <div class="col-lg-8 col-md-7 col-sm-6 col-6 d-none d-sm-block">
-                                        <div class="text-start py-3 fs-4 fw-bold card-title">{{ __('Delivered Items Table') }}
+                                    <div class="col-lg-7 col-md-7 col-sm-6 col-6 d-none d-sm-block">
+                                        <div class="text-start py-3 fs-4 fw-bold card-title">{{ __('Ordered Items Table') }}
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-md-5 col-sm-6 col-12 py-3">
+                                    <div class="col-lg-5 col-md-5 col-sm-6 col-12 py-3">
                                         <form action="{{ route('search.order') }}" method="GET" role="search" class="d-flex">
                                             @csrf
-                                            <input class="form-control me-2 " type="search" name="search" placeholder="Search Name or Email" aria-label="Search">
+                                            <input class="form-control me-2 " type="search" name="search" placeholder="Search by Order Number, Product Name or Name of buyer" aria-label="Search">
                                             <button class="btn btn-primary" type="submit">
                                                 <i class="fa-solid fa-magnifying-glass"></i>
                                             </button>
