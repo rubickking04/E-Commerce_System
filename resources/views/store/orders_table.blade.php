@@ -70,12 +70,12 @@
                                                                 <th scope="col">{{ __('Recipient\'s Item') }}</th>
                                                                 <th scope="col">{{ __('Recipient\'s Number') }}</th>
                                                                 <th scope="col">{{ __('Order Placed') }}</th>
-                                                                <th scope="col">{{ __('Order Confirmed') }}</th>
+                                                                {{-- <th scope="col">{{ __('Order Confirmed') }}</th> --}}
                                                                 <th scope="col">{{ __('Actions') }}</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach ($cart as $carts)
+                                                            @foreach ($cart as $carts )
                                                                 <tr>
                                                                     <td class="text-center col-lg-1 col-md-1 col-sm-1 col-1"
                                                                         scope="row">
@@ -90,9 +90,9 @@
                                                                     <td class="text-center py-3" scope="row"> {{ $carts->hasProducts->product_name }}</td>
                                                                     <td class="text-center py-3 fw-bold text-truncate" scope="row">{{ $carts->hasUser->name }}</td>
                                                                     <td class="text-center py-3" scope="row">{{ $carts->created_at->toDayDateTimeString() }}</td>
-                                                                    <td class="text-center" scope="row">
+                                                                    {{-- <td class="text-center" scope="row">
                                                                         <a href="{{ route('order.confirm', $carts->id) }}" class=" btn btn-success ">{{ __('Confirm Order') }}</a>
-                                                                    </td>
+                                                                    </td> --}}
                                                                     <td class="text-center" scope="row">
                                                                         <button type="button" class=" btn btn-success bi bi-eye-fill" data-bs-toggle="modal"data-bs-target="#exampleModalCenter{{ $carts->id }}"></button>
                                                                         <div class="modal text-start fade modal-alert" id="exampleModalCenter{{ $carts->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -142,14 +142,16 @@
                                                                                                 </div>
                                                                                                 <div class="card mb-3">
                                                                                                     <div class="card-body">
-                                                                                                            <div class="row">
-                                                                                                                <div class="col-4 col-xl-4 col-lg-4">
-                                                                                                                    <p class="fs-6">{{ $carts->hasStatus?->created_at->toDayDateTimeString()}}</p>
-                                                                                                                </div>
-                                                                                                                <div class="col-8 col-xl-8 col-lg-8">
-                                                                                                                    <p class="fs-6 text-end">{{ $carts->hasStatus?->status }}</p>
-                                                                                                                </div>
+                                                                                                        @foreach ($carts->hasStatus as $items)
+                                                                                                        <div class="row">
+                                                                                                            <div class="col-4 col-xl-4 col-lg-4">
+                                                                                                                <p class="fs-6">{{ $items->created_at->toDayDateTimeString() }}</p>
                                                                                                             </div>
+                                                                                                            <div class="col-8 col-xl-8 col-lg-8">
+                                                                                                                <p class="fs-6 text-end">{{ $items->status }}</p>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        @endforeach
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="card mb-3">
@@ -254,6 +256,43 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
+                                                                        @if ( $carts->hasStatus )
+                                                                        <button type="button" class=" btn btn-warning  bi bi-upload" data-bs-toggle="modal"data-bs-target="#exampleModalCenters{{ $carts->id }}"></button>
+                                                                        <div class="modal text-start fade" id="exampleModalCenters{{ $carts->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                            <div class="modal-dialog">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">{{ __('Delivery Update for '.$carts->hasUser->name ) }}</h1>
+                                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                    <form action="{{ route('store.delivery_status') }}" method="POST">
+                                                                                        @csrf
+                                                                                        <div class="mb-3">
+                                                                                            <input type="hidden" name="order_id" value="{{ $carts->id }}">
+                                                                                            <input type="hidden" name="user_id" value="{{ $carts->hasUser->id }}">
+                                                                                            <input type="hidden" name="product_id" value="{{ $carts->hasProducts->id }}">
+                                                                                            <label for="recipient-name" class="col-form-label">{{ __('Status of Delivery') }}</label>
+                                                                                            <select class="form-select @error('status') is-invalid @enderror" aria-label="Default select example" name="status">
+                                                                                                {{-- <option selected disabled>{{ $carts->hasStatus?->status }}</option> --}}
+                                                                                                <option value="{{ __('Packed and Ready to deliver') }}">{{ __('Packed and Ready to deliver') }}</option>
+                                                                                                <option value="{{ __('Out of delivery') }}">{{ __('Out of delivery') }}</option>
+                                                                                                <option value="{{ __('Unsuccessful Delivery') }}">{{ __('Unsuccessful Delivery') }}</option>
+                                                                                            </select>
+                                                                                            @error('status')
+                                                                                                <span class="invalid-feedback" role="alert">
+                                                                                                    <strong>{{ $message }}</strong>
+                                                                                                </span>
+                                                                                            @enderror
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        @else
                                                                         <button type="button" class=" btn btn-warning  bi bi-upload" data-bs-toggle="modal"data-bs-target="#exampleModalCenters{{ $carts->id }}"></button>
                                                                         <div class="modal text-start fade" id="exampleModalCenters{{ $carts->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                             <div class="modal-dialog">
@@ -291,6 +330,44 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
+                                                                        @endif
+                                                                        {{-- <button type="button" class=" btn btn-warning  bi bi-upload" data-bs-toggle="modal"data-bs-target="#exampleModalCenters{{ $carts->id }}"></button>
+                                                                        <div class="modal text-start fade" id="exampleModalCenters{{ $carts->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                            <div class="modal-dialog">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">{{ __('Delivery Update for '.$carts->hasUser->name ) }}</h1>
+                                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                    <form action="{{ route('store.delivery_status') }}" method="POST">
+                                                                                        @csrf
+                                                                                        <div class="mb-3">
+                                                                                            <input type="hidden" name="order_id" value="{{ $carts->id }}">
+                                                                                            <input type="hidden" name="user_id" value="{{ $carts->hasUser->id }}">
+                                                                                            <input type="hidden" name="product_id" value="{{ $carts->hasProducts->id }}">
+                                                                                            <label for="recipient-name" class="col-form-label">{{ __('Status of Delivery') }}</label>
+                                                                                            <select class="form-select @error('status') is-invalid @enderror" aria-label="Default select example" name="status">
+                                                                                                <option selected disabled>Open this select menu</option>
+                                                                                                <option value="{{ __('Packed and Ready to deliver') }}">{{ __('Packed and Ready to deliver') }}</option>
+                                                                                                <option value="{{ __('Out of delivery') }}">{{ __('Out of delivery') }}</option>
+                                                                                                <option value="{{ __('Unsuccessful Delivery') }}">{{ __('Unsuccessful Delivery') }}</option>
+                                                                                            </select>
+                                                                                            @error('status')
+                                                                                                <span class="invalid-feedback" role="alert">
+                                                                                                    <strong>{{ $message }}</strong>
+                                                                                                </span>
+                                                                                            @enderror
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                                        <button type="submit" class="btn btn-primary">Send message</button>
+                                                                                    </div>
+                                                                                    </form>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div> --}}
                                                                     </td>
                                                                 </tr>
                                                             @endforeach

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Store;
 
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,9 +18,15 @@ class ProductsTableController extends Controller
      */
     public function index()
     {
+        $month = date('m');
+        $year = date('Y');
+        $total_orders = Order::where('store_id',Auth::id())->get()->count();
+        $product_sold= Order::where('store_id',Auth::id())->sum('qty');
+        $total_sales = Order::where('store_id', Auth::id())->sum('total_price');
+        $yearly_sales = Order::whereYear('created_at', $year)->whereMonth('created_at', $month)->sum('total_price');
         $products = Product::where('store_id', '=', Auth::user()->id)->latest()->paginate(10);
         // dd($products);
-        return view('store.products_table', compact('products'));
+        return view('store.products_table', compact('products', 'total_orders', 'product_sold', 'total_sales', 'yearly_sales'));
     }
 
     /**

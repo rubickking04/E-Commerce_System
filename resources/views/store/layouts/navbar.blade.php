@@ -114,44 +114,71 @@
                 </form>
             </div>
         </div>
-
         <div class="container">
             <div class="row">
-                <div class="py-2">
+                <div class="py-4">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-6">
-                                <div class="card text-white bg-primary mb-3 shadow" >
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                                <div class="card  mb-3 " >
                                     <div class="card-body h-100">
                                         <div class="row">
                                             <div class="col-lg-8 col-sm-6 col-6 col-md-auto">
-                                                <h2 class="users-count" id="users-count">
-                                                    {{ App\Models\Product::where('store_id', '=', Auth::user()->id)->count() }}</h2>
-                                                <h5>{{ __('Products') }}</h5>
+                                                <h2 class="users-count" id="users-count">{{ __('₱ '.number_format($total_sales)) }}</h2>
+                                                <h6>{{ __('Total Sales') }}</h6>
                                             </div>
                                             <div class="col-lg-4 col-sm-6 col-md-auto col-6 mt-3 text-end">
-                                                <i class="fa-solid fa-user fs-1"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-6">
-                                <div class="card text-white bg-danger mb-3 shadow">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-lg-7 col-sm-6 col-6 col-md-auto">
-                                                <h2>{{ App\Models\Order::where('store_id', '=', Auth::user()->id)->count() }}</h2>
-                                                <h5>{{ __('Items') }}</h5>
-                                            </div>
-                                            <div class="col-lg-5 col-sm-6 col-md-auto text-end col-6 mt-3 ">
                                                 <i class="fa-solid fa-store fs-1"></i>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                                <div class="card  mb-3 " >
+                                    <div class="card-body h-100">
+                                        <div class="row">
+                                            <div class="col-lg-8 col-sm-6 col-6 col-md-auto">
+                                                <h2 class="users-count" id="users-count">{{ $total_orders }}</h2>
+                                                <h6 >{{ __('Total Orders') }}</h6>
+                                            </div>
+                                            <div class="col-lg-4 col-sm-6 col-md-auto col-6 mt-3 text-end">
+                                                <i class="fa-solid fa-store fs-1"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                                <div class="card  mb-3">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-lg-8 col-sm-6 col-6 col-md-auto">
+                                                <h2 class="users-count" id="users-count">{{ App\Models\Product::where('store_id', Auth::id())->get()->count() }}</h2>
+                                                <h6 >{{ __('Total Products') }}</h6>
+                                            </div>
+                                            <div class="col-lg-4 col-sm-6 col-md-auto text-end col-6 mt-3 ">
+                                                <i class="fa-solid fa-store fs-1"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-lg-8 col-sm-6 col-6 col-md-auto">
+                                                <h2 class="users-count" id="users-count">{{ __('₱ '.number_format($yearly_sales)) }}</h2>
+                                                <h6 >{{ __('Yearly Sales') }}</h6>
+                                            </div>
+                                            <div class="col-lg-4 col-sm-6 col-md-auto col-6 mt-3 text-end">
+                                                <i class="fa-solid fa-store fs-1"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                     @yield('content')
                 </div>
