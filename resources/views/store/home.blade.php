@@ -30,7 +30,7 @@
                                 @endif
                                 </td>
                                 <td  class="text-start fw-bold h6 py-3 text-truncate roboto" scope="row">{{ $product->product_name }}</td>
-                                <td  class="text-end text-muted small fw-bold h6 py-3 roboto text-truncate" scope="row">{{ $product->created_at->diffForhumans() }}</td>
+                                <td  class="text-end text-muted small fw-bold h6 py-3 roboto text-truncate" scope="row">{{ __('added '.$product->created_at->diffForhumans()) }}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -83,7 +83,7 @@
                                     <img src="{{ asset('/storage/images/avatar.png')}}" alt="hugenerd" width="30" height="30" class="rounded-circle">
                                 </td>
                                 <td  class="text-start fw-bold h6 py-3 text-truncate roboto" scope="row">{{ $order->hasUser->name }}</td>
-                                <td  class="text-end text-muted small fw-bold h6 py-3 text-truncate roboto" scope="row">{{ $order->created_at->diffForhumans() }}</td>
+                                <td  class="text-end text-muted small fw-bold h6 py-3 text-truncate roboto" scope="row">{{ __('ordered '.$order->created_at->diffForhumans()) }}</td>
                             </tr>
                             @endforeach
                         </tbody>
