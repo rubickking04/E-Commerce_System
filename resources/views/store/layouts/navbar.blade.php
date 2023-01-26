@@ -128,7 +128,22 @@
                                                 <h6>{{ __('Total Sales') }}</h6>
                                             </div>
                                             <div class="col-lg-4 col-sm-6 col-md-auto col-6 mt-3 text-end">
-                                                <i class="fa-solid fa-store fs-1"></i>
+                                                <i class="fa-solid fa-dollar-sign fs-1"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-lg-8 col-sm-6 col-6 col-md-auto">
+                                                <h2 class="users-count" id="users-count">{{ __('₱ '.number_format($yearly_sales)) }}</h2>
+                                                <h6 >{{ __('Yearly Sales') }}</h6>
+                                            </div>
+                                            <div class="col-lg-4 col-sm-6 col-md-auto col-6 mt-3 text-end">
+                                                <i class="fa-solid fa-coins fs-1"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -143,7 +158,7 @@
                                                 <h6 >{{ __('Total Orders') }}</h6>
                                             </div>
                                             <div class="col-lg-4 col-sm-6 col-md-auto col-6 mt-3 text-end">
-                                                <i class="fa-solid fa-store fs-1"></i>
+                                                <i class="fa-solid fa-bag-shopping fs-1"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -164,23 +179,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-6">
-                                <div class="card mb-3">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-lg-8 col-sm-6 col-6 col-md-auto">
-                                                <h2 class="users-count" id="users-count">{{ __('₱ '.number_format($yearly_sales)) }}</h2>
-                                                <h6 >{{ __('Yearly Sales') }}</h6>
-                                            </div>
-                                            <div class="col-lg-4 col-sm-6 col-md-auto col-6 mt-3 text-end">
-                                                <i class="fa-solid fa-store fs-1"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
+                        @yield('content')
                     </div>
-                    @yield('content')
                 </div>
             </div>
         </div>

@@ -123,7 +123,6 @@
                                                                                         </span>
                                                                                     @enderror
                                                                                 </div>
-
                                                                                 <div class="col-md-6 text-start">
                                                                                     <label for="email" class="col-form-label">{{ __('Product Category') }}</label>
                                                                                     <div class="input-group">
@@ -148,7 +147,6 @@
                                                                                         @enderror
                                                                                     </div>
                                                                                 </div>
-
                                                                                 <div class="col-md-6 text-start">
                                                                                     <label for="phone" class="col-form-label">{{ __('Product Price') }}</label>
                                                                                     <input id="product_price" type="text" class="form-control @error('product_price') is-invalid @enderror" name="product_price" value="{{ $product->product_price }}">
@@ -158,7 +156,6 @@
                                                                                         </span>
                                                                                     @enderror
                                                                                 </div>
-
                                                                                 <div class="col-md-6 text-start">
                                                                                     <label for="address" class="col-form-label">{{ __('Product Stocks') }}</label>
                                                                                     <div class="input-group">
@@ -185,7 +182,7 @@
                                             </tbody>
                                         </table>
                                     @endif
-                                    {{ $products->links() }}
+                                {{ $products->links() }}
                             </div>
                             @else
                             <div class="col-lg-12 mb-3 ">

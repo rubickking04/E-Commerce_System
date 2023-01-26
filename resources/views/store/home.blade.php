@@ -66,7 +66,7 @@
             <div class="card-body">
                 <div class="row border-bottom border-2 border-dark">
                     <div class="col-lg-8 col-md-7 col-sm-6 col-6 d-none d-sm-block">
-                        <div class="text-start py-1 fs-4 fw-bold card-title roboto">{{ __('Order Table') }}
+                        <div class="text-start py-1 fs-4 fw-bold card-title roboto">{{ __('Orders Table') }}
                         </div>
                     </div>
                     <div class="col-lg-4 col-12">
