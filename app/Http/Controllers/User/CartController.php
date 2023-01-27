@@ -26,7 +26,7 @@ class CartController extends Controller
         foreach ($carts as $cart) {
             $total += $cart->hasProducts->product_price * $cart->quantity;
         }
-        return view('user.cart', compact('carts', 'total', 'status'));
+        return view('user.cart', compact('carts', 'total', 'status',));
     }
 
     /**

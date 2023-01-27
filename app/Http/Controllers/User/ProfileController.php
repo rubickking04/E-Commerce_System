@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use Carbon\Carbon;
 use App\Models\Order;
+use App\Models\Product;
 use App\Charts\RevenueChart;
 use Illuminate\Http\Request;
 use App\Models\DeliveryStatus;
@@ -25,13 +26,11 @@ class ProfileController extends Controller
         $total_orders = Order::where('store_id',Auth::id())->get()->count();
         $product_sold= Order::where('store_id',Auth::id())->sum('qty');
         $total_sales = Order::where('store_id', Auth::id())->sum('total_price');
-        $yearly_sales = Order::whereYear('created_at', $year)->whereMonth('created_at', $month)->sum('total_price');
-        // $monthly_order = Order::whereYear('created_at', $year)->whereMonth('created_at', $month)->sum('total_price');
-        // $today_users = Order::whereDate('created_at', today())->count();
+        $yearly_sales = Order::where('store_id', Auth::id())->whereYear('created_at', $year)->whereMonth('created_at', $month)->sum('total_price');
+        $products = Product::where('store_id', Auth::id())->get()->count();
         $chart = new RevenueChart;
-        $chart->labels(['One', 'Two', 'Three', 'Four']);
-        $chart->dataset('My dataset', 'line', [1, 2, 3]);
-        $chart->dataset('My dataset 2', 'line', [4, 3, 2, 1]);
+        $chart->labels(['Orders', 'Products Sold', 'Products']);
+        $chart->dataset('My stores Data', 'bar', [$total_orders, $product_sold, $products]);
         $status = DeliveryStatus::where('user_id', Auth::id())->take(5)->get();
         // dd($todays_order);
         return view('user.profile', compact('chart', 'total_orders', 'yearly_sales', 'product_sold','status', 'total_sales'));

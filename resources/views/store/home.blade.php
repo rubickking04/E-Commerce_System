@@ -13,7 +13,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-12">
-                        <div class="text-end mt-2 fs-6 fw-bold roboto">{{ $products->count() }} {{ Str::plural(' product',$products->count())}}</div>
+                        <div class="text-end mt-2 fs-6 fw-bold roboto">{{ number_format($products->count()) }} {{ Str::plural(' product',number_format($products->count())) }}</div>
                     </div>
                 </div>
                 @if (count($products) > 0)
@@ -70,7 +70,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-12">
-                        <div class="text-end mt-2 fs-6 fw-bold roboto">{{ $orders->count() }} {{ Str::plural(' order',$orders->count())}}</div>
+                        <div class="text-end mt-2 fs-6 fw-bold roboto">{{ number_format($orders->count()) }} {{ Str::plural(' order',number_format($orders->count()))}}</div>
                     </div>
                 </div>
                 @if (count($orders) > 0)

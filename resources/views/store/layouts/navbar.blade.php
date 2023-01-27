@@ -139,8 +139,8 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-lg-8 col-sm-6 col-6 col-md-auto">
-                                                <h2 class="users-count" id="users-count">{{ __('₱ '.number_format($yearly_sales)) }}</h2>
-                                                <h6 >{{ __('Yearly Sales') }}</h6>
+                                                <h2 class="users-count" id="users-count">{{ number_format($product_sold) }}</h2>
+                                                <h6 >{{ __('Products Sold') }}</h6>
                                             </div>
                                             <div class="col-lg-4 col-sm-6 col-md-auto col-6 mt-3 text-end">
                                                 <i class="fa-solid fa-coins fs-1"></i>
@@ -154,7 +154,7 @@
                                     <div class="card-body h-100">
                                         <div class="row">
                                             <div class="col-lg-8 col-sm-6 col-6 col-md-auto">
-                                                <h2 class="users-count" id="users-count">{{ $total_orders }}</h2>
+                                                <h2 class="users-count" id="users-count">{{ number_format($total_orders) }}</h2>
                                                 <h6 >{{ __('Total Orders') }}</h6>
                                             </div>
                                             <div class="col-lg-4 col-sm-6 col-md-auto col-6 mt-3 text-end">
@@ -169,7 +169,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-lg-8 col-sm-6 col-6 col-md-auto">
-                                                <h2 class="users-count" id="users-count">{{ App\Models\Product::where('store_id', Auth::id())->get()->count() }}</h2>
+                                                <h2 class="users-count" id="users-count">{{ number_format(App\Models\Product::where('store_id', Auth::id())->get()->count()) }}</h2>
                                                 <h6 >{{ __('Total Products') }}</h6>
                                             </div>
                                             <div class="col-lg-4 col-sm-6 col-md-auto text-end col-6 mt-3 ">
