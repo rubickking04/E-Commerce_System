@@ -41,7 +41,31 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-outline text-start">
+                                        <div class="form-outline text-start ">
+                                            <label for="username" class="col-form-label">{{ __('Address') }}</label>
+                                            <div class="input-group">
+                                                <input type="text" id="address" placeholder="Zamboanga City" name="address" class="form-control @error('address') is-invalid @enderror" />
+                                                @error('address')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="form-outline text-start col-lg-6">
+                                            <label for="phone_number" class="col-form-label">{{ __('Phone Number') }}</label>
+                                            <div class="input-group">
+                                                <input type="text" id="address" placeholder="invoker69" name="phone_number" class="form-control @error('phone_number') is-invalid @enderror" />
+                                                @error('phone_number')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="form-outline text-start col-lg-6">
                                             <label for="username" class="col-form-label">{{ __('Username') }}</label>
                                             <div class="input-group">
                                                 <input type="text" id="address" placeholder="invoker69" name="username" class="form-control @error('username') is-invalid @enderror" />

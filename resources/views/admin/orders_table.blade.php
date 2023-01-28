@@ -122,16 +122,16 @@
                                                                                                                 <p class="fs-6">{{ __('Reciever\'s Address ') }}</p>
                                                                                                             </div>
                                                                                                             <div class="col-4 col-xl-9 col-lg-10">
-                                                                                                                <p class="fs-6 text-end">{{ __('HB Homes Subdivision Phase II, Block 9 Lot 3, Sinunuc Zamboanga City') }}</p>
+                                                                                                                <p class="fs-6 text-end">{{ $carts->hasUser->address }}</p>
                                                                                                                 {{-- <p class="fs-6 text-end">{{ $carts->hasUser->address}}</p> --}}
                                                                                                                 {{-- <p class="fw-bold text-end">{{ __('×'. $qty) }}</p> --}}
                                                                                                             </div>
                                                                                                         </div>
                                                                                                         <div class="row">
-                                                                                                            <div cla ss="col-8 col-xl-10 col-lg-10">
+                                                                                                            <div cla ss="col-8 col-xl-4 col-lg-4">
                                                                                                                 <p class="fs-6">{{ __('Reciever\'s Number ') }}</p>
                                                                                                             </div>
-                                                                                                            <div class="col-4 col-xl-2 col-lg-2">
+                                                                                                            <div class="col-4 col-xl-8 col-lg-8">
                                                                                                                 <p class="fs-6 text-end">{{ $carts->hasUser->phone }}</p>
                                                                                                                 {{-- <p class="fw-bold text-end">{{ __('×'. $qty) }}</p> --}}
                                                                                                             </div>

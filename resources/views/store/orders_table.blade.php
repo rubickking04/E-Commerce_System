@@ -124,17 +124,17 @@
                                                                                                                 <p class="fs-6">{{ __('Reciever\'s Address ') }}</p>
                                                                                                             </div>
                                                                                                             <div class="col-4 col-xl-9 col-lg-10">
-                                                                                                                <p class="fs-6 text-end">{{ __('HB Homes Subdivision Phase II, Block 9 Lot 3, Sinunuc Zamboanga City') }}</p>
+                                                                                                                <p class="fs-6 text-end">{{ $carts->hasUser->address }}</p>
                                                                                                                 {{-- <p class="fs-6 text-end">{{ $carts->hasUser->address}}</p> --}}
                                                                                                                 {{-- <p class="fw-bold text-end">{{ __('×'. $qty) }}</p> --}}
                                                                                                             </div>
                                                                                                         </div>
                                                                                                         <div class="row">
-                                                                                                            <div cla ss="col-8 col-xl-10 col-lg-10">
+                                                                                                            <div class="col-8 col-xl-4 col-lg-4">
                                                                                                                 <p class="fs-6">{{ __('Reciever\'s Number ') }}</p>
                                                                                                             </div>
-                                                                                                            <div class="col-4 col-xl-2 col-lg-2">
-                                                                                                                <p class="fs-6 text-end">{{ $carts->hasUser->phone }}</p>
+                                                                                                            <div class="col-4 col-xl-8 col-lg-8">
+                                                                                                                <p class="fs-6 text-end">{{ $carts->hasUser->phone_number }}</p>
                                                                                                                 {{-- <p class="fw-bold text-end">{{ __('×'. $qty) }}</p> --}}
                                                                                                             </div>
                                                                                                         </div>
@@ -256,43 +256,6 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        @if ( $carts->hasStatus )
-                                                                        <button type="button" class=" btn btn-warning  bi bi-upload" data-bs-toggle="modal"data-bs-target="#exampleModalCenters{{ $carts->id }}"></button>
-                                                                        <div class="modal text-start fade" id="exampleModalCenters{{ $carts->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                            <div class="modal-dialog">
-                                                                                <div class="modal-content">
-                                                                                    <div class="modal-header">
-                                                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">{{ __('Delivery Update for '.$carts->hasUser->name ) }}</h1>
-                                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                                    </div>
-                                                                                    <div class="modal-body">
-                                                                                    <form action="{{ route('store.delivery_status') }}" method="POST">
-                                                                                        @csrf
-                                                                                        <div class="mb-3">
-                                                                                            <input type="hidden" name="order_id" value="{{ $carts->id }}">
-                                                                                            <input type="hidden" name="user_id" value="{{ $carts->hasUser->id }}">
-                                                                                            <input type="hidden" name="product_id" value="{{ $carts->hasProducts->id }}">
-                                                                                            <label for="recipient-name" class="col-form-label">{{ __('Status of Delivery') }}</label>
-                                                                                            <select class="form-select @error('status') is-invalid @enderror" aria-label="Default select example" name="status">
-                                                                                                {{-- <option selected disabled>{{ $carts->hasStatus?->status }}</option> --}}
-                                                                                                <option value="{{ __('Packed and Ready to deliver') }}">{{ __('Packed and Ready to deliver') }}</option>
-                                                                                                <option value="{{ __('Out of delivery') }}">{{ __('Out of delivery') }}</option>
-                                                                                                <option value="{{ __('Unsuccessful Delivery') }}">{{ __('Unsuccessful Delivery') }}</option>
-                                                                                            </select>
-                                                                                            @error('status')
-                                                                                                <span class="invalid-feedback" role="alert">
-                                                                                                    <strong>{{ $message }}</strong>
-                                                                                                </span>
-                                                                                            @enderror
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        @else
                                                                         <button type="button" class=" btn btn-warning  bi bi-upload" data-bs-toggle="modal"data-bs-target="#exampleModalCenters{{ $carts->id }}"></button>
                                                                         <div class="modal text-start fade" id="exampleModalCenters{{ $carts->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                             <div class="modal-dialog">
@@ -324,50 +287,12 @@
                                                                                     </div>
                                                                                     <div class="modal-footer">
                                                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                                        <button type="submit" class="btn btn-primary">Send message</button>
+                                                                                        <button type="submit" class="btn btn-primary">Send Update</button>
                                                                                     </div>
                                                                                     </form>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        @endif
-                                                                        {{-- <button type="button" class=" btn btn-warning  bi bi-upload" data-bs-toggle="modal"data-bs-target="#exampleModalCenters{{ $carts->id }}"></button>
-                                                                        <div class="modal text-start fade" id="exampleModalCenters{{ $carts->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                            <div class="modal-dialog">
-                                                                                <div class="modal-content">
-                                                                                    <div class="modal-header">
-                                                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">{{ __('Delivery Update for '.$carts->hasUser->name ) }}</h1>
-                                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                                    </div>
-                                                                                    <div class="modal-body">
-                                                                                    <form action="{{ route('store.delivery_status') }}" method="POST">
-                                                                                        @csrf
-                                                                                        <div class="mb-3">
-                                                                                            <input type="hidden" name="order_id" value="{{ $carts->id }}">
-                                                                                            <input type="hidden" name="user_id" value="{{ $carts->hasUser->id }}">
-                                                                                            <input type="hidden" name="product_id" value="{{ $carts->hasProducts->id }}">
-                                                                                            <label for="recipient-name" class="col-form-label">{{ __('Status of Delivery') }}</label>
-                                                                                            <select class="form-select @error('status') is-invalid @enderror" aria-label="Default select example" name="status">
-                                                                                                <option selected disabled>Open this select menu</option>
-                                                                                                <option value="{{ __('Packed and Ready to deliver') }}">{{ __('Packed and Ready to deliver') }}</option>
-                                                                                                <option value="{{ __('Out of delivery') }}">{{ __('Out of delivery') }}</option>
-                                                                                                <option value="{{ __('Unsuccessful Delivery') }}">{{ __('Unsuccessful Delivery') }}</option>
-                                                                                            </select>
-                                                                                            @error('status')
-                                                                                                <span class="invalid-feedback" role="alert">
-                                                                                                    <strong>{{ $message }}</strong>
-                                                                                                </span>
-                                                                                            @enderror
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                                        <button type="submit" class="btn btn-primary">Send message</button>
-                                                                                    </div>
-                                                                                    </form>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div> --}}
                                                                     </td>
                                                                 </tr>
                                                             @endforeach
@@ -389,7 +314,7 @@
                                         </div>
                                     </div>
                                 @endif
-                                <button class="btn btn-primary text-end">{{ __('Download Report') }}</button>
+                                <a href="{{ route('store.download.sales') }}" class="btn btn-primary text-end">{{ __('Download Report') }}</a>
                             </div>
                         </div>
                     </div>

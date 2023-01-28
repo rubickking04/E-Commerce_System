@@ -27,6 +27,7 @@ use App\Http\Controllers\Store\LogoutController as StoreLogout;
 use App\Http\Controllers\Store\ProductController as StoreProduct;
 use App\Http\Controllers\Store\OrdersTableController as OrdersTable;
 use App\Http\Controllers\Store\ProductsTableController as ProductsTable;
+use App\Http\Controllers\Store\Total_Sales_PDFController as StorePDFController;
 use App\Http\Controllers\Admin\OrdersTableController as OrdersTableController;
 use App\Http\Controllers\Admin\StoresTableController as StoresTableController;
 use App\Http\Controllers\Admin\FarmersTableController as FarmersTableController;
