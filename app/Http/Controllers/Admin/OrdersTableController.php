@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Cart;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,7 +16,7 @@ class OrdersTableController extends Controller
      */
     public function index()
     {
-        $cart = Cart::onlyTrashed()->latest()->paginate(10);
+        $cart = Order::latest()->paginate(10);
         return view('admin.orders_table', compact('cart'));
     }
 

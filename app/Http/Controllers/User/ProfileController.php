@@ -30,7 +30,7 @@ class ProfileController extends Controller
         $products = Product::where('store_id', Auth::id())->get()->count();
         $chart = new RevenueChart;
         $chart->labels(['Orders', 'Products Sold', 'Products']);
-        $chart->dataset('My stores Data', 'bar', [$total_orders, $product_sold, $products]);
+        $chart->dataset('My stores Data', 'bar', [$total_orders, $product_sold, $products])->color(collect(['#7d5fff','#32ff7e', '#ff4d4d']))->backgroundColor(collect(['#7158e2','#3ae374', '#ff3838']));
         $status = DeliveryStatus::where('user_id', Auth::id())->take(5)->get();
         // dd($todays_order);
         return view('user.profile', compact('chart', 'total_orders', 'yearly_sales', 'product_sold','status', 'total_sales'));

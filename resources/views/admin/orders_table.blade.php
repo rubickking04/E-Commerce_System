@@ -93,68 +93,163 @@
                                                                     <td class="text-center" scope="row">{{ date('h:ia - m/d/Y', strtotime($carts->deleted_at)) }}</td>
                                                                     <td class="text-center" scope="row">
                                                                         <button type="button" class=" btn btn-success bi bi-eye-fill" data-bs-toggle="modal"data-bs-target="#exampleModalCenters{{ $carts->id }}"></button>
-                                                                        <div class="modal fade modal-alert" id="exampleModalCenters{{ $carts->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                        <div class="modal text-start fade modal-alert" id="exampleModalCenters{{ $carts->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                             <div class="modal-dialog modal-lg">
                                                                                 <div class="modal-content shadow" style="border-radius:20px; ">
                                                                                     <div class="modal-header flex-nowrap border-bottom-0">
-                                                                                        <button type="button" class="btn-close"data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                                     </div>
-                                                                                    <div class="modal-body text-center">
-                                                                                        <div class="thumb-lg member-thumb ms-auto">
-                                                                                            <img src="{{ asset('/storage/images/avatar.png')}}" class="border border-info border-5 rounded-circle img-thumbnail" alt="" height="100px" width="100px">
-                                                                                        </div>
-                                                                                        <h2 class="fw-bold mb-0">{{ $carts->hasUser->name }}</h2>
-                                                                                        <form action="#" method="POST" >
-                                                                                            @csrf
-                                                                                            <div class="row mb-3">
-                                                                                                <div class="col-md-6 text-start">
-                                                                                                    <label for="name" class="col-form-label">{{ __('Recipient\'s Name') }}</label>
-                                                                                                    <input id="name" type="text" placeholder="Your name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $carts->hasUser->name }}" >
-                                                                                                    @error('name')
-                                                                                                        <span class="invalid-feedback" role="alert">
-                                                                                                            <strong>{{ $message }}</strong>
-                                                                                                        </span>
-                                                                                                    @enderror
-                                                                                                </div>
-
-                                                                                                <div class="col-md-6 text-start">
-                                                                                                    <label for="email" class="col-form-label">{{ __('Recipient\'s Email Address') }}</label>
-                                                                                                    <div class="input-group">
-                                                                                                        <div class="input-group-text"><i class="bi bi-envelope-fill"></i></div>
-                                                                                                        <input id="email" type="email" placeholder="yourname@gmail.com" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $carts->hasUser->email }}">
-                                                                                                        @error('email')
-                                                                                                            <span class="invalid-feedback" role="alert">
-                                                                                                                <strong>{{ $message }}</strong>
-                                                                                                            </span>
-                                                                                                        @enderror
+                                                                                    <div class="modal-body">
+                                                                                        <div class="row justify-content-center">
+                                                                                            <div class="col-md-10">
+                                                                                                <div class="card mb-3">
+                                                                                                    <div class="card-body">
+                                                                                                        <p class="fs-6 fw-bold">
+                                                                                                            <i class="fa-solid fa-map-location-dot text-muted fs-4"></i>
+                                                                                                            <span class="px-2 mb-2">{{ __('Reciever : '.$carts->hasUser->name) }}</span>
+                                                                                                        </p>
+                                                                                                        <div class="row">
+                                                                                                            <div class="col-8 col-xl-4 col-lg-3">
+                                                                                                                <p class="fs-6">{{ __('Reciever\'s Name ') }}</p>
+                                                                                                            </div>
+                                                                                                            <div class="col-4 col-xl-8 col-lg-9">
+                                                                                                                <p class="fs-6 text-end">{{ $carts->hasUser->name }}</p>
+                                                                                                                {{-- <p class="fw-bold text-end">{{ __('×'. $qty) }}</p> --}}
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="row">
+                                                                                                            <div class="col-8 col-xl-3 col-lg-2">
+                                                                                                                <p class="fs-6">{{ __('Reciever\'s Address ') }}</p>
+                                                                                                            </div>
+                                                                                                            <div class="col-4 col-xl-9 col-lg-10">
+                                                                                                                <p class="fs-6 text-end">{{ __('HB Homes Subdivision Phase II, Block 9 Lot 3, Sinunuc Zamboanga City') }}</p>
+                                                                                                                {{-- <p class="fs-6 text-end">{{ $carts->hasUser->address}}</p> --}}
+                                                                                                                {{-- <p class="fw-bold text-end">{{ __('×'. $qty) }}</p> --}}
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="row">
+                                                                                                            <div cla ss="col-8 col-xl-10 col-lg-10">
+                                                                                                                <p class="fs-6">{{ __('Reciever\'s Number ') }}</p>
+                                                                                                            </div>
+                                                                                                            <div class="col-4 col-xl-2 col-lg-2">
+                                                                                                                <p class="fs-6 text-end">{{ $carts->hasUser->phone }}</p>
+                                                                                                                {{-- <p class="fw-bold text-end">{{ __('×'. $qty) }}</p> --}}
+                                                                                                            </div>
+                                                                                                        </div>
                                                                                                     </div>
                                                                                                 </div>
-
-                                                                                                <div class="col-md-6 text-start">
-                                                                                                    <label for="phone" class="col-form-label">{{ __('Recipient\'s Phone Number') }}</label>
-                                                                                                    <input id="phone" type="text" placeholder="09557815639" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ $carts->hasUser->phone }}">
-                                                                                                    @error('phone')
-                                                                                                        <span class="invalid-feedback" role="alert">
-                                                                                                            <strong>{{ $message }}</strong>
-                                                                                                        </span>
-                                                                                                    @enderror
-                                                                                                </div>
-
-                                                                                                <div class="col-md-6 text-start">
-                                                                                                    <label for="address" class="col-form-label">{{ __('Recipient\'s Address') }}</label>
-                                                                                                    <div class="input-group">
-                                                                                                        <div class="input-group-text"><i class="fa fa-location-arrow"></i></div>
-                                                                                                    <input id="address" type="text" placeholder="R.T. Lim Boulevard, Baliwasan, Zamboanga City" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ $carts->hasUser->address }}">
-                                                                                                    @error('address')
-                                                                                                        <span class="invalid-feedback" role="alert">
-                                                                                                            <strong>{{ $message }}</strong>
-                                                                                                        </span>
-                                                                                                    @enderror
+                                                                                                <div class="card mb-3">
+                                                                                                    <div class="card-body">
+                                                                                                        @foreach ($carts->hasStatus as $items)
+                                                                                                        <div class="row">
+                                                                                                            <div class="col-4 col-xl-4 col-lg-4">
+                                                                                                                <p class="fs-6">{{ $items->created_at->toDayDateTimeString() }}</p>
+                                                                                                            </div>
+                                                                                                            <div class="col-8 col-xl-8 col-lg-8">
+                                                                                                                <p class="fs-6 text-end">{{ $items->status }}</p>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        @endforeach
                                                                                                     </div>
                                                                                                 </div>
+                                                                                                <div class="card mb-3">
+                                                                                                    <div class="card-header">
+                                                                                                        <h5 class="mt-2">
+                                                                                                            <i class="fa-solid fa-store text-muted fs-4"></i>
+                                                                                                            <span class="px-2">{{ $carts->hasStore->store_name }}</span>
+                                                                                                        </h5>
+                                                                                                    </div>
+                                                                                                    <div class="card-body">
+                                                                                                        <div class="row ">
+                                                                                                            <div class="col-lg-2 col-md-2 col-4">
+                                                                                                                <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                                                                                                                    <img src="{{ asset('/storage/products/'. $carts->hasProducts->product_image) }}" class="w-100" alt="Product Image" />
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <div class="col-lg-10 col-md-10 col-8 ">
+                                                                                                                <p class="h6 text-muted">{{ $carts->hasProducts->product_name }}</p>
+                                                                                                                <p class="small text-muted">{{ $carts->hasProducts->product_category }}</p>
+                                                                                                                <div class="row">
+                                                                                                                    <div class="col-8 col-xl-10 col-lg-10">
+                                                                                                                        <p class="fs-6">{{ __('₱ ' .number_format($carts->hasProducts->product_price)) }}</p>
+                                                                                                                    </div>
+                                                                                                                    <div class="col-4 col-xl-2 col-lg-2">
+                                                                                                                        <p class="fw-bold text-end">{{ __('×'. $carts->qty) }}</p>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="card mb-3">
+                                                                                                    <div class="card-header">{{ __('Order Summary') }}</div>
+                                                                                                    <div class="card-body">
+                                                                                                        <div class="row">
+                                                                                                            <div class="col-8 col-xl-10 col-lg-10">
+                                                                                                                <p class="fs-6">{{ __('Product Price ') }}</p>
+                                                                                                            </div>
+                                                                                                            <div class="col-4 col-xl-2 col-lg-2">
+                                                                                                                <p class="fs-6 text-end">{{ __('₱ ' .number_format($carts->hasProducts->product_price)) }}</p>
+                                                                                                                {{-- <p class="fw-bold text-end">{{ __('×'. $qty) }}</p> --}}
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="row">
+                                                                                                            <div class="col-8 col-xl-10 col-lg-10">
+                                                                                                                <p class="fs-6">{{ __('Product Quantity ') }}</p>
+                                                                                                            </div>
+                                                                                                            <div class="col-4 col-xl-2 col-lg-2">
+                                                                                                                {{-- <p class="fs-6">{{ __('₱ ' .number_format($prodPrice)) }}</p> --}}
+                                                                                                                <p class="fw-bold text-end">{{ __('×'. $carts->qty) }}</p>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="row">
+                                                                                                            <div class="col-8 col-xl-10 col-lg-10">
+                                                                                                                <p class="fs-6">{{ __('Total Price ') }}</p>
+                                                                                                            </div>
+                                                                                                            <div class="col-4 col-xl-2 col-lg-2">
+                                                                                                                {{-- <p class="fs-6">{{ __('₱ ' .number_format($prodPrice)) }}</p> --}}
+                                                                                                                <p class="fw-bold text-end">{{ __('₱ ' .number_format($carts->total_price)) }}</p>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="card mb-3">
+                                                                                                    <div class="card-header">
+                                                                                                        {{ __('Order Details') }}
+                                                                                                    </div>
+                                                                                                    <div class="card-body">
+                                                                                                        <div class="row">
+                                                                                                            <div class="col-8 col-xl-10 col-lg-10">
+                                                                                                                <p class="fs-6">{{ __('Order Number ') }}</p>
+                                                                                                            </div>
+                                                                                                            <div class="col-4 col-xl-2 col-lg-2">
+                                                                                                                <p class="fs-6 text-end">{{ $carts->order_number }}</p>
+                                                                                                                {{-- <p class="fw-bold text-end">{{ __('×'. $qty) }}</p> --}}
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="row">
+                                                                                                            <div class="col-4 col-xl-7 col-lg-5">
+                                                                                                                <p class="fs-6">{{ __('Order Date ') }}</p>
+                                                                                                            </div>
+                                                                                                            <div class="col-8 col-xl-5 col-lg-7">
+                                                                                                                <p class="fs-6 text-end">{{ $carts->created_at->toDayDateTimeString(); }}</p>
+                                                                                                                {{-- <p class="fw-bold text-end">{{ __('×'. $qty) }}</p> --}}
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="row">
+                                                                                                            <div class="col-5 col-xl-8 col-lg-5 col-md-5">
+                                                                                                                <p class="fs-6">{{ __('Payment Method ') }}</p>
+                                                                                                            </div>
+                                                                                                            <div class="col-7 col-xl-4 col-lg-7 col-md-7">
+                                                                                                                <p class="fs-6 text-end">{{ __('Cash on delivery') }}</p>
+                                                                                                                {{-- <p class="fw-bold text-end">{{ __('×'. $qty) }}</p> --}}
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <a href="#" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">{{ __('Close') }}</a>
                                                                                             </div>
-                                                                                            <button type="button" class="btn btn-danger col-lg-2 col-5" data-bs-dismiss="modal" style="border-radius:20px;">{{ __('Close') }}</button>
-                                                                                        </form>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>

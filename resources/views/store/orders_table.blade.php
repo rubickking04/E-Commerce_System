@@ -389,6 +389,7 @@
                                         </div>
                                     </div>
                                 @endif
+                                <button class="btn btn-primary text-end">{{ __('Download Report') }}</button>
                             </div>
                         </div>
                     </div>

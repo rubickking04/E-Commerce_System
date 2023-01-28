@@ -17,6 +17,7 @@ use App\Http\Controllers\User\StoreViewerController;
 use App\Http\Controllers\User\ProductViewerController;
 use App\Http\Controllers\User\AddProductToCartController;
 use App\Http\Controllers\Admin\HomeController as AdminHome;
+use App\Http\Controllers\Admin\Total_Sales_PDFController as PDFController;
 use App\Http\Controllers\Store\HomeController as StoreHome;
 use App\Http\Controllers\Admin\LoginController as AdminLogin;
 use App\Http\Controllers\Store\LoginController as StoreLogin;
@@ -118,6 +119,10 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
          */
         Route::controller(AdminHome::class)->group(function () {
             Route::get('/admin/home', 'index')->name('admin.home');
+
+        });
+        Route::controller(PDFController::class)->group(function () {
+            Route::get('/admin/download/total_sales', 'download')->name('admin.download.sales');
         });
         Route::controller(FarmersTableController::class)->group(function () {
             Route::get('/admin/farmers_table', 'index')->name('admin.farmers');
@@ -155,6 +160,9 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::middleware('auth:store')->group(function () {
         Route::controller(StoreHome::class)->group(function () {
             Route::get('/my-store/home', 'index')->name('store.home');
+        });
+        Route::controller(StorePDFController::class)->group(function () {
+            Route::get('/store/download/total_sales', 'download')->name('store.download.sales');
         });
         Route::controller(StoreProduct::class)->group(function () {
             Route::get('/my-store/product', 'index')->name('store.products');

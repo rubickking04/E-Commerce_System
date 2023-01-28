@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Models\Order;
+use App\Models\Store;
+use App\Models\Product;
+use App\Charts\RevenueChart;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -14,7 +19,42 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.home');
+        $month = date('m');
+        $year = date('Y');
+        $total_orders = Order::get()->count();
+        $product_sold= Order::sum('qty');
+        $total_sales = Order::sum('total_price');
+        $yearly_sales = Order::whereYear('created_at', $year)->whereMonth('created_at', $month)->sum('total_price');
+        $user = User::get()->count();
+        $store = Store::get()->count();
+        $product = Product::get()->count();
+        $products =Product::latest()->take(9)->get();
+        $orders = Order::latest()->take(9)->get();
+        $chart = new RevenueChart;
+        $chart->labels(['Orders', 'Products Sold', 'Products', 'Store', 'Customers']);
+        $chart->dataset('My stores Data', 'doughnut', [$total_orders, $product_sold, $product, $store, $user])
+            ->color(collect([
+                'rgba(255, 99, 132)',
+                'rgba(255, 159, 64)',
+                'rgba(255, 205, 86)',
+                'rgba(75, 192, 192)',
+                'rgba(54, 162, 235)',]
+            ))->backgroundColor(collect([
+                'rgba(255, 99, 132)',
+                'rgba(255, 159, 64)',
+                'rgba(255, 205, 86)',
+                'rgba(75, 192, 192)',
+                'rgba(54, 162, 235)',]
+            ));
+        return view('admin.home', compact(
+            'total_orders',
+            'product_sold',
+            'total_sales',
+            'yearly_sales',
+            'products',
+            'chart',
+            'orders'
+        ));
     }
 
     /**
@@ -61,4 +101,5 @@ class HomeController extends Controller
     {
         //
     }
+
 }
