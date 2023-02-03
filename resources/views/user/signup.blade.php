@@ -20,7 +20,7 @@
                                         <div class="form-outline text-start">
                                             <label for="name" class="col-form-label">{{ __('Name') }}</label>
                                             <div class="input-group">
-                                                <input type="text" id="name" placeholder="Juan Dela Cruz" name="name" class="form-control @error('name') is-invalid @enderror" />
+                                                <input type="text" id="name" placeholder="Juan Dela Cruz" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}"/>
                                                 @error('name')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -32,7 +32,7 @@
                                         <div class="form-outline text-start">
                                             <label for="email" class="col-form-label">Email</label>
                                             <div class="input-group">
-                                                <input type="email" id="email" placeholder="helloworld@gmail.com" name="email" class="form-control @error('email') is-invalid @enderror" />
+                                                <input type="email" id="email" placeholder="helloworld@gmail.com" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}"/>
                                                 @error('email')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -44,7 +44,7 @@
                                         <div class="form-outline text-start ">
                                             <label for="username" class="col-form-label">{{ __('Address') }}</label>
                                             <div class="input-group">
-                                                <input type="text" id="address" placeholder="Zamboanga City" name="address" class="form-control @error('address') is-invalid @enderror" />
+                                                <input type="text" id="address" placeholder="Zamboanga City" name="address" class="form-control @error('address') is-invalid @enderror" value="{{ old('address') }}"/>
                                                 @error('address')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -56,7 +56,7 @@
                                         <div class="form-outline text-start col-lg-6">
                                             <label for="phone_number" class="col-form-label">{{ __('Phone Number') }}</label>
                                             <div class="input-group">
-                                                <input type="text" id="address" placeholder="invoker69" name="phone_number" class="form-control @error('phone_number') is-invalid @enderror" />
+                                                <input type="text" id="address" placeholder="invoker69" name="phone_number" class="form-control @error('phone_number') is-invalid @enderror" value="{{ old('phone_number') }}"/>
                                                 @error('phone_number')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -68,7 +68,7 @@
                                         <div class="form-outline text-start col-lg-6">
                                             <label for="username" class="col-form-label">{{ __('Username') }}</label>
                                             <div class="input-group">
-                                                <input type="text" id="address" placeholder="invoker69" name="username" class="form-control @error('username') is-invalid @enderror" />
+                                                <input type="text" id="address" placeholder="invoker69" name="username" class="form-control @error('username') is-invalid @enderror" value="{{ old('username') }}"/>
                                                 @error('username')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -85,7 +85,7 @@
                                                     <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
                                                 </span>
                                                 <input id="password" type="password" placeholder="Must be 8-20 characters long."
-                                                    class="form-control @error('password') is-invalid @enderror" name="password">
+                                                    class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}"/>
                                                 @error('password')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>

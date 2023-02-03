@@ -41,7 +41,7 @@
                                                                         <form action="{{ route('search.order') }}" method="GET" role="search" class="d-flex">
                                                                             @csrf
                                                                             <div class="input-group">
-                                                                                <input class="form-control me-2 border border-primary" type="search" name="search" placeholder="Please try again to search by Name or Email" aria-label="Search">
+                                                                                <input class="form-control me-2 border border-primary" type="search" name="search" placeholder="Please try again to search Order Number, Product Name or Name of buyer" aria-label="Search">
                                                                                 <div class="input-group-text bg-primary">
                                                                                     <button class="btn " type="submit">
                                                                                         <i class="fa-solid fa-magnifying-glass text-white"></i>
@@ -88,7 +88,7 @@
                                                                     <td class="text-center py-3 fw-bold text-truncate" scope="row">{{ $carts->order_number }}</td>
                                                                     <td class="text-center py-3 fw-bold text-truncate" scope="row">{{ $carts->hasUser->name }}</td>
                                                                     <td class="text-center py-3" scope="row"> {{ $carts->hasProducts->product_name }}</td>
-                                                                    <td class="text-center py-3 fw-bold text-truncate" scope="row">{{ $carts->hasUser->name }}</td>
+                                                                    <td class="text-center py-3 fw-bold text-truncate" scope="row">{{ $carts->hasUser->phone_number }}</td>
                                                                     <td class="text-center py-3" scope="row">{{ $carts->created_at->toDayDateTimeString() }}</td>
                                                                     {{-- <td class="text-center" scope="row">
                                                                         <a href="{{ route('order.confirm', $carts->id) }}" class=" btn btn-success ">{{ __('Confirm Order') }}</a>
@@ -142,16 +142,22 @@
                                                                                                 </div>
                                                                                                 <div class="card mb-3">
                                                                                                     <div class="card-body">
-                                                                                                        @foreach ($carts->hasStatus as $items)
                                                                                                         <div class="row">
+                                                                                                        @foreach ($carts->hasStatus as $items)
                                                                                                             <div class="col-4 col-xl-4 col-lg-4">
                                                                                                                 <p class="fs-6">{{ $items->created_at->toDayDateTimeString() }}</p>
                                                                                                             </div>
                                                                                                             <div class="col-8 col-xl-8 col-lg-8">
-                                                                                                                <p class="fs-6 text-end">{{ $items->status }}</p>
+                                                                                                                <p class="fs-6 text-end fw-bolder">{{ $items->status }}</p>
                                                                                                             </div>
-                                                                                                        </div>
                                                                                                         @endforeach
+                                                                                                        <div class="col-4 col-xl-4 col-lg-4">
+                                                                                                            <p class="fs-6">{{ $carts->created_at->toDayDateTimeString() }}</p>
+                                                                                                        </div>
+                                                                                                        <div class="col-8 col-xl-8 col-lg-8">
+                                                                                                            <p class="fs-6 text-end fw-bolder">{{ __('Pending Order') }}</p>
+                                                                                                        </div>
+                                                                                                    </div>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="card mb-3">
@@ -202,6 +208,15 @@
                                                                                                             <div class="col-4 col-xl-2 col-lg-2">
                                                                                                                 {{-- <p class="fs-6">{{ __('₱ ' .number_format($prodPrice)) }}</p> --}}
                                                                                                                 <p class="fw-bold text-end">{{ __('×'. $carts->qty) }}</p>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="row">
+                                                                                                            <div class="col-8 col-xl-10 col-lg-10">
+                                                                                                                <p class="fs-6">{{ __('Product Quantity ') }}</p>
+                                                                                                            </div>
+                                                                                                            <div class="col-4 col-xl-2 col-lg-2">
+                                                                                                                {{-- <p class="fs-6">{{ __('₱ ' .number_format($prodPrice)) }}</p> --}}
+                                                                                                                <p class="fw-bold text-end">{{ __('×'. $carts->hasProducts->product_unit) }}</p>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                         <div class="row">
@@ -273,9 +288,9 @@
                                                                                             <input type="hidden" name="product_id" value="{{ $carts->hasProducts->id }}">
                                                                                             <label for="recipient-name" class="col-form-label">{{ __('Status of Delivery') }}</label>
                                                                                             <select class="form-select @error('status') is-invalid @enderror" aria-label="Default select example" name="status">
-                                                                                                <option selected disabled>Open this select menu</option>
+                                                                                                <option selected disabled>Pending Order</option>
                                                                                                 <option value="{{ __('Packed and Ready to deliver') }}">{{ __('Packed and Ready to deliver') }}</option>
-                                                                                                <option value="{{ __('Out of delivery') }}">{{ __('Out of delivery') }}</option>
+                                                                                                <option value="{{ __('Out for delivery') }}">{{ __('Out for delivery') }}</option>
                                                                                                 <option value="{{ __('Unsuccessful Delivery') }}">{{ __('Unsuccessful Delivery') }}</option>
                                                                                             </select>
                                                                                             @error('status')

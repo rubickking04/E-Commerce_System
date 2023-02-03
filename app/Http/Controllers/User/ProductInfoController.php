@@ -26,6 +26,7 @@ class ProductInfoController extends Controller
         $prodCategory = $orders->hasProducts->product_category;
         $orderDate = $orders->created_at;
         $orderNum = $orders->order_number;
+        $unit = $orders->hasProducts->product_unit;
         $status = DeliveryStatus::where('user_id', Auth::user()->id)->where('order_id', $orders->id)->where('product_id', $orders->hasProducts->id)->latest()->get();
         // dd($status);
         return view('user.product_info', compact(
@@ -38,6 +39,7 @@ class ProductInfoController extends Controller
             'prodCategory',
             'orderNum',
             'orderDate',
-            'status'));
+            'status',
+            'unit'));
     }
 }

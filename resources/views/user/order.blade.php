@@ -20,6 +20,7 @@
                     <p class="text-danger fs-5 lh-1">{{ __('₱ ' .$cart->hasProducts->product_price) }}</p>
                     <p class="lh-1">{{ __('Quantity: ' .$cart->qty) }}</p>
                     <p class="lh-1">{{ __('Total Price: ') }} <span class="text-danger">{{ __('₱ '.number_format($cart->total_price)) }}</span> </p>
+                    <p class="lh-1 small text-muted">{{ __('ordered '.$cart->created_at->diffForHumans()) }}</p>
                 </div>
                 @endforeach
             </div>

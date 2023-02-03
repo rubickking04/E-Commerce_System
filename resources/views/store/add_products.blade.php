@@ -25,19 +25,28 @@
                                         <form method="POST" action="{{ route('add_products') }}" enctype="multipart/form-data">
                                             @csrf
                                             <div class="row mb-3">
-                                                <div class="form-outline text-start col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <div class="form-outline text-start col-xl-4 col-lg-4col-md-4 col-sm-12 col-12">
                                                     <label for="product_name" class="col-form-label">{{ __('Product Name') }}</label>
-                                                    <input type="text" id="product_name" placeholder="Example: Jasmine Rice" name="product_name" class="form-control  @error('product_name') is-invalid @enderror" />
+                                                    <input type="text" id="product_name" placeholder="Example: Jasmine Rice" name="product_name" class="form-control  @error('product_name') is-invalid @enderror" value="{{ old('product_name') }}"/>
                                                     @error('product_name')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                     @enderror
                                                 </div>
-                                                <div class="form-outline text-start col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <div class="form-outline text-start col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                                    <label for="product_name" class="col-form-label">{{ __('Product Unit') }}</label>
+                                                    <input type="text" id="product_name" placeholder="Example: 1kl" name="product_unit" class="form-control  @error('product_unit') is-invalid @enderror" value="{{ old('product_unit') }}"/>
+                                                    @error('product_unit')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="form-outline text-start col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                                                     <label for="product_category" class="col-form-label">{{ __('Product Category ') }}</label>
                                                     <select name="product_category" id="product_category"
-                                                        class="form-control form-select my-select  @error('product_category') is-invalid @enderror">
+                                                        class="form-control form-select my-select  @error('product_category') is-invalid @enderror" value="{{ old('product_category') }}">
                                                         <option disabled selected>Choose...</option>
                                                         <option value="Fruits & Vegetables">{{ __('Fruits & Vegetables') }}</option>
                                                         <option value="Seafoods">{{ __('Seafoods') }}</option>
@@ -59,7 +68,7 @@
                                                 </div>
                                                 <div class="form-outline text-start col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
                                                     <label for="product_price" class="col-form-label">{{ __('Product Price') }}</label>
-                                                    <input type="number" id="product_price" placeholder="Example: 2500" name="product_price" class="form-control @error('product_price') is-invalid @enderror" />
+                                                    <input type="number" id="product_price" placeholder="Example: 2500" name="product_price" class="form-control @error('product_price') is-invalid @enderror" value="{{ old('product_price') }}"/>
                                                     @error('product_price')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -68,7 +77,7 @@
                                                 </div>
                                                 <div class="form-outline text-start col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
                                                     <label for="product_stocks" class="col-form-label">{{ __('Product Stocks') }}</label>
-                                                    <input type="number" id="product_stocks" placeholder="Example: 500" name="product_stocks" class="form-control @error('product_stocks') is-invalid @enderror" />
+                                                    <input type="number" id="product_stocks" placeholder="Example: 500" name="product_stocks" class="form-control @error('product_stocks') is-invalid @enderror" value="{{ old('product_stocks') }}" />
                                                     @error('product_stocks')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -77,7 +86,7 @@
                                                 </div>
                                                 <div class="form-outline text-start col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                                     <label for="product_image" class="col-form-label">{{ __('Product Image') }}</label>
-                                                    <input name="product_image" type="file" id="product_image" class="form-control @error('product_image') is-invalid @enderror"/>
+                                                    <input name="product_image" type="file" id="product_image" class="form-control @error('product_image') is-invalid @enderror" />
                                                     @error('product_image')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -86,7 +95,7 @@
                                                 </div>
                                                 <div class="form-outline text-start">
                                                     <label for="product_definition" class="col-form-label">{{ __('Product Definition') }}</label>
-                                                    <textarea type="text" id="product_definition" rows="5" placeholder="{{ __('Write something here '. Auth::user()->store_name) }}" name="product_definition" class="form-control  @error('product_definition') is-invalid @enderror"></textarea>
+                                                    <textarea type="text" id="product_definition" rows="5" placeholder="{{ __('Write something here '. Auth::user()->store_name) }}" name="product_definition" class="form-control  @error('product_definition') is-invalid @enderror" value="{{ old('product_definition') }}"></textarea>
                                                     @error('product_definition')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>

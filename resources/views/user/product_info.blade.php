@@ -12,30 +12,33 @@
                         <p class="px-5 text-muted">{{ __('HB Homes Subdivision Phase II, Block 9 Lot 3, Sinunuc Zamboanga City') }}</p>
                     </div>
                 </div>
-                @if ($status->count() > 0)
+                {{-- @if ($status->count() > 0) --}}
                 <div class="card mb-3">
                     <div class="card-body">
+                        <div class="row">
                         @foreach ( $status as $items)
-                            <div class="row">
                                 <div class="col-4 col-xl-4 col-lg-4">
                                     <p class="fs-6">{{ $items->created_at->toDayDateTimeString() }}</p>
                                 </div>
                                 <div class="col-8 col-xl-8 col-lg-8">
-                                    <p class="fs-6 text-end">{{ $items->status }}</p>
+                                    <p class="fs-6 text-end fw-bolder">{{ $items->status }}</p>
                                 </div>
-                            </div>
                         @endforeach
-                    </div>
-                </div>
-                @else
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <div class="text-center">
-                            <p>{{ __("Wait for updates") }}</p>
+                        <div class="col-4 col-xl-4 col-lg-4">
+                            <p class="fs-6">{{ $orderDate->toDayDateTimeString(); }}</p>
+                        </div>
+                        <div class="col-8 col-xl-8 col-lg-8">
+                            <p class="fs-6 text-end fw-bolder">{{ __('Pending Order') }}</p>
+                        </div>
+                        <div class="col-4 col-xl-4 col-lg-4">
+                            <p class="fs-6">{{ $orderDate->toDayDateTimeString(); }}</p>
+                        </div>
+                        <div class="col-8 col-xl-8 col-lg-8">
+                            <p class="fs-6 text-end fw-bolder">{{ __('Order Created') }}</p>
                         </div>
                     </div>
+                    </div>
                 </div>
-                @endif
                 <div class="card mb-3">
                     <div class="card-header">
                         <h5 class="mt-2">
@@ -87,6 +90,15 @@
                             <div class="col-4 col-xl-2 col-lg-2">
                                 {{-- <p class="fs-6">{{ __('₱ ' .number_format($prodPrice)) }}</p> --}}
                                 <p class="fw-bold text-end">{{ __('×'. $qty) }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8 col-xl-10 col-lg-10">
+                                <p class="fs-6">{{ __('Product Unit ') }}</p>
+                            </div>
+                            <div class="col-4 col-xl-2 col-lg-2">
+                                {{-- <p class="fs-6">{{ __('₱ ' .number_format($prodPrice)) }}</p> --}}
+                                <p class="fw-bold text-end">{{ $unit }}</p>
                             </div>
                         </div>
                         <div class="row">

@@ -41,7 +41,13 @@ class OrdersTableController extends Controller
     {
         $search = $request->input('search');
         $store_id = Auth::user()->id;
-        $cart = Order::where('order_number', 'LIKE', '%' . $search . '%')
+        $month = date('m');
+        $year = date('Y');
+        $total_orders = Order::where('store_id',Auth::id())->get()->count();
+        $product_sold= Order::where('store_id',Auth::id())->sum('qty');
+        $total_sales = Order::where('store_id', Auth::id())->sum('total_price');
+        $yearly_sales = Order::whereYear('created_at', $year)->whereMonth('created_at', $month)->sum('total_price');
+        $cart = Order::where('order_number', 'LIKE', '%' . $search . '%')->where('store_id', $store_id)
         ->orWhereHas('hasProducts', function (Builder $query) use ($search)
         {
             $query->where('product_name','LIKE','%'.$search.'%');
@@ -51,7 +57,7 @@ class OrdersTableController extends Controller
             $query->where('name','LIKE','%'.$search.'%');
         })->paginate(10);
         if (count($cart) > 0) {
-            return view('store.orders_table', compact('cart'));
+            return view('store.orders_table', compact('cart', 'total_orders', 'product_sold', 'total_sales', 'yearly_sales'));
         } else {
             return back()->with('msg', 'We couldn\'t find "' . $search . '" on this page.');
         }

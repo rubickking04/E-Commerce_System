@@ -23,7 +23,7 @@
                                             <div class="input-group">
                                                 <div class="input-group-text"><i class="bi bi-envelope-fill"></i></div>
                                                 <input type="email" id="email" placeholder="Example: rubickking04@gmail.com"
-                                                    name="email" class="form-control @error('email') is-invalid @enderror" />
+                                                    name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}"/>
                                                 @error('email')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -39,7 +39,7 @@
                                                     <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
                                                 </span>
                                                 <input id="password" type="password" placeholder="Must be 8-20 characters long."
-                                                    class="form-control @error('password') is-invalid @enderror" name="password">
+                                                    class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}"/>
                                                 @error('password')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>

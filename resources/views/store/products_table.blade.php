@@ -38,7 +38,7 @@
                                                             <form action="{{ route('search.product') }}" method="GET" role="search" class="d-flex">
                                                                 @csrf
                                                                 <div class="input-group">
-                                                                    <input class="form-control me-2 border border-primary" type="search" name="search" placeholder="Please try again to search by Name or Email" aria-label="Search">
+                                                                    <input class="form-control me-2 border border-primary" type="search" name="search" placeholder="Please try again to search by products name or category" aria-label="Search">
                                                                     <div class="input-group-text bg-primary">
                                                                         <button class="btn " type="submit"><i class="fa-solid fa-magnifying-glass text-white"></i></button>
                                                                     </div>
@@ -57,8 +57,10 @@
                                                     <th scope="col">{{ __('Product Category') }}</th>
                                                     <th scope="col">{{ __('Product Name') }}</th>
                                                     <th scope="col">{{ __('Number of Stocks') }}</th>
+                                                    <th scope="col">{{ __('Product Unit') }}</th>
                                                     <th scope="col">{{ __('Product Price') }}</th>
                                                     <th scope="col">{{ __('Product Created') }}</th>
+                                                    <th scope="col">{{ __('Product Status') }}</th>
                                                     <th scope="col">{{ __('Actions') }}</th>
                                                 </tr>
                                             </thead>
@@ -75,8 +77,14 @@
                                                     @else
                                                         <td class="text-center text-danger h6 py-3 text-truncate" scope="row">{{ $product->product_stocks }}</td>
                                                     @endif
+                                                    <td class="text-center h6 py-3 text-truncate" scope="row">{{ $product->product_unit }}</td>
                                                     <td class="text-center h6 py-3 text-truncate" scope="row">{{ __('₱ '.number_format($product->product_price)) }}</td>
                                                     <td class="text-center h6 py-3 text-truncate" scope="row">{{ \Carbon\Carbon::createFromTimestamp(strtotime($product->created_at))->isoFormat('MMMM D, YYYY') }}</td>
+                                                    @if($product->product_stocks['0'])
+                                                        <td class="text-center  h6 py-3 text-truncate text-success" scope="row">{{ __('In Stock') }}</td>
+                                                    @else
+                                                        <td class="text-center text-danger h6 py-3 text-truncate" scope="row">{{ __('Out of Stock') }}</td>
+                                                    @endif
                                                     <td class="text-center" scope="row">
                                                         <button type="button" class=" btn btn-success bi bi-eye-fill" data-bs-toggle="modal"data-bs-target="#exampleModalCenter{{ $product->id }}"></button>
                                                         <button type="button" class=" btn btn-warning bi bi-pencil-square"data-bs-toggle="modal"data-bs-target="#exampleModalCenters{{ $product->id }}"></button>

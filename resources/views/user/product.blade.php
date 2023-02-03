@@ -16,6 +16,7 @@
                             </div>
                             <p class="card-text mt-2">{{ __('Category: '.$product->product_category) }}</p>
                             <p class="card-text">{{ __('Product Definition: '.$product->product_definition) }}</p>
+                            <p class="card-text">{{ __('Product Unit: '.$product->product_unit) }}</p>
                             <form action="{{ route('add.cart', $product->id) }}" method="POST">
                                 @csrf
                             <div class="row g-1 mb-5 quantity align-items-center">

@@ -41,6 +41,7 @@ class ProductController extends Controller
             'product_stocks' => 'required',
             'product_price' => 'required|integer|min:0',
             'product_category' => 'required',
+            'product_unit' => 'required',
             'product_image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'product_definition' => 'required',
         ]);
@@ -50,6 +51,7 @@ class ProductController extends Controller
             'product_stocks' => $request->input('product_stocks'),
             'product_price' => $request->input('product_price'),
             'product_category' => $request->input('product_category'),
+            'product_unit' => $request->input('product_unit'),
             'product_definition' => $request->input('product_definition'),
         ]);
         if (request()->hasFile('product_image')) {

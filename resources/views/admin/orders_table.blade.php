@@ -15,7 +15,7 @@
                                     <div class="col-lg-4 col-md-5 col-sm-6 col-12 py-3">
                                         <form action="{{ route('admin.farmers.search') }}" method="GET" role="search" class="d-flex">
                                             @csrf
-                                            <input class="form-control me-2 " type="search" name="search" placeholder="Search Name or Email" aria-label="Search">
+                                            <input class="form-control me-2 " type="search" name="search" placeholder="Search by Order Number, Product Name or Name of buyer" aria-label="Search">
                                             <button class="btn btn-primary" type="submit">
                                                 <i class="fa-solid fa-magnifying-glass"></i>
                                             </button>
@@ -41,7 +41,7 @@
                                                                         <form action="{{ route('admin.farmers.search') }}" method="GET" role="search" class="d-flex">
                                                                             @csrf
                                                                             <div class="input-group">
-                                                                                <input class="form-control me-2 border border-primary" type="search" name="search" placeholder="Please try again to search by Name or Email" aria-label="Search">
+                                                                                <input class="form-control me-2 border border-primary" type="search" name="search" placeholder="Please try again to search Order Number, Product Name or Name of buyer" aria-label="Search">
                                                                                 <div class="input-group-text bg-primary">
                                                                                     <button class="btn " type="submit">
                                                                                         <i class="fa-solid fa-magnifying-glass text-white"></i>
@@ -115,7 +115,7 @@
                                                                                                             <div class="col-4 col-xl-8 col-lg-9">
                                                                                                                 <p class="fs-6 text-end">{{ $carts->hasUser->name }}</p>
                                                                                                                 {{-- <p class="fw-bold text-end">{{ __('×'. $qty) }}</p> --}}
-                                                                                                            </div>
+                                                                                                            </div>1
                                                                                                         </div>
                                                                                                         <div class="row">
                                                                                                             <div class="col-8 col-xl-3 col-lg-2">
@@ -200,6 +200,15 @@
                                                                                                             <div class="col-4 col-xl-2 col-lg-2">
                                                                                                                 {{-- <p class="fs-6">{{ __('₱ ' .number_format($prodPrice)) }}</p> --}}
                                                                                                                 <p class="fw-bold text-end">{{ __('×'. $carts->qty) }}</p>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="row">
+                                                                                                            <div class="col-8 col-xl-10 col-lg-10">
+                                                                                                                <p class="fs-6">{{ __('Product Quantity ') }}</p>
+                                                                                                            </div>
+                                                                                                            <div class="col-4 col-xl-2 col-lg-2">
+                                                                                                                {{-- <p class="fs-6">{{ __('₱ ' .number_format($prodPrice)) }}</p> --}}
+                                                                                                                <p class="fw-bold text-end">{{ __('×'. $carts->hasProducts->product_unit) }}</p>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                         <div class="row">

@@ -38,9 +38,15 @@
                     <a href="{{ route('show.product', $product->id) }}" class="card shadow text-decoration-none text-dark h-100">
                         <img src="{{ asset('/storage/products/'. $product->product_image) }}" class="card-img-top mt-3" alt="..." height="170">
                         <div class="card-body">
-                            <h5 class="card-title fw-bold">{{ $product->product_name }}</h5>
-                            <p class="card-text h5 text-danger">{{ __('₱'. number_format($product->product_price)) }}</p>
-                            <p class="card-text h5 text-muted small">{{ $product->product_category }}</p>
+                            @if($product->product_stocks['0'])
+                                <h5 class="card-title fw-bold">{{ $product->product_name }}</h5>
+                                <p class="card-text h5 text-danger">{{ __('₱'. number_format($product->product_price)) }}</p>
+                                <p class="card-text h5 text-muted small">{{ $product->product_category }}</p>
+                            @else
+                                <h5 class="card-title fw-bold text-muted text-decoration-line-through">{{ $product->product_name }}</h5>
+                                <p class="card-text h5 text-danger small text-muted">{{ __('Out of stocks') }}</p>
+                                <p class="card-text h5 text-muted small">{{ $product->product_category }}</p>
+                            @endif
                         </div>
                     </a>
                 </div>
