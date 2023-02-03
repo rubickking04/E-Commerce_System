@@ -9,7 +9,7 @@
                             <i class="fa-solid fa-map-location-dot text-muted fs-4"></i>
                             <span class="px-2 mb-2">{{ __('Reciever : '.Auth::user()->name) }}</span>
                         </p>
-                        <p class="px-5 text-muted">{{ __('HB Homes Subdivision Phase II, Block 9 Lot 3, Sinunuc Zamboanga City') }}</p>
+                        <p class="px-5 text-muted">{{ Auth::user()->address }}</p>
                     </div>
                 </div>
                 {{-- @if ($status->count() > 0) --}}
