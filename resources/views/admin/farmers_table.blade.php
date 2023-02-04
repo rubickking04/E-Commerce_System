@@ -87,7 +87,7 @@
                                                                     <td class="text-center fw-bold h6 py-3 text-truncate" scope="row">{{ $users->name }}</td>
                                                                     <td class="text-center" scope="row"> {{ $users->email }}</td>
                                                                     <td class="text-center" scope="row"> {{ $users->address }}</td>
-                                                                    <td class="text-center" scope="row"> {{ $users->phone }}</td>
+                                                                    <td class="text-center" scope="row"> {{ $users->phone_number }}</td>
                                                                     <td class="text-center" scope="row">{{ \Carbon\Carbon::createFromTimestamp(strtotime($users->created_at))->Format('d/m/Y') }}</td>
                                                                     <td class="text-center" scope="row">
                                                                         <button type="button" class=" btn btn-success bi bi-eye-fill" data-bs-toggle="modal"data-bs-target="#exampleModalCenter{{ $users->id }}"></button>
@@ -154,7 +154,7 @@
 
                                                                                                 <div class="col-md-6 text-start">
                                                                                                     <label for="phone" class="col-form-label">{{ __('Phone Number') }}</label>
-                                                                                                    <input id="phone" type="text" placeholder="09557815639" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ $users->phone }}">
+                                                                                                    <input id="phone" type="text" placeholder="09557815639" class="form-control @error('phone') is-invalid @enderror" name="phone_number" value="{{ $users->phone_number }}">
                                                                                                     @error('phone')
                                                                                                         <span class="invalid-feedback" role="alert">
                                                                                                             <strong>{{ $message }}</strong>

@@ -13,7 +13,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-5 col-sm-6 col-12 py-3">
-                                        <form action="{{ route('admin.farmers.search') }}" method="GET" role="search" class="d-flex">
+                                        <form action="{{ route('admin.stores.search') }}" method="GET" role="search" class="d-flex">
                                             @csrf
                                             <input class="form-control me-2 " type="search" name="search" placeholder="Search by Store Name" aria-label="Search">
                                             <button class="btn btn-success" type="submit">
@@ -38,7 +38,7 @@
                                                             <div class="row justify-content-center">
                                                                 <div class="col-lg-5 col-md-5 col-sm-10 col-12">
                                                                     <div class="row">
-                                                                        <form action="{{ route('admin.farmers.search') }}" method="GET" role="search" class="d-flex">
+                                                                        <form action="{{ route('admin.stores.search') }}" method="GET" role="search" class="d-flex">
                                                                             @csrf
                                                                             <div class="input-group">
                                                                                 <input class="form-control me-2" type="search" name="search" placeholder="Please try again to search by Store Name" aria-label="Search">
@@ -87,7 +87,7 @@
                                                                     <td class="text-center py-3 text-truncate" scope="row">{{ $stores->store_name }}</td>
                                                                     <td class="text-center" scope="row"> {{ $stores->hasUser->name }}</td>
                                                                     <td class="text-center" scope="row"> {{ $stores->hasUser->address }}</td>
-                                                                    <td class="text-center" scope="row"> {{ $stores->hasUser->phone }}</td>
+                                                                    <td class="text-center" scope="row"> {{ $stores->hasUser->phone_number }}</td>
                                                                     <td class="text-center" scope="row">{{ \Carbon\Carbon::createFromTimestamp(strtotime($stores->created_at))->Format('d/m/Y') }}</td>
                                                                     <td class="text-center" scope="row">
                                                                         <button type="button" class=" btn btn-success bi bi-eye-fill" data-bs-toggle="modal"data-bs-target="#exampleModalCenter{{ $stores->id }}"></button>

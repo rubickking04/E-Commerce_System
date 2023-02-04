@@ -42,7 +42,7 @@ class StoresTableController extends Controller
         $search = $request->input('search');
         $store = Store::where('store_name', 'LIKE', '%' . $search . '%')->orWhere('email', 'LIKE', '%' . $search . '%')->paginate(10);
         if (count($store) > 0) {
-            return view('admin.farmers_table', compact('store', 'search'));
+            return view('admin.stores_table', compact('store', 'search'));
         } else {
             return back()->with('msg', 'We couldn\'t find "' . $search . '" on this page.');
         }

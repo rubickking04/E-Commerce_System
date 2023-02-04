@@ -133,9 +133,9 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         });
         Route::controller(StoresTableController::class)->group(function () {
             Route::get('/admin/stores_table', 'index')->name('admin.stores');
-            Route::get('/admin/stores/search', 'search')->name('admin.farmers.search');
+            Route::get('/admin/stores/search', 'search')->name('admin.stores.search');
             Route::post('/admin/stores/update/{id}', 'update')->name('admin.stores.update');
-            Route::get('/admin/stores/destroy/{id}', 'destroy')->name('admin.farmers.delete');
+            Route::get('/admin/stores/destroy/{id}', 'destroy')->name('admin.stores.delete');
         });
         Route::controller(ProductsTableController::class)->group(function () {
             Route::get('/admin/products_table', 'index')->name('admin.products');
