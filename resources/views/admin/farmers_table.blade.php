@@ -154,8 +154,8 @@
 
                                                                                                 <div class="col-md-6 text-start">
                                                                                                     <label for="phone" class="col-form-label">{{ __('Phone Number') }}</label>
-                                                                                                    <input id="phone" type="text" placeholder="09557815639" class="form-control @error('phone') is-invalid @enderror" name="phone_number" value="{{ $users->phone_number }}">
-                                                                                                    @error('phone')
+                                                                                                    <input id="phone" type="text" placeholder="09557815639" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ $users->phone_number }}">
+                                                                                                    @error('phone_number')
                                                                                                         <span class="invalid-feedback" role="alert">
                                                                                                             <strong>{{ $message }}</strong>
                                                                                                         </span>

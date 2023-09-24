@@ -28,8 +28,8 @@ class OrdersTableController extends Controller
         $total_sales = Order::where('store_id', Auth::id())->sum('total_price');
         $yearly_sales = Order::whereYear('created_at', $year)->whereMonth('created_at', $month)->sum('total_price');
         $cart = Order::where('store_id', '=', Auth::user()->id)->orderBy('created_at', 'DESC')->latest()->paginate(10);
-        dd($cart);
-        // return view('store.orders_table', compact('cart', 'total_orders', 'product_sold', 'total_sales', 'yearly_sales'));
+        // dd($cart);
+        return view('store.orders_table', compact('cart', 'total_orders', 'product_sold', 'total_sales', 'yearly_sales'));
     }
 
     /**

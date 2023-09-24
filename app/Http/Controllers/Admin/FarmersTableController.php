@@ -16,7 +16,7 @@ class FarmersTableController extends Controller
      */
     public function index()
     {
-        $user = User::paginate(10);
+        $user = User::paginate(5);
         return view('admin.farmers_table', compact('user'));
     }
 
@@ -60,13 +60,13 @@ class FarmersTableController extends Controller
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|string|max:255',
-            'phone' => 'required|string',
+            'phone_number' => 'required|string',
             'address' => 'required|string',
         ]);
         $user = User::find($id);
         $user->name = $request['name'];
         $user->email = $request['email'];
-        $user->phone = $request['phone'];
+        $user->phone_number = $request['phone_number'];
         $user->address = $request['address'];
         $user->save();
         Alert::toast('Updated Successfully!', 'success');
