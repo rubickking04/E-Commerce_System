@@ -16,7 +16,7 @@ class FarmersTableController extends Controller
      */
     public function index()
     {
-        $user = User::paginate(5);
+        $user = User::paginate(2);
         return view('admin.farmers_table', compact('user'));
     }
 
